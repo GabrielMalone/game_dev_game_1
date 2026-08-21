@@ -1,0 +1,3 @@
+repository "emotion_recognition/emotion_recognition@2475973465732@cloud"
+  path "/"
+    smartbranch "/main/gabe"  
