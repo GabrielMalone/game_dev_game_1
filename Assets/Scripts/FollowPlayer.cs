@@ -2,12 +2,9 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float stoppingDistance = 1f;
-
+    public float speed = 3f;
+    public float stoppingDistance = 1f;
     public GameObject player;
-
     private Transform playerTransform;
 
     void Start()
@@ -34,18 +31,10 @@ public class EnemyFollow : MonoBehaviour
         if (distanceToPlayer > stoppingDistance)
         {
             transform.position = Vector2.MoveTowards(
-                transform.position, 
-                playerTransform.position, 
-                speed * Time.deltaTime
-            );
-        }
-    }
-
-    void LateUpdate()
-    {
-        if (player == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+                transform.position,  // current position
+                playerTransform.position, // target position
+                speed * Time.deltaTime // maximum distance to move (how far am I allowed to move this frame)
+            ); 
         }
     }
 
