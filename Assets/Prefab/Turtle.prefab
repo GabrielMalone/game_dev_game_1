@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5434156943091796909}
   - component: {fileID: 1695443207363965216}
   - component: {fileID: 2608089662416475250}
+  - component: {fileID: -7330607560993709910}
+  - component: {fileID: 1406446791687087108}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Untagged
@@ -174,3 +176,33 @@ PolygonCollider2D:
       - {x: 0.5, y: 0}
       - {x: 0.25, y: 0.43359375}
   m_UseDelaunayMesh: 1
+--- !u!114 &-7330607560993709910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233630745859838066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abecc12340a344248adf7c96fafbd9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Turtle
+  minSize: 0.5
+  maxSize: 2
+  minSpeed: 50
+  maxSpeed: 550
+  maxSpinSpeed: 10
+--- !u!114 &1406446791687087108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233630745859838066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d37355fb5784736998e65534786671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
+  player: {fileID: 0}
