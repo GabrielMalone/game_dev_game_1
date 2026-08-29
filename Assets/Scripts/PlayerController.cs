@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public float thrustForce = 1f;
     public float torque = 0.5f;
-    public float maxPlayerSpeed = 2f;
-    
+    public float maxPlayerSpeed = 20f;
+    public float jumpforce = 10f; // how much in the up direction
+    public float boostMultiplier = 2f; // speed boost on jump
+    public float boostDuration = 0.5f;
+    private bool isBoosting = false; // so we dont double up a bunch of jumps
+
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,13 +32,15 @@ public class PlayerController : MonoBehaviour
             transform.up = direction.normalized;
         }
 
+
+        // moving
         if (Keyboard.current.wKey.isPressed)
         {
             rb.AddForce(transform.up * thrustForce);
         }
         if (Keyboard.current.aKey.isPressed)
         {
-            rb.AddTorque(torque);
+            rb.AddTorque(torque); // changes direction
         }
         if (Keyboard.current.sKey.isPressed)
         {
@@ -41,7 +48,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Keyboard.current.dKey.isPressed)
         {
-            rb.AddTorque(-torque);
+            rb.AddTorque(-torque); // changes direction
         }
 
         SpeedCheck(rb);
