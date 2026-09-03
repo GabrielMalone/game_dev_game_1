@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1406446791687087108}
   - component: {fileID: -6484984936207961416}
   m_Layer: 0
-  m_Name: Turtle
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,11 +107,11 @@ Rigidbody2D:
   m_GameObject: {fileID: 7233630745859838066}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_LinearDamping: 10
+  m_AngularDamping: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -134,7 +134,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 79e741799caf54e85bd3dfa84eef965f, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -190,10 +190,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turtle
   minSize: 0.5
-  maxSize: 2
-  minSpeed: 50
-  maxSpeed: 550
-  maxSpinSpeed: 10
+  maxSize: 4
+  minSpeed: 3
+  maxSpeed: 80
+  maxSpinSpeed: 5
+  acceleration: 175
+  turnSpeed: 720
+  currentSpeed: 0
+  beatSpeedMultiplier: 1.5
+  speedSmoothing: 100
+  sidewaysDrag: 0.99
+  bass: 0
+  lowMid: 0
+  mid: 0
+  highMid: 0
+  treble: 0
+  volume: 0
+  dominantFrequency: 0
+  minFrequency: 25
+  maxFrequency: 256
+  minTreble: 0.001
+  maxTreble: 0.05
+  minVolume: 0.05
+  maxVolume: 0.5
+  colorSpeed: 5
 --- !u!114 &1406446791687087108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d37355fb5784736998e65534786671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
+  target: {fileID: 0}
 --- !u!195 &-6484984936207961416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -216,13 +237,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 0
+  m_Acceleration: 0
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.8828125
   m_BaseOffset: 0.44140625
