@@ -92,45 +92,8 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity.normalized * maxPlayerSpeed;
         }
     }
-    // called automatically by unity, dont need to put in update
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            WallHit(collision);
-        }
-    }
 
-
-    void WallHit(Collision2D collision)
-    {
-        // contains direction and speed of player
-        Vector2 incomingVelocity = rb.linearVelocity;
-
-        // give the contact point from this collision with the wall
-        // 0 being the first point of contact (there can be multiple)
-        // a normal is a vector pointing perpendicular away from a surface
-        // aka which way does the surface I hit point to
-        Vector2 wallNormal =
-            collision.GetContact(0).normal;
-
-        // take the direction the player was going and reflect if off the wall using the normal vector
-        // straight on = straight back , at an angle = at the mirrored angle
-        // speed is maintained 
-        Vector2 reflectedVelocity =
-            Vector2.Reflect(incomingVelocity, wallNormal);
-
-        // Actually bounce the player's movement
-        rb.linearVelocity = reflectedVelocity;
-
-        // Face the direction we're now moving
-        // convert a vector direction to an angle
-        float angle =
-            Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x)
-            * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
-    }
-
+  
     void Repulse()
     {
         Collider2D[] objectsInRange =

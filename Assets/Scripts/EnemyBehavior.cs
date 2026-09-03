@@ -155,7 +155,6 @@ public class EnemyBehavior : MonoBehaviour
         );
 
         spriteRenderer.color = currentColor;
-        Debug.Log("Frequency: " + frequency + " Hue: " + hue);
     }
 
     void UpdateMovement()

@@ -193,7 +193,6 @@ public class AudioAnalyzer : MonoBehaviour
     {
         // How much did the bass increase since last frame?
         bassIncrease = bass - previousBass;
-        Debug.Log("bass increase: " + bassIncrease);
 
         // Assume no beat this frame
         beatDetected = false;
