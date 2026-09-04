@@ -10,7 +10,8 @@ public class AudioAnalyzer : MonoBehaviour
     // how much enegery is present at different frequencies right now?
     // we will try 512 to hold a spectrum of frequnecy -- 
     // but what each bin represents frequency wise is based on audio sample rate
-    public int spectrumSize = 512;
+    // higher number = more 
+    public int spectrumSize = 2048;
 
     // FFT = Fast Fourier Transform
     // takes chunks of audio and converts it into information about which frequencies are present
@@ -34,10 +35,36 @@ public class AudioAnalyzer : MonoBehaviour
     public bool beatDetected;
     public float beatThreshold = 0.01f;
     public float beatCooldown = 0.15f;
+    private float beatPulse = 1f;
+
+    public float minSpeed = 5f;
+    public float maxSpeed = 25f;
+    public float maxSpinSpeed = 5f;
+    public float beatSpeedMultiplier = 1.5f;
 
     private float previousBass;
     private float lastBeatTime;
     public float bassIncrease;
+
+    public float targetSpeed;
+
+    [Header("Volume")]
+    public float minVolume = 0.05f;
+    public float maxVolume = 1f;
+
+    [Header("Frequency")]
+    public float minFrequency = 50f;
+    public float maxFrequency = 3000f;
+
+    [Header("Treble")]
+    public float minTreble = 0.001f;
+    public float maxTreble = 0.05f;
+
+    public Color currentColor;
+
+    [Header("Smoothing")]
+    public float colorSpeed = 0.25f;
+
 
     void Start()
     {
@@ -56,6 +83,8 @@ public class AudioAnalyzer : MonoBehaviour
     {
         AnalyzeAudio();
         DetectBeat();
+        UpdateMovement();
+        FrequencyColorChange();
     }
 
     void AnalyzeAudio()
@@ -71,6 +100,7 @@ public class AudioAnalyzer : MonoBehaviour
         // this will fill the array 'spectrum' that we are passing in
         // thus don't need to return anything
         // so just saying analyuze the current audio and put the results into the spectrum array
+        // magnitude of the audio at each frequency range (we decide to split into x number of frequency slots)
         audioSource.GetSpectrumData(
             spectrum,
             0,
@@ -210,4 +240,75 @@ public class AudioAnalyzer : MonoBehaviour
         // Save current bass for comparison next frame
         previousBass = bass;
     }
+
+
+    void UpdateMovement()
+    {
+        float volumeAmount = Mathf.InverseLerp(
+            minVolume,
+            maxVolume,
+            volume
+        );
+
+        targetSpeed = Mathf.Lerp(
+            minSpeed,
+            maxSpeed,
+            volumeAmount
+
+        );
+
+        if (beatDetected)
+        {
+            beatPulse = beatSpeedMultiplier;
+        }
+
+        beatPulse = Mathf.Lerp(
+            beatPulse,
+            1f,
+            20 * Time.deltaTime
+
+        );
+
+        targetSpeed *= beatPulse;
+    }
+
+     void FrequencyColorChange()
+    {
+        // -------------------------------
+        // FREQUENCY -> COLOR
+        // -------------------------------
+
+        float frequency = dominantFrequency;
+        // how far is the value between a minimum and a maximum
+        // min and max frequency really depends on the song I guess
+        float hue = Mathf.InverseLerp(
+            minFrequency,
+            maxFrequency,
+            frequency
+        );
+
+        // -------------------------------
+        // CREATE COLOR
+        // -------------------------------
+        // hue, saturation, value to RGB
+        Color targetColor = Color.HSVToRGB(
+            hue,
+            1f,
+            1f
+        );
+
+
+        // -------------------------------
+        // SMOOTH COLOR CHANGE
+        // -------------------------------
+
+        currentColor = Color.Lerp(
+            currentColor,
+            targetColor,
+            colorSpeed * Time.deltaTime
+        );
+
+    }
+
+
 }

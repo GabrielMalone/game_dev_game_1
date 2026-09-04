@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     private UnityEngine.AI.NavMeshAgent agent;
+    private Vector3 originalScale;
 
     [Header("Size and Speed")]
     public float minSize = 0.5f;
@@ -23,7 +24,6 @@ public class EnemyBehavior : MonoBehaviour
     public float sidewaysDrag = 0.5f;
 
     private Vector2 moveDirection;
-    private float beatPulse = 1f;
 
     private AudioAnalyzer analyzer;
 
@@ -36,7 +36,6 @@ public class EnemyBehavior : MonoBehaviour
     public float volume;
     public float dominantFrequency;
 
-    private Color currentColor;
     private SpriteRenderer spriteRenderer;
 
     [Header("Frequency")]
@@ -51,8 +50,12 @@ public class EnemyBehavior : MonoBehaviour
     public float minVolume = 0.05f;
     public float maxVolume = 1f;
 
-    [Header("Smoothing")]
-    public float colorSpeed = 5f;
+    [Header("Beat Effects")]
+    private float sizePulse = 1f;
+    public float beatSizeMultiplier = 1.5f;
+    public float sizeReturnSpeed = 8f;
+
+
     Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -64,8 +67,10 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FrequencyColorChange();
-        UpdateMovement();
+        agent.speed = analyzer.targetSpeed * 3;
+        spriteRenderer.color = analyzer.currentColor;
+        pulseOnBeat();
+        
 
     }
 
@@ -81,112 +86,29 @@ public class EnemyBehavior : MonoBehaviour
         // for audio effects
         analyzer = FindAnyObjectByType<AudioAnalyzer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        currentColor = spriteRenderer.color;
 
         float randomSize = Random.Range(minSize, maxSize);
         transform.localScale = new Vector3(randomSize, randomSize, 1);
+        originalScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
     }
 
-
-
-
-    void FrequencyColorChange()
+    void pulseOnBeat()
     {
-        bass = analyzer.bass;
-        lowMid = analyzer.lowMid;
-        mid = analyzer.mid;
-        highMid = analyzer.highMid;
-        treble = analyzer.treble;
-        volume = analyzer.volume;
-        dominantFrequency = analyzer.dominantFrequency;
-
-        // -------------------------------
-        // FREQUENCY -> COLOR
-        // -------------------------------
-
-        float frequency = analyzer.dominantFrequency;
-        // how far is the value between a minimum and a maximum
-        float hue = Mathf.InverseLerp(
-            minFrequency,
-            maxFrequency,
-            frequency
-        );
-
-        // TREBLE -> SATURATION
-
-        float saturation = Mathf.InverseLerp(
-            minTreble,
-            maxTreble,
-            analyzer.treble
-        );
-
-
-        // -------------------------------
-        // VOLUME -> INTENSITY
-        // -------------------------------
-        // how far is the value between a minimum and a maximum
-        float intensity = Mathf.InverseLerp(
-            minVolume,
-            maxVolume,
-            analyzer.volume
-        );
-
-
-        // -------------------------------
-        // CREATE COLOR
-        // -------------------------------
-        // hue, saturation, value to RGB
-        Color targetColor = Color.HSVToRGB(
-            hue,
-            1f,
-            intensity + 0.2f
-        );
-
-
-        // -------------------------------
-        // SMOOTH COLOR CHANGE
-        // -------------------------------
-
-        currentColor = Color.Lerp(
-            currentColor,
-            targetColor,
-            colorSpeed * Time.deltaTime
-        );
-
-        spriteRenderer.color = currentColor;
-    }
-
-    void UpdateMovement()
-    {
-        float volumeAmount = Mathf.InverseLerp(
-            minVolume,
-            maxVolume,
-            analyzer.volume
-        );
-
-        float targetSpeed = Mathf.Lerp(
-            minSpeed,
-            maxSpeed,
-            volumeAmount
-
-        );
 
         if (analyzer.beatDetected)
         {
-            beatPulse = beatSpeedMultiplier;
+            sizePulse = beatSizeMultiplier;
         }
 
-        beatPulse = Mathf.Lerp(
-            beatPulse,
+        sizePulse = Mathf.Lerp(
+            sizePulse,
             1f,
-            10f * Time.deltaTime
-
+            sizeReturnSpeed * Time.deltaTime
         );
 
-        targetSpeed *= beatPulse;
+        transform.localScale = originalScale * sizePulse;
 
-        agent.speed = targetSpeed;
     }
 
 }
