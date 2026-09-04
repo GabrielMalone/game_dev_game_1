@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1406446791687087108}
   - component: {fileID: -6484984936207961416}
   - component: {fileID: 5080976171822095426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,10 @@ MonoBehaviour:
   maxTreble: 0.05
   minVolume: 0.05
   maxVolume: 0.5
+  beatSizeMultiplier: 1.5
+  sizeReturnSpeed: 8
+  teleportRadius: 2
+  teleportDuration: 0.05
 --- !u!114 &1406446791687087108
 MonoBehaviour:
   m_ObjectHideFlags: 0
