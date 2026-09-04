@@ -27,7 +27,7 @@ public class AudioAnalyzer : MonoBehaviour
     public float highMid;
     public float treble;
     public float dominantFrequency;
-
+    
     private float[] spectrum;
     private float[] samples;
 
@@ -101,7 +101,6 @@ public class AudioAnalyzer : MonoBehaviour
         // -------------------------------------------------
         // FREQUENCY DATA
         // -------------------------------------------------
-
 
         // this will fill the array 'spectrum' that we are passing in
         // thus don't need to return anything
@@ -275,7 +274,6 @@ public class AudioAnalyzer : MonoBehaviour
             minSpeed,
             maxSpeed,
             volumeAmount
-
         );
 
         if (beatDetected)
@@ -291,6 +289,7 @@ public class AudioAnalyzer : MonoBehaviour
         );
 
         targetSpeed *= beatPulse;
+
     }
 
      void FrequencyColorChange()

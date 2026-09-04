@@ -57,10 +57,16 @@ public class EnemyBehavior : MonoBehaviour
     public float sizeReturnSpeed = 8f;
 
     [Header("Treble Teleport")]
-    public float teleportRadius = 2f;
-    public float teleportDuration = 0.05f;
+    public float teleportRadius = 0.25f;
+    public float teleportDuration = 0.01f;
 
-    private bool teleporting = false;
+    [Header("Treble Effect")]
+    public Material bloomMaterial;
+    public Material defaultMaterial;
+    private Material enemyBloomMaterial;
+    public float glowSpeed = 5f;
+    public float maxGlow = 5f;
+    private float currentGlow = 0f;
 
 
     Rigidbody2D rb;
@@ -69,6 +75,7 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         initEnememy();
+        
     }
 
     // Update is called once per frame
@@ -77,7 +84,7 @@ public class EnemyBehavior : MonoBehaviour
         agent.speed = analyzer.targetSpeed * 3;
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
-        TeleportOnTreble();
+        glowOnTreble();
 
     }
 
@@ -98,6 +105,8 @@ public class EnemyBehavior : MonoBehaviour
         transform.localScale = new Vector3(randomSize, randomSize, 1);
         originalScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
+
+        enemyBloomMaterial = new Material(bloomMaterial);
     }
 
     void pulseOnBeat()
@@ -118,31 +127,30 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    void TeleportOnTreble()
+    void glowOnTreble()
     {
-        if (analyzer.trebleDetected && !teleporting)
+        spriteRenderer.material = enemyBloomMaterial;
+
+        Color currentColor = spriteRenderer.color;
+
+        // Treble hit gives us a fresh burst
+        if (analyzer.trebleDetected)
         {
-            // Remember where we started
-            Vector3 originalPosition = transform.position;
-
-            // Pick a random point inside a circle
-            Vector2 randomOffset =
-                Random.insideUnitCircle * teleportRadius;
-
-            // Add that offset to our current position
-            Vector3 teleportPosition =
-                originalPosition + new Vector3(
-                    randomOffset.x,
-                    randomOffset.y,
-                    0f
-                );
-
-            // Teleport the NavMeshAgent
-            agent.Warp(teleportPosition);
+            currentGlow = maxGlow;
         }
-    }
 
- 
+        // Always fade back down afterward
+        currentGlow = Mathf.Lerp(
+            currentGlow,
+            1f,
+            glowSpeed * Time.deltaTime
+        );
+
+        Color hdrColor = currentColor * currentGlow;
+
+        enemyBloomMaterial.SetColor("_Color", hdrColor);
+        enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
+    }
 
 }
  
