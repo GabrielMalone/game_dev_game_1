@@ -46,6 +46,11 @@ public class AudioAnalyzer : MonoBehaviour
     private float lastBeatTime;
     public float bassIncrease;
 
+    private float previousTreble;
+    private float lastTrebleTime;
+    public float trebleIncrease;
+    public bool trebleDetected;
+    public float trebleThreshold = 0.0001f;
     public float targetSpeed;
 
     [Header("Volume")]
@@ -83,6 +88,7 @@ public class AudioAnalyzer : MonoBehaviour
     {
         AnalyzeAudio();
         DetectBeat();
+        DetectTreble();
         UpdateMovement();
         FrequencyColorChange();
     }
@@ -118,7 +124,7 @@ public class AudioAnalyzer : MonoBehaviour
         lowMid = GetFrequencyRange(250f, 500f);
         mid = GetFrequencyRange(500f, 2000f);
         highMid = GetFrequencyRange(2000f, 4000f);
-        treble = GetFrequencyRange(4000f, 20000f);
+        treble = GetFrequencyRange(6000, 12000f);
 
         dominantFrequency = GetDominantFrequency();
 
@@ -239,6 +245,21 @@ public class AudioAnalyzer : MonoBehaviour
 
         // Save current bass for comparison next frame
         previousBass = bass;
+    }
+
+    void DetectTreble()
+    {
+        trebleIncrease = treble - previousTreble;
+        trebleDetected = false;
+
+        if (trebleIncrease > trebleThreshold &&
+            Time.time - lastTrebleTime > beatCooldown)
+        {
+            trebleDetected = true;
+            lastTrebleTime = Time.time;
+
+        }
+        previousTreble = treble;
     }
 
 

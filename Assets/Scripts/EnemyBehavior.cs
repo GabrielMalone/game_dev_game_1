@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -55,6 +56,12 @@ public class EnemyBehavior : MonoBehaviour
     public float beatSizeMultiplier = 1.5f;
     public float sizeReturnSpeed = 8f;
 
+    [Header("Treble Teleport")]
+    public float teleportRadius = 2f;
+    public float teleportDuration = 0.05f;
+
+    private bool teleporting = false;
+
 
     Rigidbody2D rb;
 
@@ -70,7 +77,7 @@ public class EnemyBehavior : MonoBehaviour
         agent.speed = analyzer.targetSpeed * 3;
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
-        
+        TeleportOnTreble();
 
     }
 
@@ -110,6 +117,32 @@ public class EnemyBehavior : MonoBehaviour
         transform.localScale = originalScale * sizePulse;
 
     }
+
+    void TeleportOnTreble()
+    {
+        if (analyzer.trebleDetected && !teleporting)
+        {
+            // Remember where we started
+            Vector3 originalPosition = transform.position;
+
+            // Pick a random point inside a circle
+            Vector2 randomOffset =
+                Random.insideUnitCircle * teleportRadius;
+
+            // Add that offset to our current position
+            Vector3 teleportPosition =
+                originalPosition + new Vector3(
+                    randomOffset.x,
+                    randomOffset.y,
+                    0f
+                );
+
+            // Teleport the NavMeshAgent
+            agent.Warp(teleportPosition);
+        }
+    }
+
+ 
 
 }
  

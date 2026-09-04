@@ -801,7 +801,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
+  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1418,6 +1418,14 @@ PrefabInstance:
       propertyPath: minSize
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
+      propertyPath: teleportRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
+      propertyPath: teleportDuration
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 1406446791687087108, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: target
       value: 
@@ -1432,11 +1440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -146.3843
+      value: -206.7
       objectReference: {fileID: 0}
     - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.999084
+      value: 21.9
       objectReference: {fileID: 0}
     - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1667,6 +1675,9 @@ MonoBehaviour:
   maxSpinSpeed: 5
   beatSpeedMultiplier: 5
   bassIncrease: 0
+  trebleIncrease: 0
+  trebleDetected: 0
+  trebleThreshold: 0.0001
   targetSpeed: 0
   minVolume: 0.05
   maxVolume: 1
