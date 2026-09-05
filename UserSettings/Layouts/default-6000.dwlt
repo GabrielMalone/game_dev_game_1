@@ -540,12 +540,12 @@ MonoBehaviour:
       displayed: 1
       id: Play Mode Controls
       index: 0
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-1281.0,"y":-36.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":189.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
-      snapOffset: {x: -1281, y: -36}
+      snapOffset: {x: 189, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 3
+      snapCorner: 0
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -67.330765, y: 84.943726, z: -1.08173}
+    m_Target: {x: -149.9667, y: 76.09639, z: -0.009397547}
     speed: 2
     m_Value: {x: -67.330765, y: 84.943726, z: -1.08173}
   m_RenderMode: 0
@@ -1328,7 +1328,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 108.8732
+    m_Target: 1.8057857
     speed: 2
     m_Value: 108.8732
   m_Ortho:
@@ -1978,23 +1978,22 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 568105584918842724
-    - m_rawData: 568105584918842786
-    - m_rawData: 568105584918842788
-    - m_rawData: 568105584918842790
-    - m_rawData: 568105584918842792
-    - m_rawData: 568105584918842794
-    - m_rawData: 568105584918842796
-    - m_rawData: 568105584918842798
-    - m_rawData: 568105584918842800
-    - m_rawData: 568105584918842802
-    - m_rawData: 568105584918842804
-    - m_rawData: 568105584918842806
-    - m_rawData: 568105584918842808
-    - m_rawData: 568105584918842810
-    - m_rawData: 568105584918842812
-    - m_rawData: 568105584918842814
-    - m_rawData: 568105584918842816
+    - m_rawData: 568105584918841450
+    - m_rawData: 568105584918842864
+    - m_rawData: 568105584918842866
+    - m_rawData: 568105584918842868
+    - m_rawData: 568105584918842870
+    - m_rawData: 568105584918842872
+    - m_rawData: 568105584918842874
+    - m_rawData: 568105584918842876
+    - m_rawData: 568105584918842878
+    - m_rawData: 568105584918842880
+    - m_rawData: 568105584918842882
+    - m_rawData: 568105584918842884
+    - m_rawData: 568105584918842886
+    - m_rawData: 568105584918842888
+    - m_rawData: 568105584918842890
+    - m_rawData: 568105584918842892
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2028,23 +2027,22 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 568105584918842724
-    - m_rawData: 568105584918842786
-    - m_rawData: 568105584918842788
-    - m_rawData: 568105584918842790
-    - m_rawData: 568105584918842792
-    - m_rawData: 568105584918842794
-    - m_rawData: 568105584918842796
-    - m_rawData: 568105584918842798
-    - m_rawData: 568105584918842800
-    - m_rawData: 568105584918842802
-    - m_rawData: 568105584918842804
-    - m_rawData: 568105584918842806
-    - m_rawData: 568105584918842808
-    - m_rawData: 568105584918842810
-    - m_rawData: 568105584918842812
-    - m_rawData: 568105584918842814
-    - m_rawData: 568105584918842816
+    - m_rawData: 568105584918841450
+    - m_rawData: 568105584918842864
+    - m_rawData: 568105584918842866
+    - m_rawData: 568105584918842868
+    - m_rawData: 568105584918842870
+    - m_rawData: 568105584918842872
+    - m_rawData: 568105584918842874
+    - m_rawData: 568105584918842876
+    - m_rawData: 568105584918842878
+    - m_rawData: 568105584918842880
+    - m_rawData: 568105584918842882
+    - m_rawData: 568105584918842884
+    - m_rawData: 568105584918842886
+    - m_rawData: 568105584918842888
+    - m_rawData: 568105584918842890
+    - m_rawData: 568105584918842892
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

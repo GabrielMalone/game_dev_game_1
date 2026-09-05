@@ -60,11 +60,36 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
-        // start position
-        lineRenderer.SetPosition(0, firePoint.position);
-        // end position
-        lineRenderer.SetPosition(1, firePoint.position + firePoint.up * 1000f);
-    }
+        Vector2 startPosition = firePoint.position;
+        Vector2 direction = firePoint.up;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            startPosition,
+            direction,
+            1000f
+        );
+
+        lineRenderer.SetPosition(0, startPosition);
+
+        if (hit.collider != null)
+        {
+            // Stop laser at object
+            lineRenderer.SetPosition(1, hit.point);
+
+            // Destroy Enemy(Clone)
+            if (hit.collider.gameObject.name == "Enemy(Clone)")
+            {
+                Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            lineRenderer.SetPosition(
+                1,
+                startPosition + direction * 1000f
+            );
+        }
+}
 
     void DisableLaser()
     {
