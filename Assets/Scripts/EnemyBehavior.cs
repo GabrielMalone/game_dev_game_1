@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class EnemyBehavior : MonoBehaviour
 {
     private UnityEngine.AI.NavMeshAgent agent;
@@ -9,9 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     [Header("Size and Speed")]
     public float minSize = 0.5f;
     public float maxSize = 2.0f;
-    public float minSpeed = 5f;
-    public float maxSpeed = 25f;
-    public float maxSpinSpeed = 5f;
+
 
 
     [Header("NavMesh Agility")]
@@ -85,7 +84,6 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
         glowOnTreble();
-
     }
 
 
@@ -107,6 +105,8 @@ public class EnemyBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         enemyBloomMaterial = new Material(bloomMaterial);
+
+        
     }
 
     void pulseOnBeat()
@@ -151,7 +151,6 @@ public class EnemyBehavior : MonoBehaviour
         enemyBloomMaterial.SetColor("_Color", hdrColor);
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
     }
-
 }
  
 

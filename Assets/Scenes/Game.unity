@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5739382}
   m_Layer: 8
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.10733354, g: 0.10961787, b: 0.11320752, a: 0}
+  m_BackGroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 86226624}
   - component: {fileID: 86226623}
   - component: {fileID: 86226627}
+  - component: {fileID: 86226628}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -341,6 +342,7 @@ MonoBehaviour:
   sidewaysDrag: 0.5
   repulseRadius: 20
   repulseForce: 200
+  bulletTime: {fileID: 772717548}
 --- !u!50 &86226624
 Rigidbody2D:
   serializedVersion: 5
@@ -434,6 +436,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1580112925}
+  - {fileID: 772717549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &86226627
@@ -573,6 +576,22 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &86226628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86226622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f60e104e9a74424bd0aab6e85d624e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletTime
+  music: {fileID: 494808398}
+  slowdownFactor: 0.05
+  targetPitch: 1
+  analyzer: {fileID: 0}
 --- !u!1 &157911903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1064,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1055,6 +1074,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &772717547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772717549}
+  - component: {fileID: 772717548}
+  m_Layer: 0
+  m_Name: BulletTimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &772717548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772717547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f60e104e9a74424bd0aab6e85d624e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletTime
+  music: {fileID: 494808398}
+  slowdownFactor: 0.5
+  targetPitch: 1
+  analyzer: {fileID: 1638619942}
+--- !u!4 &772717549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772717547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 86226626}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905623679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1530,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -158.6
@@ -1745,9 +1816,9 @@ MonoBehaviour:
   beatThreshold: 0.005
   beatCooldown: 0.12
   minSpeed: 5
-  maxSpeed: 15
+  maxSpeed: 25
   maxSpinSpeed: 5
-  beatSpeedMultiplier: 5
+  beatSpeedMultiplier: 50
   bassIncrease: 0
   trebleIncrease: 0
   trebleDetected: 0
@@ -1921,7 +1992,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2161,7 +2232,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2328,7 +2399,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5080976171822095426}
   m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,9 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Turtle
   minSize: 0.5
   maxSize: 4
-  minSpeed: 3
-  maxSpeed: 80
-  maxSpinSpeed: 5
   acceleration: 175
   turnSpeed: 720
   currentSpeed: 0

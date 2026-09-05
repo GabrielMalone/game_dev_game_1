@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     public float repulseForce = 10f;
 
 
+    public BulletTime bulletTime;
+    public AudioAnalyzer analyzer;
+    
+
+    private float ogEnemySpeed;
+    private float ogEnemyBeatMult;
 
     Rigidbody2D rb;
 
@@ -24,6 +30,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ogEnemySpeed = analyzer.maxSpeed;
+        ogEnemyBeatMult = analyzer.beatSpeedMultiplier;
+        
     }
 
     void FixedUpdate()
@@ -55,7 +64,12 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed)
         {
             Repulse();
-        }
+            bulletTime.SlowMo();
+        } else {
+            bulletTime.targetPitch = 1f;
+            analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
+            analyzer.maxSpeed = ogEnemySpeed;
+        }       
 
         ReduceSidewaysVelocity();
         SpeedCheck();
@@ -120,5 +134,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
 
 }
