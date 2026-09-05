@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
             rb.AddTorque(-torque);
         }
  
-        if (Keyboard.current.spaceKey.isPressed || Gamepad.current.buttonSouth.isPressed)
+        if (Keyboard.current.spaceKey.isPressed)
         {
             Repulse();
             bulletTime.SlowMo();
@@ -152,13 +152,10 @@ public class PlayerController : MonoBehaviour
             // Forward/backward thrust
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
 
-            
-
             rb.AddForce(transform.up * rightTrigger * thrustForce);
 
             // Rotation
             rb.AddTorque(-stick.x * torque);
-
         } 
 
     }
