@@ -164,7 +164,7 @@ MonoBehaviour:
   bloomMaterial: {fileID: 2100000, guid: 026f0801912fa4095b06a9eb4355fcd9, type: 2}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   glowSpeed: 5
-  maxGlow: 5
+  maxGlow: 2.5
 --- !u!114 &1406446791687087108
 MonoBehaviour:
   m_ObjectHideFlags: 0

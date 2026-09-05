@@ -190,7 +190,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  m_BackGroundColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -317,9 +317,9 @@ GameObject:
   - component: {fileID: 86226623}
   - component: {fileID: 86226627}
   - component: {fileID: 86226628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   repulseRadius: 20
   repulseForce: 200
   bulletTime: {fileID: 772717548}
+  analyzer: {fileID: 1638619942}
 --- !u!50 &86226624
 Rigidbody2D:
   serializedVersion: 5
@@ -821,7 +822,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
+  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -919,6 +920,7 @@ GameObject:
   - component: {fileID: 577019858}
   - component: {fileID: 577019857}
   - component: {fileID: 577019856}
+  - component: {fileID: 577019859}
   m_Layer: 7
   m_Name: Wall_left
   m_TagString: Wall
@@ -971,7 +973,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1074,6 +1076,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &577019859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577019854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe3e2e21c354bcba4e38fc3c98972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallWrap
+  wallSide: 1
+  oppositeWall: {fileID: 1809945529}
+  offset: -5
 --- !u!1 &772717547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772717549}
   - component: {fileID: 772717548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletTimeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1497,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: maxGlow
-      value: 5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: maxSize
@@ -1492,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: glowSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -7330607560993709910, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
       propertyPath: bloomMaterial
@@ -1676,7 +1693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580112925}
   - component: {fileID: 1580112926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1920,6 +1937,7 @@ GameObject:
   - component: {fileID: 1809945530}
   - component: {fileID: 1809945532}
   - component: {fileID: 1809945531}
+  - component: {fileID: 1809945533}
   m_Layer: 7
   m_Name: Wall_right
   m_TagString: Wall
@@ -2032,7 +2050,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2075,6 +2093,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1809945533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809945528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe3e2e21c354bcba4e38fc3c98972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallWrap
+  wallSide: 1
+  oppositeWall: {fileID: 577019855}
+  offset: 5
 --- !u!1 &1939790219
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,6 +2120,7 @@ GameObject:
   - component: {fileID: 1939790223}
   - component: {fileID: 1939790222}
   - component: {fileID: 1939790221}
+  - component: {fileID: 1939790224}
   m_Layer: 7
   m_Name: Wall_top
   m_TagString: Wall
@@ -2139,7 +2173,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2171,7 +2205,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 79e741799caf54e85bd3dfa84eef965f, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2242,6 +2276,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1939790224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939790219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe3e2e21c354bcba4e38fc3c98972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallWrap
+  wallSide: 2
+  oppositeWall: {fileID: 2019874559}
+  offset: -5
 --- !u!1 &2019874558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,6 +2303,7 @@ GameObject:
   - component: {fileID: 2019874562}
   - component: {fileID: 2019874561}
   - component: {fileID: 2019874560}
+  - component: {fileID: 2019874563}
   m_Layer: 7
   m_Name: Wall_bottom
   m_TagString: Wall
@@ -2306,7 +2356,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2409,6 +2459,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &2019874563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019874558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe3e2e21c354bcba4e38fc3c98972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallWrap
+  wallSide: 3
+  oppositeWall: {fileID: 1939790220}
+  offset: -5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
