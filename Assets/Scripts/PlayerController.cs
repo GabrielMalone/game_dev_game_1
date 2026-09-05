@@ -12,14 +12,16 @@ public class PlayerController : MonoBehaviour
     public float sidewaysDrag = 0.5f;
 
     [Header("Defensive Stuff")]
-    public float repulseRadius = 5f;
-    public float repulseForce = 10f;
-
     public BulletTime bulletTime;
     public AudioAnalyzer analyzer;
     
     private float ogEnemySpeed;
     private float ogEnemyBeatMult;
+
+    [Header("Shield")]
+    public GameObject shieldHitPrefab;
+    public float repulseRadius = 5f;
+    public float repulseForce = 10f;
 
     Rigidbody2D rb;
 
@@ -152,8 +154,15 @@ public class PlayerController : MonoBehaviour
             // Forward/backward thrust
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
 
-            rb.AddForce(transform.up * rightTrigger * thrustForce);
+            float leftTrigger = Gamepad.current.leftTrigger.ReadValue();
 
+            if (Gamepad.current.leftTrigger.isPressed)
+            {
+                bulletTime.SlowMo(1f - leftTrigger);
+            }
+
+            // Acceleration
+            rb.AddForce(transform.up * rightTrigger * thrustForce);
             // Rotation
             rb.AddTorque(-stick.x * torque);
         } 

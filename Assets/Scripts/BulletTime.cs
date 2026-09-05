@@ -36,4 +36,11 @@ public class BulletTime : MonoBehaviour
     }
 
 
+    public void SlowMo(float slowFactor)
+    {
+        targetPitch = slowFactor;
+        analyzer.beatSpeedMultiplier *= (slowFactor * slowFactor);
+        analyzer.maxSpeed *= (slowFactor * slowFactor);      
+    }
+
 }
