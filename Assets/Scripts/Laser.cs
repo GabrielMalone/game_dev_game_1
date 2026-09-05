@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//https://www.youtube.com/watch?v=S6eRVwAtfOM
 public class Laser : MonoBehaviour
 {
 
@@ -29,6 +30,27 @@ public class Laser : MonoBehaviour
         {
             DisableLaser();
         }
+        if (Gamepad.current != null)
+        {
+            // A button pressed
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                EnableLaser();
+            }
+
+            // A button held
+            if (Gamepad.current.buttonSouth.isPressed)
+            {
+                UpdateLaser();
+            }
+
+            // A button released
+            if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+            {
+                DisableLaser();
+            }
+        }
+
     }
 
     void EnableLaser()

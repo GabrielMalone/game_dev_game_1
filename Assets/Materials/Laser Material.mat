@@ -14,7 +14,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -25,11 +25,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _LaserEdgeSmoothness: 25
-    - _LaserScale: 100
-    - _LaserThickness: -1.2
+    - _LaserEdgeSmoothness: 10
+    - _LaserScale: 20
+    - _LaserThickness: 1
     m_Colors:
-    - _Color: {r: 0, g: 59.017662, b: 59.01769, a: 0.8}
+    - _Color: {r: 0, g: 29.857058, b: 27.335552, a: 0.4392157}
     - _LaserSpeed: {r: -0.25, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
