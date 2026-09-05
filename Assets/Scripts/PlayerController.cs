@@ -15,11 +15,9 @@ public class PlayerController : MonoBehaviour
     public float repulseRadius = 5f;
     public float repulseForce = 10f;
 
-
     public BulletTime bulletTime;
     public AudioAnalyzer analyzer;
     
-
     private float ogEnemySpeed;
     private float ogEnemyBeatMult;
 
@@ -37,43 +35,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // FORWARD
-        if (Keyboard.current.wKey.isPressed)
-        {
-            rb.AddForce(transform.up * thrustForce);
-        }
-
-        // LEFT
-        if (Keyboard.current.aKey.isPressed)
-        {
-            rb.AddTorque(torque);
-        }
-
-        // BACKWARD
-        if (Keyboard.current.sKey.isPressed)
-        {
-            rb.AddForce(-transform.up * thrustForce);
-        }
-
-        // RIGHT
-        if (Keyboard.current.dKey.isPressed)
-        {
-            rb.AddTorque(-torque);
-        }
- 
-        if (Keyboard.current.spaceKey.isPressed)
-        {
-            Repulse();
-            bulletTime.SlowMo();
-        } else {
-            bulletTime.targetPitch = 1f;
-            analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
-            analyzer.maxSpeed = ogEnemySpeed;
-        }       
-
+        KeyboardInputs();
         ReduceSidewaysVelocity();
         SpeedCheck();
+        if (Gamepad.current != null)
+        {
+            Debug.Log("Controller connected!");
+        }
+        GamepadInput();
     }
+
     // this should help me get rid of the sluggish movment after too many turns or running into walls/obstacles
     void ReduceSidewaysVelocity()
     {
@@ -133,6 +104,63 @@ public class PlayerController : MonoBehaviour
                 );
             }
         }
+    }
+
+    void KeyboardInputs()
+    {
+        // FORWARD
+        if (Keyboard.current.wKey.isPressed)
+        {
+            rb.AddForce(transform.up * thrustForce);
+        }
+
+        // LEFT
+        if (Keyboard.current.aKey.isPressed)
+        {
+            rb.AddTorque(torque);
+        }
+
+        // BACKWARD
+        if (Keyboard.current.sKey.isPressed)
+        {
+            rb.AddForce(-transform.up * thrustForce);
+        }
+
+        // RIGHT
+        if (Keyboard.current.dKey.isPressed)
+        {
+            rb.AddTorque(-torque);
+        }
+ 
+        if (Keyboard.current.spaceKey.isPressed || Gamepad.current.buttonSouth.isPressed)
+        {
+            Repulse();
+            bulletTime.SlowMo();
+        } else {
+            bulletTime.targetPitch = 1f;
+            analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
+            analyzer.maxSpeed = ogEnemySpeed;
+        }   
+    }
+
+    void GamepadInput()
+    {
+        if (Gamepad.current != null)
+        {
+            Vector2 stick = Gamepad.current.leftStick.ReadValue();
+
+            // Forward/backward thrust
+            float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
+
+            
+
+            rb.AddForce(transform.up * rightTrigger * thrustForce);
+
+            // Rotation
+            rb.AddTorque(-stick.x * torque);
+
+        } 
+
     }
 
 
