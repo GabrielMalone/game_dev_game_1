@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Repulse();
         KeyboardInputs();
         ReduceSidewaysVelocity();
         SpeedCheck();
@@ -134,7 +135,6 @@ public class PlayerController : MonoBehaviour
  
         if (Keyboard.current.spaceKey.isPressed)
         {
-            Repulse();
             bulletTime.SlowMo();
         } else {
             bulletTime.targetPitch = 1f;

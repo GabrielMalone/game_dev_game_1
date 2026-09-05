@@ -38,7 +38,10 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
-         
+        // start position
+        lineRenderer.SetPosition(0, firePoint.position);
+        // end position
+        lineRenderer.SetPosition(1, firePoint.position + firePoint.up * 1000f);
     }
 
     void DisableLaser()
