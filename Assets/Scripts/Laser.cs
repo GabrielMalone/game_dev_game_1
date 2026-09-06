@@ -9,12 +9,17 @@ public class Laser : MonoBehaviour
     public LineRenderer lineRenderer;
     public Transform firePoint;
 
+    [Header("Auto Laser Settings")]
+    public GameObject playerShip;
+    public float autoShootRadius = 30f;
+    public LineRenderer[] lasers;
+    public int numLasers = 5;
+
     [Header("Laser SFX")]
     public AudioSource laserStartAudio;
     public AudioSource laserBodyAudio;
     public AudioSource laserEndAudio;
 
-    private bool laserActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,108 +30,76 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            EnableLaser();
+        autoShoot();
+    }
 
-        }
-        if (Mouse.current.leftButton.isPressed)
-        {
-            UpdateLaser();
-        }
-        if (Mouse.current.leftButton.wasReleasedThisFrame)   
-        {
-            DisableLaser();
-        }
-        if (Gamepad.current != null)
-        {
-            // A button pressed
-            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
-            {
-                EnableLaser();
-            }
 
-            // A button held
-            if (Gamepad.current.buttonSouth.isPressed)
-            {
-                UpdateLaser();
-            }
-
-            // A button released
-            if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
-            {
-                DisableLaser();
-            }
-        }
+    void createLasers()
+    {
 
     }
+
 
     void EnableLaser()
     {
         lineRenderer.enabled = true;
         laserBodyAudio.loop = true;
         laserBodyAudio.Play();
-        laserActive = true;
         // laserEndAudio.Stop();
     }
-
-    void UpdateLaser()
-    {
-
-        if (laserActive && !laserBodyAudio.isPlaying){
-            laserBodyAudio.Play();
-        }
-        Vector2 startPosition = firePoint.position;
-        Vector2 direction = firePoint.up;
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            startPosition,
-            direction,
-            1000f
-        );
-
-        lineRenderer.SetPosition(0, startPosition);
-
-        if (hit.collider != null)
-        {
-            // Stop laser at object
-            lineRenderer.SetPosition(1, hit.point);
-
-            // Destroy Enemy(Clone)
-            if (hit.collider.gameObject.name == "Enemy(Clone)")
-            {
-                EnemyStats enemyStats = hit.collider.GetComponent<EnemyStats>();
-
-                if(enemyStats.hitPoints > 0)
-                {
-                    enemyStats.hitPoints -= 2 ;
-                    Rigidbody2D enemyRb = hit.collider.GetComponent<Rigidbody2D>();
-                    // send enemy backwards
-                        if (enemyRb != null)
-                        {
-                            enemyRb.AddForce(firePoint.up * 50f, ForceMode2D.Impulse);
-                        }
-                } 
-                else 
-                {
-                    Destroy(hit.collider.gameObject);
-                }
-            }
-        }
-        else
-        {
-            lineRenderer.SetPosition(
-                1,
-                startPosition + direction * 1000f
-            );
-        }
-}
 
     void DisableLaser()
     {
         lineRenderer.enabled = false;
         laserBodyAudio.Stop();
-        laserActive = false;
         // laserEndAudio.Play();
     }
+
+
+    void autoShoot()
+    {
+        Collider2D[] objectsInRange =
+            Physics2D.OverlapCircleAll(playerShip.transform.position, autoShootRadius);
+
+        int laserIndex = 0;
+        
+        foreach (Collider2D obj in objectsInRange)
+        {   
+            if (laserIndex >= numLasers)
+                break;
+
+            if (!obj.CompareTag("Enemy"))
+                continue;
+
+            Vector2 startPosition = firePoint.position;
+
+            Rigidbody2D rb = obj.attachedRigidbody;
+
+            // create a vector pointing from me to the enemy
+            Vector2 direction =
+                    (obj.transform.position - firePoint.position).normalized;
+            
+            RaycastHit2D hit = Physics2D.Raycast(startPosition, direction, autoShootRadius);
+
+            if (hit.collider == null)
+                continue;
+
+            LineRenderer curLaser = lasers[laserIndex];
+
+            curLaser.enabled = true;
+
+            curLaser.SetPosition(0, startPosition);
+            curLaser.SetPosition(1, hit.point);
+
+            laserIndex ++ ;
+        }
+
+        for (int i = laserIndex; i < numLasers ; i ++)
+        {
+            lasers[i].enabled = false;
+        }
+
+    }
+
+
 }

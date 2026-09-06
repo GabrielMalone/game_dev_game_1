@@ -87,12 +87,16 @@ public class PlayerController : MonoBehaviour
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
 
+        bool collisionPresent = false;
+        
         foreach (Collider2D obj in objectsInRange)
         {
             // Don't push ourselves
             if (obj.gameObject == gameObject)
                 continue;
 
+
+            collisionPresent = true;
             Rigidbody2D rb = obj.attachedRigidbody;
 
             if (rb != null)
@@ -105,10 +109,12 @@ public class PlayerController : MonoBehaviour
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
-
-                CameraShakeManager.instance.CameraShake(impulseSource);
-
             }
+        }
+
+        if (collisionPresent)
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
         }
     }
 
