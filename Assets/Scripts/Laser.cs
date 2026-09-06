@@ -34,27 +34,6 @@ public class Laser : MonoBehaviour
     }
 
 
-    void createLasers()
-    {
-
-    }
-
-
-    void EnableLaser()
-    {
-        lineRenderer.enabled = true;
-        laserBodyAudio.loop = true;
-        laserBodyAudio.Play();
-        // laserEndAudio.Stop();
-    }
-
-    void DisableLaser()
-    {
-        lineRenderer.enabled = false;
-        laserBodyAudio.Stop();
-        // laserEndAudio.Play();
-    }
-
 
     void autoShoot()
     {
@@ -88,12 +67,12 @@ public class Laser : MonoBehaviour
 
             curLaser.enabled = true;
 
-            curLaser.SetPosition(0, startPosition);
+            curLaser.SetPosition(0, playerShip.transform.position);
             curLaser.SetPosition(1, hit.point);
 
             laserIndex ++ ;
         }
-
+        // turn off any unused lasers
         for (int i = laserIndex; i < numLasers ; i ++)
         {
             lasers[i].enabled = false;
