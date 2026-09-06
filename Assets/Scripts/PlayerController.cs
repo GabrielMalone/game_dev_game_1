@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    private CinemachineImpulseSource impulseSource;
+
    
 
     void Start()
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ogEnemySpeed = analyzer.maxSpeed;
         ogEnemyBeatMult = analyzer.beatSpeedMultiplier;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         
     }
 
@@ -101,6 +105,9 @@ public class PlayerController : MonoBehaviour
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
+
+                CameraShakeManager.instance.CameraShake(impulseSource);
+
             }
         }
     }
