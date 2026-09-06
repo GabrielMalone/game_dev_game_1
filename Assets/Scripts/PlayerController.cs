@@ -41,10 +41,6 @@ public class PlayerController : MonoBehaviour
         KeyboardInputs();
         ReduceSidewaysVelocity();
         SpeedCheck();
-        if (Gamepad.current != null)
-        {
-            Debug.Log("Controller connected!");
-        }
         GamepadInput();
     }
 

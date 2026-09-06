@@ -4,7 +4,7 @@ public class EnemyStats : MonoBehaviour
 {
 
     [Header("Health")]
-    public int hitPoints = 100;
+    public int hitPoints = 1000;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

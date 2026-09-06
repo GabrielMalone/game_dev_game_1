@@ -9,10 +9,17 @@ public class Laser : MonoBehaviour
     public LineRenderer lineRenderer;
     public Transform firePoint;
 
+    [Header("Laser SFX")]
+    public AudioSource laserStartAudio;
+    public AudioSource laserBodyAudio;
+    public AudioSource laserEndAudio;
+
+    private bool laserActive = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DisableLaser();
+        laserBodyAudio.loop = true;
     }
 
     // Update is called once per frame
@@ -20,7 +27,8 @@ public class Laser : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            EnableLaser();   
+            EnableLaser();
+
         }
         if (Mouse.current.leftButton.isPressed)
         {
@@ -56,10 +64,18 @@ public class Laser : MonoBehaviour
     void EnableLaser()
     {
         lineRenderer.enabled = true;
+        laserBodyAudio.loop = true;
+        laserBodyAudio.Play();
+        laserActive = true;
+        laserEndAudio.Stop();
     }
 
     void UpdateLaser()
     {
+
+        if (laserActive && !laserBodyAudio.isPlaying){
+            laserBodyAudio.Play();
+        }
         Vector2 startPosition = firePoint.position;
         Vector2 direction = firePoint.up;
 
@@ -79,7 +95,22 @@ public class Laser : MonoBehaviour
             // Destroy Enemy(Clone)
             if (hit.collider.gameObject.name == "Enemy(Clone)")
             {
-                Destroy(hit.collider.gameObject);
+                EnemyStats enemyStats = hit.collider.GetComponent<EnemyStats>();
+
+                if(enemyStats.hitPoints > 0)
+                {
+                    enemyStats.hitPoints -= 2 ;
+                    Rigidbody2D enemyRb = hit.collider.GetComponent<Rigidbody2D>();
+                    // send enemy backwards
+                        if (enemyRb != null)
+                        {
+                            enemyRb.AddForce(firePoint.up * 50f, ForceMode2D.Impulse);
+                        }
+                } 
+                else 
+                {
+                    Destroy(hit.collider.gameObject);
+                }
             }
         }
         else
@@ -94,5 +125,8 @@ public class Laser : MonoBehaviour
     void DisableLaser()
     {
         lineRenderer.enabled = false;
+        laserBodyAudio.Stop();
+        laserActive = false;
+        laserEndAudio.Play();
     }
 }
