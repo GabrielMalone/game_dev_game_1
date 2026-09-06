@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9097
+  controlID: 11710
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 8997
+  controlID: 11711
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -501,12 +501,12 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: overlay-toolbar__bottom
-      displayed: 0
+      displayed: 1
       id: Scene View/TrailRenderer
       index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":84.5,"y":-175.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":2,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
-      collapsed: 0
+      collapsed: 1
       snapOffset: {x: 84.5, y: -175}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 2
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 9056
+  controlID: 11789
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -1454,9 +1454,9 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_rawData: 568105584918842620
+      - m_rawData: 568105584918842568
       m_LastClickedID:
-        m_rawData: 568105584918842620
+        m_rawData: 568105584918842568
       m_ExpandedIDs:
       - m_rawData: 568105589213756002
       - m_rawData: 568105584918842552
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_AssetTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_rawData: 568105584918842620
+    - m_rawData: 568105584918842568
     m_LastClickedID:
       m_rawData: 0
     m_ExpandedIDs:
@@ -1684,9 +1684,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_rawData: 568105584918842620
+    - m_rawData: 568105584918842568
     m_LastClickedEntityId:
-      m_rawData: 568105584918842620
+      m_rawData: 568105584918842568
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
