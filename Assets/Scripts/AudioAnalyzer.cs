@@ -239,7 +239,6 @@ public class AudioAnalyzer : MonoBehaviour
         {
             beatDetected = true;
             lastBeatTime = Time.time;
-
         }
 
         // Save current bass for comparison next frame
@@ -284,7 +283,7 @@ public class AudioAnalyzer : MonoBehaviour
         beatPulse = Mathf.Lerp(
             beatPulse,
             1f,
-            20 * Time.deltaTime
+            10 * Time.deltaTime
 
         );
 

@@ -345,7 +345,7 @@ MonoBehaviour:
   analyzer: {fileID: 1638619942}
   shieldHitPrefab: {fileID: 2938936654365215076, guid: b3342df8491514ace8ed8cd2daa60a5a, type: 3}
   repulseRadius: 20
-  repulseForce: 200
+  repulseForce: 600
 --- !u!50 &86226624
 Rigidbody2D:
   serializedVersion: 5
@@ -722,8 +722,8 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c7ccf2fd59a4546e19c3c1d213588099, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: -1.66
+  m_Volume: 0.781
+  m_Pitch: -3
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1134,7 +1134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

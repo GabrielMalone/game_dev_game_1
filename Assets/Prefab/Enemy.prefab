@@ -111,8 +111,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 10
-  m_AngularDamping: 1
+  m_LinearDamping: 100
+  m_AngularDamping: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -138,13 +138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turtle
   minSize: 0.5
-  maxSize: 4
+  maxSize: 1
   acceleration: 175
   turnSpeed: 720
   currentSpeed: 0
   beatSpeedMultiplier: 1.5
-  speedSmoothing: 100
-  sidewaysDrag: 0.99
+  speedSmoothing: 20
+  sidewaysDrag: 1
   bass: 0
   lowMid: 0
   mid: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
   maxTreble: 0.05
   minVolume: 0.05
   maxVolume: 0.5
-  beatSizeMultiplier: 1.5
-  sizeReturnSpeed: 8
+  beatSizeMultiplier: 2
+  sizeReturnSpeed: 4
   teleportRadius: 2
   teleportDuration: 0
   bloomMaterial: {fileID: 2100000, guid: 026f0801912fa4095b06a9eb4355fcd9, type: 2}
