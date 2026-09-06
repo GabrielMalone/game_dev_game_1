@@ -337,9 +337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9229d9f507c24b8fa4e87c08e3e7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  thrustForce: 1000
-  torque: 50
-  maxPlayerSpeed: 75
+  thrustForce: 1200
+  torque: 70
+  maxPlayerSpeed: 250
   sidewaysDrag: 0.5
   bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
@@ -723,13 +723,13 @@ AudioSource:
   m_Resource: {fileID: 8300000, guid: c7ccf2fd59a4546e19c3c1d213588099, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.84
+  m_Pitch: -1.66
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1.52
+  DopplerLevel: 5
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -1134,7 +1134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
+  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2076,8 +2076,8 @@ LineRenderer:
     alignment: 0
     textureMode: 1
     textureScale: {x: 1, y: 1}
-    shadowBias: 3
-    generateLightingData: 0
+    shadowBias: 1
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1

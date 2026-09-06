@@ -67,7 +67,7 @@ public class Laser : MonoBehaviour
         laserBodyAudio.loop = true;
         laserBodyAudio.Play();
         laserActive = true;
-        laserEndAudio.Stop();
+        // laserEndAudio.Stop();
     }
 
     void UpdateLaser()
@@ -127,6 +127,6 @@ public class Laser : MonoBehaviour
         lineRenderer.enabled = false;
         laserBodyAudio.Stop();
         laserActive = false;
-        laserEndAudio.Play();
+        // laserEndAudio.Play();
     }
 }
