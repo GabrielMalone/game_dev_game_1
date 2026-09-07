@@ -153,6 +153,10 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.wKey.isPressed)
         {
             rb.AddForce(transform.up * thrustForce);
+            shieldParticles.Play();
+        } else
+        {
+            shieldParticles.Stop();
         }
 
         // LEFT
@@ -199,10 +203,14 @@ public class PlayerController : MonoBehaviour
                 bulletTime.SlowMo(1f - leftTrigger);
             }
 
-            if (Gamepad.current.leftTrigger.isPressed)
+            if (Gamepad.current.rightTrigger.isPressed)
             {
                 bulletTime.SlowMo(1f - leftTrigger);
-            }
+                shieldParticles.Play();
+            } else {
+                shieldParticles.Stop();
+            } 
+
 
             // Acceleration
             rb.AddForce(transform.up * rightTrigger * thrustForce);

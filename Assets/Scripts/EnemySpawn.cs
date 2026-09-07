@@ -118,11 +118,14 @@ public class EnemySpawn : MonoBehaviour
 
         if (totalEnemies <= enemiesToSpawn)
         {
+            
+           
             Instantiate(
                 enemyPrefab,
                 worldSpawnPosition,
                 Quaternion.identity
             );
+            
             totalEnemies ++;
         }
 

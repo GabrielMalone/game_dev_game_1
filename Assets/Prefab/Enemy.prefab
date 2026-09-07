@@ -64,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1017a992329c4cacbec2fd91d0378fa, type: 2}
+  - {fileID: 2100000, guid: 026f0801912fa4095b06a9eb4355fcd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,7 +199,7 @@ NavMeshAgent:
   m_Height: 0.8828125
   m_BaseOffset: 0.44140625
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!58 &5080976171822095426
 CircleCollider2D:
   m_ObjectHideFlags: 0
