@@ -99,7 +99,7 @@ public class Laser : MonoBehaviour
 
     void KeyboardInputs()
     {
-        if (Keyboard.current.ctrlKey.wasPressedThisFrame || (Gamepad.current != null &&
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame || (Gamepad.current != null &&
             Gamepad.current.buttonSouth.wasPressedThisFrame))
         {
             lasersEnabled = !lasersEnabled;

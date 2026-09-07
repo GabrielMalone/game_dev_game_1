@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float ogEnemyBeatMult;
 
     [Header("Shield")]
-    public GameObject shieldHitPrefab;
+    public ParticleSystem shieldParticles;
     public float repulseRadius = 5f;
     private float ogRepulseRadius;
     public float repulseForce = 10f;
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         ogEnemyBeatMult = analyzer.beatSpeedMultiplier;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         ogRepulseRadius = repulseRadius;
+        shieldParticles.Stop();
     }
 
     void FixedUpdate()
@@ -135,11 +136,13 @@ public class PlayerController : MonoBehaviour
             {
                 repulseRadius = shieldRadius;
                 Debug.Log("SHIELDS UP");
+                shieldParticles.Play();
             }
             else
             {
                 repulseRadius = ogRepulseRadius;  
                 Debug.Log("SHIELDS DOWN!"); 
+                shieldParticles.Stop();
             } 
         }
     }
