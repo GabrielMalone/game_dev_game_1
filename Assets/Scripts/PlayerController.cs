@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
     [Header("Shield")]
     public GameObject shieldHitPrefab;
     public float repulseRadius = 5f;
+    private float ogRepulseRadius;
     public float repulseForce = 10f;
+    public float shieldRadius = 20f;
+    private bool shieldEnabled = false;
 
     Rigidbody2D rb;
 
@@ -36,16 +39,21 @@ public class PlayerController : MonoBehaviour
         ogEnemySpeed = analyzer.maxSpeed;
         ogEnemyBeatMult = analyzer.beatSpeedMultiplier;
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        
+        ogRepulseRadius = repulseRadius;
     }
 
     void FixedUpdate()
     {
-        Repulse();
-        KeyboardInputs();
         ReduceSidewaysVelocity();
         SpeedCheck();
+        KeyboardInputs();
         GamepadInput();
+        Repulse();
+    }
+
+    void Update()
+    {
+        ShieldToggle();
     }
 
     // this should help me get rid of the sluggish movment after too many turns or running into walls/obstacles
@@ -112,9 +120,27 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (collisionPresent)
+        if (collisionPresent && !shieldEnabled)
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
+        }
+    }
+
+    void ShieldToggle()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame || (Gamepad.current.buttonWest.wasPressedThisFrame))
+        {
+            shieldEnabled = !shieldEnabled;
+            if (shieldEnabled)
+            {
+                repulseRadius = shieldRadius;
+                Debug.Log("SHIELDS UP");
+            }
+            else
+            {
+                repulseRadius = ogRepulseRadius;  
+                Debug.Log("SHIELDS DOWN!"); 
+            } 
         }
     }
 
@@ -131,7 +157,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddTorque(torque);
         }
-
         // BACKWARD
         if (Keyboard.current.sKey.isPressed)
         {
@@ -143,7 +168,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddTorque(-torque);
         }
- 
+
+
         if (Keyboard.current.spaceKey.isPressed)
         {
             bulletTime.SlowMo();
@@ -164,6 +190,11 @@ public class PlayerController : MonoBehaviour
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
 
             float leftTrigger = Gamepad.current.leftTrigger.ReadValue();
+
+            if (Gamepad.current.leftTrigger.isPressed)
+            {
+                bulletTime.SlowMo(1f - leftTrigger);
+            }
 
             if (Gamepad.current.leftTrigger.isPressed)
             {

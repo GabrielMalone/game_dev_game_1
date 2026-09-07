@@ -151,37 +151,6 @@ Transform:
   - {fileID: 157911904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &10573712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10573713}
-  m_Layer: 0
-  m_Name: Lasers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &10573713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10573712}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.92446995, y: -1.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 86226626}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42252863
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +346,7 @@ GameObject:
   - component: {fileID: 71408073}
   - component: {fileID: 71408072}
   m_Layer: 0
-  m_Name: Line2
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,8 +546,9 @@ MonoBehaviour:
   bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
   shieldHitPrefab: {fileID: 2938936654365215076, guid: b3342df8491514ace8ed8cd2daa60a5a, type: 3}
-  repulseRadius: 20
-  repulseForce: 600
+  repulseRadius: 5
+  repulseForce: 1200
+  shieldRadius: 20
 --- !u!50 &86226624
 Rigidbody2D:
   serializedVersion: 5
@@ -671,7 +641,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 10573713}
   - {fileID: 1685458617}
   - {fileID: 1311161838}
   - {fileID: 782083511}
@@ -860,8 +829,9 @@ MonoBehaviour:
   - {fileID: 71408072}
   - {fileID: 539818740}
   numLasers: 5
+  laserPower: 10
   laserStartAudio: {fileID: 0}
-  laserBodyAudio: {fileID: 0}
+  laserBodyAudio: {fileID: 451907713}
   laserEndAudio: {fileID: 0}
 --- !u!114 &86226630
 MonoBehaviour:
@@ -926,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 131756015}
   m_Layer: 0
-  m_Name: Laser (6)
+  m_Name: Laser_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,7 +1749,7 @@ GameObject:
   - component: {fileID: 539818741}
   - component: {fileID: 539818740}
   m_Layer: 0
-  m_Name: Line2
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2305,7 +2275,7 @@ GameObject:
   - component: {fileID: 740351046}
   - component: {fileID: 740351045}
   m_Layer: 0
-  m_Name: Line2
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2521,7 +2491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 782083511}
   m_Layer: 0
-  m_Name: Laser (5)
+  m_Name: Laser_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2557,7 +2527,7 @@ GameObject:
   - component: {fileID: 914808426}
   - component: {fileID: 914808427}
   m_Layer: 0
-  m_Name: Line2
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3125,7 +3095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1231658317}
   m_Layer: 0
-  m_Name: Laser (7)
+  m_Name: Laser_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3209,7 +3179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1311161838}
   m_Layer: 0
-  m_Name: Laser (8)
+  m_Name: Laser_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4222,7 +4192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685458617}
   m_Layer: 0
-  m_Name: Laser (4)
+  m_Name: Laser_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4507,7 +4477,7 @@ GameObject:
   - component: {fileID: 1883881715}
   - component: {fileID: 1883881714}
   m_Layer: 0
-  m_Name: Line2
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

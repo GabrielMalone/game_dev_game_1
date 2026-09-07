@@ -14,11 +14,14 @@ public class Laser : MonoBehaviour
     public float autoShootRadius = 30f;
     public LineRenderer[] lasers;
     public int numLasers = 5;
+    public float laserPower = 10f;
 
     [Header("Laser SFX")]
     public AudioSource laserStartAudio;
     public AudioSource laserBodyAudio;
     public AudioSource laserEndAudio;
+
+    private bool lasersEnabled = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,12 +33,13 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        autoShoot();
+        //autoShoot();
+        KeyboardInputs();
     }
 
 
 
-    void autoShoot()
+    public void AutoShoot()
     {
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(playerShip.transform.position, autoShootRadius);
@@ -70,6 +74,11 @@ public class Laser : MonoBehaviour
             curLaser.SetPosition(0, playerShip.transform.position);
             curLaser.SetPosition(1, hit.point);
 
+            rb.AddForce(
+                direction * laserPower,
+                ForceMode2D.Impulse
+            );
+
             laserIndex ++ ;
         }
         // turn off any unused lasers
@@ -78,6 +87,32 @@ public class Laser : MonoBehaviour
             lasers[i].enabled = false;
         }
 
+    }
+
+    public void DisableLasers()
+    {
+        foreach (LineRenderer laser in lasers)
+        {
+            laser.enabled = false;
+        }
+    }
+
+    void KeyboardInputs()
+    {
+        if (Keyboard.current.ctrlKey.wasPressedThisFrame || (Gamepad.current != null &&
+            Gamepad.current.buttonSouth.wasPressedThisFrame))
+        {
+            lasersEnabled = !lasersEnabled;
+        }
+
+        if (lasersEnabled)
+        {
+            AutoShoot();
+        }
+        else
+        {
+            DisableLasers();
+        }
     }
 
 
