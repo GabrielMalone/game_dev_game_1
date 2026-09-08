@@ -136,13 +136,13 @@ public class PlayerController : MonoBehaviour
             {
                 repulseRadius = shieldRadius;
                 Debug.Log("SHIELDS UP");
-                shieldParticles.Play();
+                EnemyBehavior.shieldParticlesEnabled = true;
             }
             else
             {
                 repulseRadius = ogRepulseRadius;  
                 Debug.Log("SHIELDS DOWN!"); 
-                shieldParticles.Stop();
+                EnemyBehavior.shieldParticlesEnabled = false;
             } 
         }
     }
