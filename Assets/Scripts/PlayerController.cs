@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     void ShieldToggle()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame || (Gamepad.current.buttonWest.wasPressedThisFrame))
+        if (Mouse.current.leftButton.wasPressedThisFrame || (Gamepad.current != null && Gamepad.current.buttonWest.wasPressedThisFrame))
         {
             shieldEnabled = !shieldEnabled;
             if (shieldEnabled)

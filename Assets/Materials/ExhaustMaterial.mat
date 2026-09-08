@@ -20,14 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Laser2Material
+  m_Name: ExhaustMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 26480d566476749c7a3786195ed46561, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -54,12 +54,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LaserEdgeSmoothness: 4
-    - _LaserScale: 4
-    - _LaserThickness: 0.2
+    - _LaserEdgeSmoothness: 20
+    - _LaserScale: 20
+    - _LaserThickness: 1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 21.361254, b: 11.458016, a: 1}
-    - _LaserSpeed: {r: 10, g: 0, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.124100566, b: 0.89411765, a: 0.8156863}
+    - _LaserSpeed: {r: -0.25, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

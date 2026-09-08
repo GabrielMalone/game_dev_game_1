@@ -69,6 +69,10 @@ public class Laser : MonoBehaviour
 
             LineRenderer curLaser = lasers[laserIndex];
 
+            // ParticleSystem particles = curLaser.GetComponent<ParticleSystem>();
+
+            // particles.Play();
+
             curLaser.enabled = true;
 
             curLaser.SetPosition(0, playerShip.transform.position);
@@ -81,6 +85,7 @@ public class Laser : MonoBehaviour
 
             laserIndex ++ ;
         }
+        
         // turn off any unused lasers
         for (int i = laserIndex; i < numLasers ; i ++)
         {
@@ -94,6 +99,7 @@ public class Laser : MonoBehaviour
         foreach (LineRenderer laser in lasers)
         {
             laser.enabled = false;
+            
         }
     }
 
