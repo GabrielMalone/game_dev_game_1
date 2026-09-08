@@ -32,7 +32,7 @@ public class AudioAnalyzer : MonoBehaviour
     private float[] samples;
 
     [Header("Beat Detection")]
-    public bool beatDetected;
+    public static bool beatDetected;
     public float beatThreshold = 0.01f;
     public float beatCooldown = 0.15f;
     private float beatPulse = 1f;

@@ -43,7 +43,7 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         // let's spawn on beat
-        if (analyzer.beatDetected)
+        if (AudioAnalyzer.beatDetected)
         {
             SpawnEnemyAlongWall();
         }

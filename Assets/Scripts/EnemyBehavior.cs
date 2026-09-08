@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.Cinemachine;
 
 
 public class EnemyBehavior : MonoBehaviour
@@ -68,6 +69,8 @@ public class EnemyBehavior : MonoBehaviour
     private float currentGlow = 0f;
 
     private ParticleSystem thrustParticles;
+    private CinemachineImpulseSource impulseSource;
+
 
 
     Rigidbody2D rb;
@@ -77,6 +80,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         initEnememy();
         thrustParticles = GetComponentInChildren<ParticleSystem>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         
     }
 
@@ -115,7 +119,7 @@ public class EnemyBehavior : MonoBehaviour
     void pulseOnBeat()
     {
 
-        if (analyzer.beatDetected)
+        if (AudioAnalyzer.beatDetected)
         {
             sizePulse = beatSizeMultiplier;
         }
@@ -127,7 +131,6 @@ public class EnemyBehavior : MonoBehaviour
         );
 
         transform.localScale = originalScale * sizePulse;
-
     }
 
     void glowOnTreble()

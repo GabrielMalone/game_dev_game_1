@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
             RenderShield();
         else 
             circle.enabled = false;
+        if (AudioAnalyzer.beatDetected)
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
+        }
     }
 
     // this should help me get rid of the sluggish movment after too many turns or running into walls/obstacles
@@ -138,7 +142,9 @@ public class PlayerController : MonoBehaviour
 
     void ShieldToggle()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame || (Gamepad.current != null && Gamepad.current.buttonWest.wasPressedThisFrame))
+        if (Mouse.current.leftButton.wasPressedThisFrame 
+            || (Gamepad.current != null
+            && Gamepad.current.buttonWest.wasPressedThisFrame))
         {
             shieldEnabled = !shieldEnabled;
             if (shieldEnabled)
