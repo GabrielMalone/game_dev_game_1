@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 33735
+  controlID: 36751
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -713
+    y: -712
     width: 1061
     height: 667
   m_SerializedDataModeController:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33618
+  controlID: 36648
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -1346
+    y: -1345
     width: 1061
     height: 607
   m_SerializedDataModeController:
@@ -239,10 +239,10 @@ MonoBehaviour:
       displayed: 1
       id: unity-scene-view-toolbar
       index: 5
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-289.5,"y":-314.4990234375},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-289.5,"y":-314.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
-      snapOffset: {x: -289.5, y: -314.49902}
+      snapOffset: {x: -289.5, y: -314}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       layout: 4
@@ -533,10 +533,10 @@ MonoBehaviour:
       displayed: 1
       id: unity-scene-view-camera-mode-toolbar
       index: 2
-      contents: '{"m_Layout":1,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-328.0,"y":-314.5},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      contents: '{"m_Layout":1,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-328.0,"y":-314.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
-      snapOffset: {x: -328, y: -314.5}
+      snapOffset: {x: -328, y: -314}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       layout: 1
@@ -2499,7 +2499,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33700
+  controlID: 36716
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -2549,7 +2549,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1062
-    y: -1346
+    y: -1345
     width: 761
     height: 730
   m_SerializedDataModeController:
@@ -2571,14 +2571,15 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_rawData: 568105589213489438
+      - m_rawData: 568105584918844756
       m_LastClickedID:
-        m_rawData: 568105589213489438
+        m_rawData: 0
       m_ExpandedIDs:
       - m_rawData: 568105589213489462
       - m_rawData: 568105589213529492
       - m_rawData: 568105589213667068
       - m_rawData: 568105589213756002
+      - m_rawData: 568105584918844412
       - m_rawData: 568105584918844436
       - m_rawData: 568105584918844470
       - m_rawData: 568105584918844620
@@ -2658,7 +2659,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1062
-    y: -590
+    y: -589
     width: 761
     height: 544
   m_SerializedDataModeController:
@@ -2687,7 +2688,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefab
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -2750,11 +2751,11 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 237}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_rawData: 568105589213489438
+    - m_rawData: 568105584918844756
     m_LastClickedID:
-      m_rawData: 0
+      m_rawData: 568105584918844756
     m_ExpandedIDs:
     - m_rawData: 0
     - m_rawData: 568105584918844808
@@ -2799,9 +2800,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_rawData: 568105589213489438
+    - m_rawData: 568105584918844756
     m_LastClickedEntityId:
-      m_rawData: 568105589213489438
+      m_rawData: 568105584918844756
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -2882,7 +2883,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1825
-    y: -1346
+    y: -1345
     width: 734
     height: 1300
   m_SerializedDataModeController:
