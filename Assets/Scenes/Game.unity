@@ -855,8 +855,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ImpulseDuration: 0.1
-    ImpulseType: 2
+    ImpulseDuration: 0.2
+    ImpulseType: 0
     DissipationRate: 0.024
     RawSignal: {fileID: 0}
     AmplitudeGain: 1
@@ -973,6 +973,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
   enemiesToSpawn: 1000
   spawnOffset: 0
+  enemyThrustParticlesPrefab: {fileID: 2509413495094595464, guid: df46030c1b9e0419391e17e29ba262ac, type: 3}
   bass: 0
   lowMid: 0
   mid: 0
@@ -1653,7 +1654,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6275495b265ab45a8afc5295c2c0f366, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

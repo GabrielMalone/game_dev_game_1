@@ -17,6 +17,7 @@ public class EnemySpawn : MonoBehaviour
     [Header("Settings")]
     public int enemiesToSpawn = 500;
     public float spawnOffset = 0f;
+    public GameObject enemyThrustParticlesPrefab;
 
     [Header("Music Data")]
     public float bass;
@@ -118,13 +119,20 @@ public class EnemySpawn : MonoBehaviour
 
         if (totalEnemies <= enemiesToSpawn)
         {
-            
-           
-            Instantiate(
+            GameObject enemy = Instantiate(
                 enemyPrefab,
                 worldSpawnPosition,
                 Quaternion.identity
             );
+            
+            GameObject thrustParticles = Instantiate(
+                enemyThrustParticlesPrefab,
+                enemy.transform
+            );
+
+            // Position relative to the enemy
+            thrustParticles.transform.localPosition = Vector3.zero;
+            thrustParticles.transform.localRotation = Quaternion.identity;
             
             totalEnemies ++;
         }

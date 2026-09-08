@@ -67,6 +67,8 @@ public class EnemyBehavior : MonoBehaviour
     public float maxGlow = 5f;
     private float currentGlow = 0f;
 
+    private ParticleSystem thrustParticles;
+
 
     Rigidbody2D rb;
 
@@ -74,6 +76,7 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         initEnememy();
+        thrustParticles = GetComponentInChildren<ParticleSystem>();
         
     }
 
@@ -132,6 +135,10 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.material = enemyBloomMaterial;
 
         Color currentColor = spriteRenderer.color;
+
+        // Change thrust particle color
+        var particleMain = thrustParticles.main;
+        particleMain.startColor = currentColor;
 
         // Treble hit gives us a fresh burst
         if (analyzer.trebleDetected)
