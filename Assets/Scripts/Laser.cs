@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 //https://www.youtube.com/watch?v=S6eRVwAtfOM
 public class Laser : MonoBehaviour
 {
@@ -10,11 +11,11 @@ public class Laser : MonoBehaviour
     public Transform firePoint;
 
     [Header("Auto Laser Settings")]
-    public GameObject playerShip;
     public float autoShootRadius = 30f;
     public LineRenderer[] lasers;
-    public int numLasers = 5;
+    public int numLasers = 1;
     public float laserPower = 10f;
+    public LayerMask enemyLayer;
 
     [Header("Laser SFX")]
     public AudioSource laserStartAudio;
@@ -42,7 +43,7 @@ public class Laser : MonoBehaviour
     public void AutoShoot()
     {
         Collider2D[] objectsInRange =
-            Physics2D.OverlapCircleAll(playerShip.transform.position, autoShootRadius);
+            Physics2D.OverlapCircleAll(firePoint.position, autoShootRadius);
 
         int laserIndex = 0;
         
@@ -62,8 +63,13 @@ public class Laser : MonoBehaviour
             Vector2 direction =
                     (obj.transform.position - firePoint.position).normalized;
             
-            RaycastHit2D hit = Physics2D.Raycast(startPosition, direction, autoShootRadius);
-
+            RaycastHit2D hit = Physics2D.Raycast(
+                    startPosition,
+                    direction,
+                    autoShootRadius,
+                    enemyLayer
+                );
+                
             if (hit.collider == null)
                 continue;
 
@@ -75,7 +81,7 @@ public class Laser : MonoBehaviour
 
             curLaser.enabled = true;
 
-            curLaser.SetPosition(0, playerShip.transform.position);
+            curLaser.SetPosition(0, firePoint.position);
             curLaser.SetPosition(1, hit.point);
 
             rb.AddForce(
@@ -84,6 +90,7 @@ public class Laser : MonoBehaviour
             );
 
             laserIndex ++ ;
+            
         }
         
         // turn off any unused lasers

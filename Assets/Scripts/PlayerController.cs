@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
     public float shieldRadius = 20f;
     private bool shieldEnabled = false;
 
+    [Header("Shield Effects")]
+    public LineRenderer circle;
+    public float radius = 2f;
+    public int segments = 100;
+
     Rigidbody2D rb;
 
     private CinemachineImpulseSource impulseSource;
@@ -55,6 +60,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ShieldToggle();
+        if (shieldEnabled)
+            RenderShield();
+        else 
+            circle.enabled = false;
     }
 
     // this should help me get rid of the sluggish movment after too many turns or running into walls/obstacles
@@ -136,13 +145,11 @@ public class PlayerController : MonoBehaviour
             {
                 repulseRadius = shieldRadius;
                 Debug.Log("SHIELDS UP");
-                EnemyBehavior.shieldParticlesEnabled = true;
             }
             else
             {
                 repulseRadius = ogRepulseRadius;  
                 Debug.Log("SHIELDS DOWN!"); 
-                EnemyBehavior.shieldParticlesEnabled = false;
             } 
         }
     }
@@ -218,6 +225,29 @@ public class PlayerController : MonoBehaviour
             rb.AddTorque(-stick.x * torque);
         } 
 
+    }
+
+    void RenderShield()
+    {
+        circle.enabled = true;
+        circle.useWorldSpace = true;
+        circle.loop = true;
+        circle.positionCount = segments;
+
+        Vector3 center = rb.transform.position;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float angle = i * 2f * Mathf.PI / segments;
+
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+
+            circle.SetPosition(
+                i,
+                center + new Vector3(x, y, 0)
+            );
+        }
     }
 
 

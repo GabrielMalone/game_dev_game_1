@@ -67,9 +67,6 @@ public class EnemyBehavior : MonoBehaviour
     public float maxGlow = 5f;
     private float currentGlow = 0f;
 
-    [Header("Particle Effects")]
-    public static bool shieldParticlesEnabled = false;
-
     private ParticleSystem thrustParticles;
 
 
@@ -80,9 +77,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         initEnememy();
         thrustParticles = GetComponentInChildren<ParticleSystem>();
-        if (!shieldParticlesEnabled){
-            thrustParticles.Stop();
-        }
         
     }
 
@@ -93,8 +87,6 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
         glowOnTreble();
-        if (!shieldParticlesEnabled)
-            thrustParticles.Stop();
     }
 
 
@@ -143,20 +135,6 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.material = enemyBloomMaterial;
 
         Color currentColor = spriteRenderer.color;
-
-        if (shieldParticlesEnabled)
-        {
-            thrustParticles.Stop(
-                true,
-                ParticleSystemStopBehavior.StopEmittingAndClear
-            );
-            // Change thrust particle color
-            var particleMain = thrustParticles.main;
-            particleMain.startColor = currentColor;
-            thrustParticles.Play();
-        }
-
-
         // Treble hit gives us a fresh burst
         if (analyzer.trebleDetected)
         {
@@ -175,6 +153,7 @@ public class EnemyBehavior : MonoBehaviour
         enemyBloomMaterial.SetColor("_Color", hdrColor);
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
     }
+
 }
  
 
