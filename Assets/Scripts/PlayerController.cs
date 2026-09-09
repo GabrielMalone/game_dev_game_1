@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private float ogRepulseRadius;
     public float repulseForce = 10f;
     public float shieldRadius = 20f;
-    private bool shieldEnabled = false;
+    private bool shieldEnabled = true;
 
     [Header("Shield Effects")]
     public LineRenderer circle;

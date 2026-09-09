@@ -153,15 +153,15 @@ MonoBehaviour:
   volume: 0
   dominantFrequency: 0
   minFrequency: 25
-  maxFrequency: 256
+  maxFrequency: 1024
   minTreble: 0.001
   maxTreble: 0.05
   minVolume: 0.05
-  maxVolume: 2
-  beatSizeMultiplier: 2.5
+  maxVolume: 0.2
+  beatSizeMultiplier: 1.15
   sizeReturnSpeed: 10
   teleportRadius: 2
-  teleportDuration: 0
+  teleportDuration: 0.2
   bloomMaterial: {fileID: 2100000, guid: 026f0801912fa4095b06a9eb4355fcd9, type: 2}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   glowSpeed: 5
