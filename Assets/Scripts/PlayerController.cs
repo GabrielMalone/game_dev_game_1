@@ -154,13 +154,13 @@ public class PlayerController : MonoBehaviour
         // if not an enemy
         if (stats == null)
             return;
-        stats.hitPoints -= shielDdamage;
-        if (stats.hitPoints <= 0)
-        {
-            EnemySpawn.allEnemies.Remove(enemyObj);
-            Destroy(enemyObj);
-            enemySpawner.SpawnEnemyAlongWall();
-        }
+        // stats.hitPoints -= shielDdamage;
+        // if (stats.hitPoints <= 0)
+        // {
+        //     EnemySpawn.allEnemies.Remove(enemyObj);
+        //     Destroy(enemyObj);
+        //     enemySpawner.SpawnEnemyAlongWall();
+        // }
     }
 
     void ShieldToggle()

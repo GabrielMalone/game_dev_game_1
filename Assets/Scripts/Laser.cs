@@ -33,6 +33,8 @@ public class Laser : MonoBehaviour
     public float damageInterval = 0.25f;
     private float damageTimer = 0f;
 
+    private GameObject currentTarget;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,63 +50,88 @@ public class Laser : MonoBehaviour
     }
 
 
-
     public void AutoShoot()
     {
-        Collider2D[] objectsInRange =
-            Physics2D.OverlapCircleAll(firePoint.position, autoShootRadius);
+        // 1. Check whether our current target is still valid
+        if (currentTarget != null)
+        {
+            float distance = Vector2.Distance(
+                firePoint.position,
+                currentTarget.transform.position
+            );
 
-        int laserIndex = 0;
-        
-        foreach (Collider2D obj in objectsInRange)
-        {   
-            if (laserIndex >= numLasers)
-                break;
+            // Target left our range
+            if (distance > autoShootRadius)
+            {
+                currentTarget = null;
+            }
+        }
 
-            if (!obj.CompareTag("Enemy"))
-                continue;
-
-            Vector2 startPosition = firePoint.position;
-
-            Rigidbody2D rb = obj.attachedRigidbody;
-
-            // create a vector pointing from me to the enemy
-            Vector2 direction =
-                    (obj.transform.position - firePoint.position).normalized;
-            
-            RaycastHit2D hit = Physics2D.Raycast(
-                    startPosition,
-                    direction,
+        // 2. If we don't have a target, find one
+        if (currentTarget == null)
+        {
+            Collider2D[] objectsInRange =
+                Physics2D.OverlapCircleAll(
+                    firePoint.position,
                     autoShootRadius,
                     enemyLayer
                 );
-                
-            if (hit.collider == null)
-                continue;
 
-            LineRenderer curLaser = lasers[laserIndex];
+            foreach (Collider2D obj in objectsInRange)
+            {
+                if (!obj.CompareTag("Enemy"))
+                    continue;
 
-            
+                currentTarget = obj.gameObject;
+                break;
+            }
+        }
 
-            curLaser.enabled = true;
+        // 3. Still no target? Turn laser off
+        if (currentTarget == null)
+        {
+            DisableLasers();
+            return;
+        }
 
-            curLaser.SetPosition(0, firePoint.position);
-            curLaser.SetPosition(1, hit.point);
+        // 4. Shoot the current target
+        Vector2 startPosition = firePoint.position;
 
+        Vector2 direction =
+            ((Vector2)currentTarget.transform.position - startPosition).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            startPosition,
+            direction,
+            autoShootRadius,
+            enemyLayer
+        );
+
+        // Something went wrong / target isn't hittable anymore
+        if (hit.collider == null)
+        {
+            currentTarget = null;
+            DisableLasers();
+            return;
+        }
+
+        // all good, render the laser
+        LineRenderer curLaser = lasers[0];
+        curLaser.enabled = true;
+        curLaser.SetPosition(0, firePoint.position);
+        curLaser.SetPosition(1, hit.point);
+
+        // some physical consequence of the lasser
+        Rigidbody2D rb = currentTarget.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
             rb.AddForce(
                 direction * laserPower,
                 ForceMode2D.Impulse
             );
+        }
 
-            laserIndex ++ ;
-            doDamage(hit.collider.gameObject);
-        }
-        
-        // turn off any unused lasers
-        for (int i = laserIndex; i < numLasers ; i ++)
-        {
-            lasers[i].enabled = false;
-        }
+        doDamage(currentTarget);
 
     }
 
@@ -156,6 +183,8 @@ public class Laser : MonoBehaviour
             DisableLasers();
         }
     }
+
+    
 
 
 }

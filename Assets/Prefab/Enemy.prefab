@@ -300,16 +300,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 551457749890577112, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
+      propertyPath: m_VelocityScale
+      value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 551457749890577112, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 551457749890577112, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c1017a992329c4cacbec2fd91d0378fa, type: 2}
     - target: {fileID: 626043224595544744, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: m_Name
       value: Sparks
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: lengthInSec
-      value: 0.2
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: TrailModule.mode
@@ -317,23 +329,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: moveWithTransform
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: TrailModule.enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: TrailModule.ribbonCount
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: TrailModule.lifetime.scalar
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.04
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -341,7 +357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.02
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -354,6 +374,10 @@ PrefabInstance:
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

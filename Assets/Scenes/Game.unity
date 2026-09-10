@@ -839,7 +839,7 @@ MonoBehaviour:
   laserBodyAudio: {fileID: 451907713}
   laserEndAudio: {fileID: 0}
   enemySpawner: {fileID: 157911905}
-  damageInterval: 0.25
+  damageInterval: 0.05
 --- !u!114 &86226630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +998,6 @@ MonoBehaviour:
   beatDetected: 0
   beatThreshold: 0.01
   beatCooldown: 0.15
-  totalEnemies: 0
 --- !u!1 &173752201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2105,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
