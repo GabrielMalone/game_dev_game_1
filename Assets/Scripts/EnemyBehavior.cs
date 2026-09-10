@@ -68,9 +68,11 @@ public class EnemyBehavior : MonoBehaviour
     public float maxGlow = 5f;
     private float currentGlow = 0f;
 
+    [Header("laser hit FX")]
+    public ParticleSystem hitSpark;
+
     private ParticleSystem thrustParticles;
     private CinemachineImpulseSource impulseSource;
-
 
 
     Rigidbody2D rb;

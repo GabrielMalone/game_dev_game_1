@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+
+
 //https://www.youtube.com/watch?v=S6eRVwAtfOM
 public class Laser : MonoBehaviour
 {
@@ -24,6 +26,13 @@ public class Laser : MonoBehaviour
 
     private bool lasersEnabled = false;
 
+    [Header("Enemy Spawner")]
+    public EnemySpawn enemySpawner;
+
+    [Header("Damage Cooldown")]
+    public float damageInterval = 0.25f;
+    private float damageTimer = 0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +42,7 @@ public class Laser : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   damageTimer -= Time.deltaTime;
         //autoShoot();
         KeyboardInputs();
     }
@@ -75,9 +84,7 @@ public class Laser : MonoBehaviour
 
             LineRenderer curLaser = lasers[laserIndex];
 
-            // ParticleSystem particles = curLaser.GetComponent<ParticleSystem>();
-
-            // particles.Play();
+            
 
             curLaser.enabled = true;
 
@@ -90,13 +97,35 @@ public class Laser : MonoBehaviour
             );
 
             laserIndex ++ ;
-            
+            doDamage(hit.collider.gameObject);
         }
         
         // turn off any unused lasers
         for (int i = laserIndex; i < numLasers ; i ++)
         {
             lasers[i].enabled = false;
+        }
+
+    }
+
+    public void doDamage(GameObject enemyObj)
+    {
+        if (damageTimer > 0f)
+            return;
+        
+        damageTimer = damageInterval;
+        EnemyStats stats = enemyObj.GetComponent<EnemyStats>();
+        stats.hitPoints -= 50;
+
+        // turn on hit fx here
+        EnemyBehavior eb = enemyObj.GetComponent<EnemyBehavior>();
+        eb.hitSpark.Play();
+
+        if (stats.hitPoints <= 0)
+        {
+            EnemySpawn.allEnemies.Remove(enemyObj);
+            Destroy(enemyObj);
+            enemySpawner.SpawnEnemyAlongWall();
         }
 
     }

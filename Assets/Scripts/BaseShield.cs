@@ -28,6 +28,10 @@ public class BaseShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void FixedUpdate()
+    {
         Repulse();   
     }
 
@@ -60,20 +64,29 @@ public class BaseShield : MonoBehaviour
 
     void RenderShield()
     {
+        // turn the line renderer on
         circle.enabled = true;
         circle.useWorldSpace = true;
+        // connect the last point back to the first point
         circle.loop = true;
+        // construct the line with 100 points (or whatever # segments)
         circle.positionCount = segments;
 
         Vector3 center = playerCollider.transform.position;
 
         for (int i = 0; i < segments; i++)
         {
+            // divide the entire circle into segments of equal angles, then give me angle number i.
+            // full circle is 2pi (2f * Mathf.PI)
+            // 2f * Mathf.PI / segments is how many degrees we move over each time
+            // i how many steps around the circle we've made it
             float angle = i * 2f * Mathf.PI / segments;
-
+            // convert angle to x, y coordinate
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
 
+
+            // line renderer draws straight lines between the points automatically
             circle.SetPosition(
                 i,
                 center + new Vector3(x, y, 0)

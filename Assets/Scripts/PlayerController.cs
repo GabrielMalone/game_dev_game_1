@@ -25,12 +25,16 @@ public class PlayerController : MonoBehaviour
     private float ogRepulseRadius;
     public float repulseForce = 10f;
     public float shieldRadius = 20f;
-    private bool shieldEnabled = true;
+    public int shielDdamage = 10;
+    private bool shieldEnabled = false;
 
     [Header("Shield Effects")]
     public LineRenderer circle;
     public float radius = 2f;
     public int segments = 100;
+
+    [Header("Enemy Spawner")]
+    public EnemySpawn enemySpawner;
 
     Rigidbody2D rb;
 
@@ -106,6 +110,7 @@ public class PlayerController : MonoBehaviour
   
     void Repulse()
     {
+
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
 
@@ -131,12 +136,30 @@ public class PlayerController : MonoBehaviour
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
+
+                RepulseDamage(obj.gameObject);
             }
         }
 
         if (collisionPresent && !shieldEnabled)
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
+        }
+    }
+
+
+    void RepulseDamage(GameObject enemyObj)
+    {    
+        EnemyStats stats = enemyObj.GetComponent<EnemyStats>();
+        // if not an enemy
+        if (stats == null)
+            return;
+        stats.hitPoints -= shielDdamage;
+        if (stats.hitPoints <= 0)
+        {
+            EnemySpawn.allEnemies.Remove(enemyObj);
+            Destroy(enemyObj);
+            enemySpawner.SpawnEnemyAlongWall();
         }
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -33,7 +34,9 @@ public class EnemySpawn : MonoBehaviour
     public float beatThreshold = 0.01f;
     public float beatCooldown = 0.15f;
 
-    private int totalEnemies = 0;
+
+    [Header("Enemy Stats")]
+    public static List<GameObject> allEnemies = new List<GameObject>();
 
     void Start()
     {
@@ -117,24 +120,14 @@ public class EnemySpawn : MonoBehaviour
                 break;
         }
 
-        if (totalEnemies <= enemiesToSpawn)
+        if (allEnemies.Count < enemiesToSpawn)
         {
             GameObject enemy = Instantiate(
                 enemyPrefab,
                 worldSpawnPosition,
                 Quaternion.identity
             );
-            
-            GameObject thrustParticles = Instantiate(
-                enemyThrustParticlesPrefab,
-                enemy.transform
-            );
-
-            // Position relative to the enemy
-            thrustParticles.transform.localPosition = Vector3.zero;
-            thrustParticles.transform.localRotation = Quaternion.identity;
-            
-            totalEnemies ++;
+            allEnemies.Add(enemy);
         }
 
 
