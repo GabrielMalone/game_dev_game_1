@@ -1334,8 +1334,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1732713454}
   firePoint: {fileID: 427457076}
   autoShootRadius: 30
-  lasers:
-  - {fileID: 1732713454}
+  lasers: []
   numLasers: 1
   laserPower: 10
   enemyLayer:
@@ -2823,31 +2822,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.03634727
-        value: 1
-        inSlope: 2.0927348
-        outSlope: 2.0927348
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.50241816
-      - serializedVersion: 3
-        time: 0.2661241
-        value: 1
-        inSlope: -0.16340576
-        outSlope: -0.16340576
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.42165244
-        value: 0.78692716
+        time: 0
+        value: 0
         inSlope: 0.054430924
         outSlope: 0.054430924
         tangentMode: 0
@@ -2855,8 +2836,26 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.67207456
-        value: 0.40599775
+        time: 0.4392929
+        value: 0
+        inSlope: 2.0927348
+        outSlope: 2.0927348
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.50241816
+      - serializedVersion: 3
+        time: 0.612697
+        value: 0.95145607
+        inSlope: -0.16340576
+        outSlope: -0.16340576
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.64116025
+        value: 1
         inSlope: 0.3599383
         outSlope: 0.3599383
         tangentMode: 0
@@ -2864,8 +2863,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.89725727
-        value: 0.13587156
+        time: 0.9678856
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2914,7 +2913,7 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
+    numCornerVertices: 3
     numCapVertices: 0
     alignment: 0
     textureMode: 0
@@ -5088,7 +5087,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:

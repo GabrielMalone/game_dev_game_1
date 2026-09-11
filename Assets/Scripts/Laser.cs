@@ -49,6 +49,43 @@ public class Laser : MonoBehaviour
         KeyboardInputs();
     }
 
+    public void Shoot()
+    {
+        if (lasers.Length == 0)
+            return;
+        LineRenderer curLaser = lasers[0];
+        curLaser.enabled = true;
+
+        Vector2 startPosition = firePoint.position;
+        Vector2 direction = firePoint.up;
+        RaycastHit2D hit = Physics2D.Raycast(
+            startPosition,
+            direction,
+            1000f,
+            enemyLayer
+        );
+
+        curLaser.SetPosition(0, firePoint.position);
+
+        if (hit.collider != null)
+        {
+            // all good, render the laser
+            curLaser.SetPosition(1, hit.point);
+            Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.AddForce(
+                    direction * laserPower,
+                    ForceMode2D.Impulse
+                );
+            }
+            doDamage(hit.collider.gameObject);
+        } else
+        {
+            curLaser.SetPosition(1, startPosition + direction * 1000);
+        }
+    }
+
 
     public void AutoShoot()
     {
@@ -137,16 +174,15 @@ public class Laser : MonoBehaviour
 
     public void doDamage(GameObject enemyObj)
     {
+        // turn on hit fx here
+        EnemyBehavior eb = enemyObj.GetComponent<EnemyBehavior>();
+        eb.hitSpark.Play();
         if (damageTimer > 0f)
             return;
         
         damageTimer = damageInterval;
         EnemyStats stats = enemyObj.GetComponent<EnemyStats>();
         stats.hitPoints -= 50;
-
-        // turn on hit fx here
-        EnemyBehavior eb = enemyObj.GetComponent<EnemyBehavior>();
-        eb.hitSpark.Play();
 
         if (stats.hitPoints <= 0)
         {
@@ -174,9 +210,9 @@ public class Laser : MonoBehaviour
             lasersEnabled = !lasersEnabled;
         }
 
-        if (lasersEnabled)
+        if (lasersEnabled && !PlayerController.playerTurning)
         {
-            AutoShoot();
+            Shoot();
         }
         else
         {

@@ -324,6 +324,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
+      propertyPath: simulationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: TrailModule.mode
       value: 1
       objectReference: {fileID: 0}
@@ -345,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8420113882680684351, guid: 2f032b0eaf31143b092c9dcc3fbaaa64, type: 3}
       propertyPath: InitialModule.startSize.scalar

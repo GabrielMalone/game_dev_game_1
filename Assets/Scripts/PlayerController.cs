@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     private CinemachineImpulseSource impulseSource;
 
+    public static bool playerTurning = false;
+
    
 
     void Start()
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         ReduceSidewaysVelocity();
         SpeedCheck();
+        playerTurning = false;
         KeyboardInputs();
         GamepadInput();
         Repulse();
@@ -199,7 +202,8 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             rb.AddTorque(torque);
-        }
+            playerTurning = true;
+        } 
         // BACKWARD
         if (Keyboard.current.sKey.isPressed)
         {
@@ -210,8 +214,8 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.dKey.isPressed)
         {
             rb.AddTorque(-torque);
-        }
-
+            playerTurning = true;
+        } 
 
         if (Keyboard.current.spaceKey.isPressed)
         {
@@ -228,6 +232,7 @@ public class PlayerController : MonoBehaviour
         if (Gamepad.current != null)
         {
             Vector2 stick = Gamepad.current.leftStick.ReadValue();
+            float movement = stick.magnitude;
 
             // Forward/backward thrust
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
@@ -251,6 +256,10 @@ public class PlayerController : MonoBehaviour
             // Acceleration
             rb.AddForce(transform.up * rightTrigger * thrustForce);
             // Rotation
+            if (movement > 0.1f)
+                playerTurning = true;
+            else    
+                playerTurning = false;
             rb.AddTorque(-stick.x * torque);
         } 
 
