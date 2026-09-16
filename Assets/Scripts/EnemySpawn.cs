@@ -41,6 +41,7 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         analyzer = FindAnyObjectByType<AudioAnalyzer>();
+        allEnemies.Clear();
     }
 
     void Update()

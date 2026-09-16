@@ -45,9 +45,9 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   damageTimer -= Time.deltaTime;
-        //autoShoot();
         KeyboardInputs();
     }
+
 
     public void Shoot()
     {
@@ -189,6 +189,12 @@ public class Laser : MonoBehaviour
             EnemySpawn.allEnemies.Remove(enemyObj);
             Destroy(enemyObj);
             enemySpawner.SpawnEnemyAlongWall();
+            // replenish energy when kill enemy
+            if (PlayerController.playerHealth < PlayerController.maxPlayerHealth)
+            {
+                PlayerController.playerHealth += laserPower;
+            }
+   
         }
 
     }

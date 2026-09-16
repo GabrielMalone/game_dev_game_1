@@ -46,6 +46,8 @@ public class BaseShield : MonoBehaviour
             if (obj.CompareTag("Player"))
                 continue;
 
+
+
             Rigidbody2D rb = obj.attachedRigidbody;
 
             if (rb != null)
@@ -58,6 +60,13 @@ public class BaseShield : MonoBehaviour
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
+
+                EnemyBehavior enemy = obj.GetComponent<EnemyBehavior>();
+                
+                if (PlayerController.playerHealth>0 && enemy != null){
+                    PlayerController.playerHealth -= enemy.enemyPower;
+                }
+            
             }
         }
     }

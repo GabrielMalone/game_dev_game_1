@@ -74,6 +74,10 @@ public class EnemyBehavior : MonoBehaviour
     private ParticleSystem thrustParticles;
     private CinemachineImpulseSource impulseSource;
 
+    [Header("Enemy Attack Power")]
+    public float enemyPowerBase = 0.1f;
+    public float enemyPower = 0f;
+
 
     Rigidbody2D rb;
 
@@ -89,6 +93,7 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyPower = enemyPowerBase;
         agent.speed = analyzer.targetSpeed * 3;
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
@@ -115,7 +120,7 @@ public class EnemyBehavior : MonoBehaviour
 
         enemyBloomMaterial = new Material(bloomMaterial);
 
-        
+        enemyPower = enemyPowerBase;
     }
 
     void pulseOnBeat()
@@ -133,6 +138,9 @@ public class EnemyBehavior : MonoBehaviour
         );
 
         transform.localScale = originalScale * sizePulse;
+
+        enemyPower = originalScale.x * sizePulse;
+
     }
 
     void glowOnTreble()
@@ -154,6 +162,7 @@ public class EnemyBehavior : MonoBehaviour
         );
 
         Color hdrColor = currentColor * currentGlow;
+
 
         enemyBloomMaterial.SetColor("_Color", hdrColor);
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);

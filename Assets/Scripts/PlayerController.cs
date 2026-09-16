@@ -6,6 +6,10 @@ using Unity.Cinemachine;
 public class PlayerController : MonoBehaviour
 {
 
+    [Header("Health Stuff")]
+    public static float playerHealth = 10000f;
+    public static float maxPlayerHealth = 10000f;
+
     [Header("Movement Stuff")]
     public float thrustForce = 20f;
     public float torque = 5f;
@@ -26,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public float repulseForce = 10f;
     public float shieldRadius = 20f;
     public int shielDdamage = 10;
-    private bool shieldEnabled = false;
+    private bool shieldEnabled = true;
 
     [Header("Shield Effects")]
     public LineRenderer circle;
@@ -42,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool playerTurning = false;
 
-   
+    
 
     void Start()
     {
@@ -52,6 +56,10 @@ public class PlayerController : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
         ogRepulseRadius = repulseRadius;
         shieldParticles.Stop();
+        // just start w/ shield on
+        shieldEnabled = true;
+        repulseRadius = shieldRadius;
+        playerHealth = maxPlayerHealth;
     }
 
     void FixedUpdate()
@@ -121,11 +129,18 @@ public class PlayerController : MonoBehaviour
         
         foreach (Collider2D obj in objectsInRange)
         {
-            // Don't push ourselves
+            // ignore self
             if (obj.gameObject == gameObject)
                 continue;
 
+            EnemyBehavior enemy = obj.GetComponent<EnemyBehavior>();
 
+            if (playerHealth > 0 && enemy != null)
+            {
+                playerHealth -= enemy.enemyPower;
+            }
+
+    
             collisionPresent = true;
             Rigidbody2D rb = obj.attachedRigidbody;
 
@@ -140,7 +155,7 @@ public class PlayerController : MonoBehaviour
                     ForceMode2D.Impulse
                 );
 
-                RepulseDamage(obj.gameObject);
+                // RepulseDamage(obj.gameObject);
             }
         }
 
@@ -157,13 +172,13 @@ public class PlayerController : MonoBehaviour
         // if not an enemy
         if (stats == null)
             return;
-        // stats.hitPoints -= shielDdamage;
-        // if (stats.hitPoints <= 0)
-        // {
-        //     EnemySpawn.allEnemies.Remove(enemyObj);
-        //     Destroy(enemyObj);
-        //     enemySpawner.SpawnEnemyAlongWall();
-        // }
+        stats.hitPoints -= shielDdamage;
+        if (stats.hitPoints <= 0)
+        {
+            EnemySpawn.allEnemies.Remove(enemyObj);
+            Destroy(enemyObj);
+            enemySpawner.SpawnEnemyAlongWall();
+        }
     }
 
     void ShieldToggle()
@@ -202,7 +217,7 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             rb.AddTorque(torque);
-            playerTurning = true;
+            //playerTurning = true;
         } 
         // BACKWARD
         if (Keyboard.current.sKey.isPressed)
@@ -214,7 +229,7 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.dKey.isPressed)
         {
             rb.AddTorque(-torque);
-            playerTurning = true;
+            //playerTurning = true;
         } 
 
         if (Keyboard.current.spaceKey.isPressed)
@@ -246,7 +261,6 @@ public class PlayerController : MonoBehaviour
 
             if (Gamepad.current.rightTrigger.isPressed)
             {
-                bulletTime.SlowMo(1f - leftTrigger);
                 shieldParticles.Play();
             } else {
                 shieldParticles.Stop();
@@ -256,10 +270,10 @@ public class PlayerController : MonoBehaviour
             // Acceleration
             rb.AddForce(transform.up * rightTrigger * thrustForce);
             // Rotation
-            if (movement > 0.1f)
-                playerTurning = true;
-            else    
-                playerTurning = false;
+            // if (movement > 0.1f)
+            //     playerTurning = true;
+            // else    
+            //     playerTurning = false;
             rb.AddTorque(-stick.x * torque);
         } 
 
