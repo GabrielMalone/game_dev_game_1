@@ -856,6 +856,7 @@ GameObject:
   - component: {fileID: 244932904}
   - component: {fileID: 244932902}
   - component: {fileID: 244932907}
+  - component: {fileID: 244932908}
   m_Layer: 9
   m_Name: Base
   m_TagString: Player
@@ -1033,6 +1034,33 @@ MonoBehaviour:
   radius: 6
   segments: 20
   playerCollider: {fileID: 244932905}
+--- !u!114 &244932908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244932901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0a8f9d5f0b84cf6877a669a6c955f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Laser
+  cam: {fileID: 0}
+  lineRenderer: {fileID: 1732713454}
+  firePoint: {fileID: 427457076}
+  autoShootRadius: 30
+  lasers: []
+  numLasers: 1
+  laserPower: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  laserStartAudio: {fileID: 0}
+  laserBodyAudio: {fileID: 451907713}
+  laserEndAudio: {fileID: 0}
+  enemySpawner: {fileID: 157911905}
+  damageInterval: 0.25
 --- !u!1 &333140568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,9 +1430,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 427457076}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Base_Laser_FirePoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1956,9 +1984,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723990089}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Base_Laser
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3342,9 +3370,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1732713453}
   - component: {fileID: 1732713454}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Base_Laser_Line
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8952,7 +8980,7 @@ GameObject:
   - component: {fileID: 2034906653}
   m_Layer: 9
   m_Name: Shield
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -78,6 +78,14 @@ public class EnemyBehavior : MonoBehaviour
     public float enemyPowerBase = 0.1f;
     public float enemyPower = 0f;
 
+    [Header("Enemy Mine Attack Effects")]
+    public bool selectedByMine = false;
+    public LineRenderer mineLine;
+    public float mineLineRadius = 1f;
+    public LayerMask enemyLayer;
+
+
+
 
     Rigidbody2D rb;
 
@@ -87,6 +95,7 @@ public class EnemyBehavior : MonoBehaviour
         initEnememy();
         thrustParticles = GetComponentInChildren<ParticleSystem>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        mineLine.useWorldSpace = true;
         
     }
 
@@ -98,6 +107,8 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
         glowOnTreble();
+        if (selectedByMine)
+            getEnemiesInRange();
     }
 
 
@@ -167,6 +178,59 @@ public class EnemyBehavior : MonoBehaviour
         enemyBloomMaterial.SetColor("_Color", hdrColor);
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
     }
+
+public void getEnemiesInRange()
+{
+    
+    mineLine.enabled = false;
+
+    Collider2D[] objectsInRange =
+        Physics2D.OverlapCircleAll(
+            transform.position,
+            mineLineRadius,
+            enemyLayer
+        );
+
+    foreach (Collider2D obj in objectsInRange)
+    {
+        // Ignore anything that isn't an enemy
+        if (!obj.CompareTag("Enemy"))
+            continue;
+
+        // Don't target yourself
+        if (obj.gameObject == gameObject)
+            continue;
+
+        Vector2 startPosition = transform.position;
+        Vector2 enemyPosition = obj.transform.position;
+
+        Vector2 direction =
+            (enemyPosition - startPosition).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            startPosition,
+            direction,
+            mineLineRadius,
+            enemyLayer
+        );
+
+        if (hit.collider == null)
+            continue;
+
+        mineLine.enabled = true;
+        mineLine.SetPosition(0, startPosition);
+        mineLine.SetPosition(1, hit.point);
+
+        EnemyBehavior enemyBehavior =
+            obj.GetComponent<EnemyBehavior>();
+
+        if (enemyBehavior != null && !enemyBehavior.selectedByMine)
+        {
+            enemyBehavior.selectedByMine = true;
+            enemyBehavior.getEnemiesInRange();
+        }
+    }
+}
 
 }
  
