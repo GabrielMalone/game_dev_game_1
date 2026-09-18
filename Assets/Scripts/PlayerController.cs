@@ -74,12 +74,13 @@ public class PlayerController : MonoBehaviour
         SpeedCheck();
         playerTurning = false;
         Repulse();
+        GamepadInput();
+        KeyboardInputs();
+        layMine();
     }
 
     void Update()
     {
-        GamepadInput();
-        KeyboardInputs();
         ShieldToggle();
         if (shieldEnabled)
             RenderShield();
@@ -246,11 +247,6 @@ public class PlayerController : MonoBehaviour
             analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
             analyzer.maxSpeed = ogEnemySpeed;
         }   
-
-        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
-        {
-            layMine();
-        } 
     }
 
     IEnumerator ExplodeMine()
@@ -334,12 +330,21 @@ public class PlayerController : MonoBehaviour
     }
 
     void layMine()
-    {
-        if (activeMineWeapon == null)
+    {   
+        if (Keyboard.current.leftShiftKey.isPressed ||
+            (Gamepad.current != null && 
+            Gamepad.current.buttonSouth.wasPressedThisFrame)) 
         {
-            activeMineWeapon = Instantiate(mineWeaponPrefab, mineSpawnPoint.position, Quaternion.identity);
-            StartCoroutine(ExplodeMine());
+
+            if (activeMineWeapon == null)
+            {
+                activeMineWeapon = Instantiate(mineWeaponPrefab, mineSpawnPoint.position, Quaternion.identity);
+                StartCoroutine(ExplodeMine());
+            }
+
         }
+        
+
     }
 
 
