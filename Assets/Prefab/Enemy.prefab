@@ -170,8 +170,7 @@ MonoBehaviour:
   enemyPowerBase: 0.1
   enemyPower: 0
   selectedByMine: 0
-  mineLine: {fileID: 0}
-  mineLineRadius: 30
+  mineLineRadius: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256

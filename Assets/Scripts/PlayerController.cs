@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     [Header("Enemy Spawner")]
     public EnemySpawn enemySpawner;
 
+    [Header("Mine Weapon")]
+    public GameObject mineWeaponPrefab; 
+    private GameObject activeMineWeapon;
+    public Transform mineSpawnPoint;
+
     Rigidbody2D rb;
 
     private CinemachineImpulseSource impulseSource;
@@ -240,6 +245,13 @@ public class PlayerController : MonoBehaviour
             analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
             analyzer.maxSpeed = ogEnemySpeed;
         }   
+
+        if (Keyboard.current.leftShiftKey.isPressed)
+        {
+            layMine();
+        } 
+
+
     }
 
     void GamepadInput()
@@ -299,6 +311,18 @@ public class PlayerController : MonoBehaviour
                 i,
                 center + new Vector3(x, y, 0)
             );
+        }
+    }
+
+    void layMine()
+    {
+        if (activeMineWeapon == null)
+        {
+            activeMineWeapon = Instantiate(mineWeaponPrefab, mineSpawnPoint.position, Quaternion.identity);
+        }
+        else 
+        {
+            Destroy(activeMineWeapon);
         }
     }
 

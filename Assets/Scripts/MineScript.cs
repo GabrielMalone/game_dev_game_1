@@ -10,10 +10,6 @@ public class MineScript : MonoBehaviour
     public LineRenderer mineLine;
     public static int maxNumEnemiesBeforeExplosion = 10;
     public static float timeBeforeExplosion = 3f;
-    [Header("Mine Particle Effect")]
-    public ParticleSystem lineParticles;
-    public float particleTravelSpeed = 5f;
-    private float particleDistance = 0f;
 
     [Header("Enemies Tagged By Mine")]
     public static List<GameObject> allEnemiesTaggedByMine = new List<GameObject>();
@@ -32,7 +28,6 @@ public class MineScript : MonoBehaviour
         getEnemiesInRange();
         Debug.Log("Enemies tagged count: " + allEnemiesTaggedByMine.Count);
         drawMineLine();
-        moveParticlesAlongLine();
     }
 
     void getEnemiesInRange()
@@ -61,13 +56,7 @@ public class MineScript : MonoBehaviour
                 if (enemyBehavior != null)
                 {
                     enemyBehavior.selectedByMine = true;
-                    ParticleSystem newParticles = Instantiate(
-                        lineParticles,
-                        obj.transform.position,
-                        Quaternion.identity,
-                        obj.transform
-                    );
-                                    }
+                }
             }
         }
     }
@@ -78,18 +67,35 @@ public class MineScript : MonoBehaviour
             mineLine.enabled = false;
             return;
         }
+
         mineLine.enabled = true;
         mineLine.useWorldSpace = true;
-        // +1 because the mine itself is the first point
-        mineLine.positionCount = allEnemiesTaggedByMine.Count + 1;
 
-        // First point = mine
+        // Make a copy so we don't change the original list
+        List<GameObject> sortedEnemies =
+            new List<GameObject>(allEnemiesTaggedByMine);
+
+        // Sort closest to mine -> farthest from mine
+        sortedEnemies.Sort((a, b) =>
+        {
+            float distanceA =
+                Vector2.Distance(minePosition.position, a.transform.position);
+
+            float distanceB =
+                Vector2.Distance(minePosition.position, b.transform.position);
+
+            return distanceA.CompareTo(distanceB);
+        });
+
+        mineLine.positionCount = sortedEnemies.Count + 1;
+
+        // Mine is first
         mineLine.SetPosition(0, minePosition.position);
 
-        // Remaining points = tagged enemies
-        for (int i = 0; i < allEnemiesTaggedByMine.Count; i++)
+        // Then closest -> farthest
+        for (int i = 0; i < sortedEnemies.Count; i++)
         {
-            GameObject enemy = allEnemiesTaggedByMine[i];
+            GameObject enemy = sortedEnemies[i];
 
             if (enemy != null)
             {
@@ -98,56 +104,4 @@ public class MineScript : MonoBehaviour
         }
     }
 
-    void moveParticlesAlongLine()
-    {
-        if (allEnemiesTaggedByMine.Count == 0)
-            return;
-
-        // Build our path:
-        // mine -> enemy 0 -> enemy 1 -> enemy 2...
-        List<Vector3> points = new List<Vector3>();
-
-        points.Add(minePosition.position);
-
-        foreach (GameObject enemy in allEnemiesTaggedByMine)
-        {
-            if (enemy != null)
-            {
-                points.Add(enemy.transform.position);
-            }
-        }
-
-        if (points.Count < 2)
-            return;
-
-        particleDistance += particleTravelSpeed * Time.deltaTime;
-
-        float remainingDistance = particleDistance;
-
-        // Walk through each segment of the line
-        for (int i = 0; i < points.Count - 1; i++)
-        {
-            Vector3 start = points[i];
-            Vector3 end = points[i + 1];
-
-            float segmentLength = Vector3.Distance(start, end);
-
-            if (remainingDistance <= segmentLength)
-            {
-                float t = remainingDistance / segmentLength;
-
-                Vector3 particlePosition =
-                    Vector3.Lerp(start, end, t);
-
-                lineParticles.transform.position = particlePosition;
-
-                return;
-            }
-
-            remainingDistance -= segmentLength;
-        }
-
-        // Reached the end — start again
-        particleDistance = 0f;
-    }
 }

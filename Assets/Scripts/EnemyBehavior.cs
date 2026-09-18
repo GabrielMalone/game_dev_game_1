@@ -80,7 +80,6 @@ public class EnemyBehavior : MonoBehaviour
 
     [Header("Enemy Mine Attack Effects")]
     public bool selectedByMine = false;
-    public LineRenderer mineLine;
     public float mineLineRadius = 1f;
     public LayerMask enemyLayer;
 
@@ -94,9 +93,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         initEnememy();
         thrustParticles = GetComponentInChildren<ParticleSystem>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
-        mineLine.useWorldSpace = true;
-        
+        impulseSource = GetComponent<CinemachineImpulseSource>();        
     }
 
     // Update is called once per frame
