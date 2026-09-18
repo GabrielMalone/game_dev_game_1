@@ -254,13 +254,24 @@ public class PlayerController : MonoBehaviour
         float t = MineScript.timeBeforeExplosion;
         yield return new WaitForSeconds(t);
         Debug.Log("time before explosion: " + t);
+        int numEnemiesKilled = 0;
         foreach (GameObject enemy in MineScript.allEnemiesTaggedByMine)
         {
             Destroy(enemy);
+            numEnemiesKilled ++ ;
+            // I tink this needs to update the public static enemy list
+            // I think then we can respawn
+            
             Debug.Log("Destroying enemies!");
         }
         MineScript.allEnemiesTaggedByMine.Clear();
         Destroy(activeMineWeapon);
+        for (int i = 0; i < numEnemiesKilled ; i ++)
+        {
+            yield return new WaitForSeconds(1);
+            enemySpawner.SpawnEnemyAlongWall();
+            enemySpawner.allEnemies.Remove(enemy);
+        }
     }
 
 
