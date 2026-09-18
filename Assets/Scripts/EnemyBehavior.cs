@@ -179,58 +179,40 @@ public class EnemyBehavior : MonoBehaviour
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
     }
 
-public void getEnemiesInRange()
-{
-    
-    mineLine.enabled = false;
-
-    Collider2D[] objectsInRange =
-        Physics2D.OverlapCircleAll(
-            transform.position,
-            mineLineRadius,
-            enemyLayer
-        );
-
-    foreach (Collider2D obj in objectsInRange)
+    public void getEnemiesInRange()
     {
-        // Ignore anything that isn't an enemy
-        if (!obj.CompareTag("Enemy"))
-            continue;
+        
+        Collider2D[] objectsInRange =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                mineLineRadius,
+                enemyLayer
+            );
 
-        // Don't target yourself
-        if (obj.gameObject == gameObject)
-            continue;
-
-        Vector2 startPosition = transform.position;
-        Vector2 enemyPosition = obj.transform.position;
-
-        Vector2 direction =
-            (enemyPosition - startPosition).normalized;
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            startPosition,
-            direction,
-            mineLineRadius,
-            enemyLayer
-        );
-
-        if (hit.collider == null)
-            continue;
-
-        mineLine.enabled = true;
-        mineLine.SetPosition(0, startPosition);
-        mineLine.SetPosition(1, hit.point);
-
-        EnemyBehavior enemyBehavior =
-            obj.GetComponent<EnemyBehavior>();
-
-        if (enemyBehavior != null && !enemyBehavior.selectedByMine)
+        foreach (Collider2D obj in objectsInRange)
         {
-            enemyBehavior.selectedByMine = true;
-            enemyBehavior.getEnemiesInRange();
+            // Ignore anything that isn't an enemy
+            if (!obj.CompareTag("Enemy"))
+                continue;
+
+            // Don't target yourself
+            if (obj.gameObject == gameObject)
+                continue;
+
+            EnemyBehavior enemyBehavior =
+                obj.GetComponent<EnemyBehavior>();
+
+            if (enemyBehavior != null && !enemyBehavior.selectedByMine)
+            {
+                enemyBehavior.selectedByMine = true;
+
+                if (!MineScript.allEnemiesTaggedByMine.Contains(obj.gameObject))
+                {
+                    MineScript.allEnemiesTaggedByMine.Add(obj.gameObject);
+                }
+            }
         }
     }
-}
 
 }
  
