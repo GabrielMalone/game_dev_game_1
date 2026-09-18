@@ -168,7 +168,7 @@ MonoBehaviour:
   maxGlow: 5
   hitSpark: {fileID: 0}
   enemyPowerBase: 0.1
-  enemyPower: 0
+  enemyPower: 200
   selectedByMine: 0
   mineLineRadius: 2
   enemyLayer:

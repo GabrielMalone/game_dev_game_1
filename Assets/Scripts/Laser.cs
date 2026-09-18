@@ -226,7 +226,4 @@ public class Laser : MonoBehaviour
         }
     }
 
-    
-
-
 }

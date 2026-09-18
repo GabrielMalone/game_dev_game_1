@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   thrustForce: 2600
-  torque: 10
+  torque: 20
   maxPlayerSpeed: 100
   sidewaysDrag: 0.5
   bulletTime: {fileID: 772717548}
