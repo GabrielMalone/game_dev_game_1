@@ -370,9 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9229d9f507c24b8fa4e87c08e3e7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  thrustForce: 1000
-  torque: 70
-  maxPlayerSpeed: 2000
+  thrustForce: 200
+  torque: 7
+  maxPlayerSpeed: 100
   sidewaysDrag: 0.5
   bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
@@ -400,7 +400,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 10
+  m_LinearDamping: 0.5
   m_AngularDamping: 25
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1454,7 +1454,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

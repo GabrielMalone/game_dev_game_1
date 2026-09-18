@@ -73,13 +73,12 @@ public class PlayerController : MonoBehaviour
         ReduceSidewaysVelocity();
         SpeedCheck();
         playerTurning = false;
-
-        GamepadInput();
         Repulse();
     }
 
     void Update()
     {
+        GamepadInput();
         KeyboardInputs();
         ShieldToggle();
         if (shieldEnabled)
@@ -293,6 +292,10 @@ public class PlayerController : MonoBehaviour
             } else {
                 shieldParticles.Stop();
             } 
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                layMine();
+            }
 
 
             // Acceleration
