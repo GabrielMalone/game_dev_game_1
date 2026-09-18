@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
@@ -72,13 +73,14 @@ public class PlayerController : MonoBehaviour
         ReduceSidewaysVelocity();
         SpeedCheck();
         playerTurning = false;
-        KeyboardInputs();
+
         GamepadInput();
         Repulse();
     }
 
     void Update()
     {
+        KeyboardInputs();
         ShieldToggle();
         if (shieldEnabled)
             RenderShield();
@@ -246,13 +248,27 @@ public class PlayerController : MonoBehaviour
             analyzer.maxSpeed = ogEnemySpeed;
         }   
 
-        if (Keyboard.current.leftShiftKey.isPressed)
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
         {
             layMine();
         } 
-
-
     }
+
+    IEnumerator ExplodeMine()
+    {
+        float t = MineScript.timeBeforeExplosion;
+        yield return new WaitForSeconds(t);
+        Debug.Log("time before explosion: " + t);
+        foreach (GameObject enemy in MineScript.allEnemiesTaggedByMine)
+        {
+            Destroy(enemy);
+            Debug.Log("Destroying enemies!");
+        }
+        MineScript.allEnemiesTaggedByMine.Clear();
+        Destroy(activeMineWeapon);
+    }
+
+
 
     void GamepadInput()
     {
@@ -319,10 +335,7 @@ public class PlayerController : MonoBehaviour
         if (activeMineWeapon == null)
         {
             activeMineWeapon = Instantiate(mineWeaponPrefab, mineSpawnPoint.position, Quaternion.identity);
-        }
-        else 
-        {
-            Destroy(activeMineWeapon);
+            StartCoroutine(ExplodeMine());
         }
     }
 

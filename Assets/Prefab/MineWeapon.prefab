@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 280926902202205846}
   - component: {fileID: 4812605846659250084}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MineWeapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,9 +63,9 @@ GameObject:
   m_Component:
   - component: {fileID: 267410770010353291}
   - component: {fileID: 1377723097028210737}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: mineSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3911207355277766300}
   - component: {fileID: 97691592426320981}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: mineLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c1017a992329c4cacbec2fd91d0378fa, type: 2}
     - target: {fileID: 2091093993301676928, guid: fcee8057a26d6403b85528f6bf78f2eb, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2091093993301676928, guid: fcee8057a26d6403b85528f6bf78f2eb, type: 3}
       propertyPath: prewarm
@@ -519,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2942837878634388363, guid: fcee8057a26d6403b85528f6bf78f2eb, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

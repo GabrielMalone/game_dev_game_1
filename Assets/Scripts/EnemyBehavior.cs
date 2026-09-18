@@ -104,6 +104,11 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
         glowOnTreble();
+
+    }
+
+    void FixedUpdate()
+    {
         if (selectedByMine)
             getEnemiesInRange();
     }

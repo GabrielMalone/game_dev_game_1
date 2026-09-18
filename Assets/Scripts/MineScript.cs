@@ -9,7 +9,7 @@ public class MineScript : MonoBehaviour
     public LayerMask enemyLayer;
     public LineRenderer mineLine;
     public static int maxNumEnemiesBeforeExplosion = 10;
-    public static float timeBeforeExplosion = 3f;
+    public static float timeBeforeExplosion = 1f;
 
     [Header("Enemies Tagged By Mine")]
     public static List<GameObject> allEnemiesTaggedByMine = new List<GameObject>();
@@ -25,9 +25,12 @@ public class MineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        getEnemiesInRange();
-        Debug.Log("Enemies tagged count: " + allEnemiesTaggedByMine.Count);
         drawMineLine();
+    }
+
+    void FixedUpdate()
+    {
+        getEnemiesInRange();
     }
 
     void getEnemiesInRange()
@@ -51,7 +54,7 @@ public class MineScript : MonoBehaviour
             {
                 allEnemiesTaggedByMine.Add(obj.gameObject);
                 EnemyBehavior enemyBehavior =
-                obj.GetComponent<EnemyBehavior>();
+                    obj.GetComponent<EnemyBehavior>();
 
                 if (enemyBehavior != null)
                 {
@@ -75,18 +78,7 @@ public class MineScript : MonoBehaviour
         List<GameObject> sortedEnemies =
             new List<GameObject>(allEnemiesTaggedByMine);
 
-        // Sort closest to mine -> farthest from mine
-        sortedEnemies.Sort((a, b) =>
-        {
-            float distanceA =
-                Vector2.Distance(minePosition.position, a.transform.position);
-
-            float distanceB =
-                Vector2.Distance(minePosition.position, b.transform.position);
-
-            return distanceA.CompareTo(distanceB);
-        });
-
+   
         mineLine.positionCount = sortedEnemies.Count + 1;
 
         // Mine is first

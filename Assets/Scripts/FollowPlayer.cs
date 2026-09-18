@@ -20,6 +20,7 @@ public class EnemyFollow : MonoBehaviour
 
     void Update()
     {
+        targets = GameObject.FindGameObjectsWithTag("Player");
         // If we already have a movement target, stay on it
         if (movementTarget != null)
         {
@@ -38,6 +39,9 @@ public class EnemyFollow : MonoBehaviour
         // Look for a new moving target
         foreach (GameObject target in targets)
         {
+            if (target == null)
+                continue;
+
             Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
 
             if (targetRb != null &&
@@ -66,6 +70,10 @@ public class EnemyFollow : MonoBehaviour
 
         foreach (GameObject target in targets)
         {
+
+            if (target == null)
+                continue;
+
             float distance = Vector2.Distance(
                 transform.position,
                 target.transform.position
