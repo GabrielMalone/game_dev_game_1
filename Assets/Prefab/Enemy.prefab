@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abecc12340a344248adf7c96fafbd9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turtle
-  minSize: 1
-  maxSize: 3
+  minSize: 0.5
+  maxSize: 2
   acceleration: 175
   turnSpeed: 720
   currentSpeed: 0
