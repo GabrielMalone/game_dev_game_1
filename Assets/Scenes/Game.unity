@@ -370,15 +370,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9229d9f507c24b8fa4e87c08e3e7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  thrustForce: 1200
-  torque: 25
-  maxPlayerSpeed: 50
+  thrustForce: 2600
+  torque: 10
+  maxPlayerSpeed: 100
   sidewaysDrag: 0.5
   bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
   shieldParticles: {fileID: 1928362450}
-  repulseRadius: 5
-  repulseForce: 100
+  repulseRadius: 15
+  repulseForce: 300
   shieldRadius: 20
   shielDdamage: 10
   circle: {fileID: 417274730}
@@ -781,7 +781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &244932902
 MonoBehaviour:
   m_ObjectHideFlags: 0

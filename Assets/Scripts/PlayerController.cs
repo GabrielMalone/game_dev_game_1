@@ -259,6 +259,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(enemy);
             numEnemiesKilled ++ ;
+            EnemySpawn.allEnemies.Remove(enemy);
             // I tink this needs to update the public static enemy list
             // I think then we can respawn
             
@@ -270,7 +271,6 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             enemySpawner.SpawnEnemyAlongWall();
-            enemySpawner.allEnemies.Remove(enemy);
         }
     }
 
