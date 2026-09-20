@@ -35,6 +35,13 @@ public class PlayerController : MonoBehaviour
     public int shielDdamage = 10;
     private bool shieldEnabled = true;
 
+    [Header("Shield Hit Effects")]
+    public LineRenderer[] shieldHitLines;
+    public int hitArcSegments = 10;
+    public float hitArcSize = 0.3f;
+
+private List<float> shieldHitAngles = new List<float>();
+
     [Header("Shield Effects")]
     public LineRenderer circle;
     public float radius = 2f;
@@ -135,6 +142,8 @@ public class PlayerController : MonoBehaviour
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
 
         bool collisionPresent = false;
+
+        int hitIndex = 0;
         
         foreach (Collider2D obj in objectsInRange)
         {
@@ -143,13 +152,48 @@ public class PlayerController : MonoBehaviour
                 continue;
 
             EnemyBehavior enemy = obj.GetComponent<EnemyBehavior>();
-
-            if (playerHealth > 0 && enemy != null)
+            
+            // let's find out where enemies hit the shield so we can add some shield hit fx
+            if (enemy != null)
             {
-                playerHealth -= enemy.enemyPower;
+                if (playerHealth > 0 && enemy != null)
+                {
+                    playerHealth -= enemy.enemyPower;
+                }
+                if (shieldEnabled && hitIndex < shieldHitLines.Length)
+                {
+                    Vector2 direction = obj.transform.position - transform.position;
+                    // at what angle is the enemy from the center of my ship
+                    // arctan(theta) is the angle we calc 
+                    // (ship is in center of x,y coord plane and triangulate enemy)
+                    float angle = Mathf.Atan2(direction.y, direction.x);
+                    // get the next line renderer available
+                    LineRenderer hitline = shieldHitLines[hitIndex ++];
+                    hitline.enabled = true;
+                    hitline.useWorldSpace = true;
+                    hitline.positionCount = hitArcSegments;
+
+                    // okay let's loop through the arc segments 
+                    for (int i=0 ; i < hitArcSegments ; i ++)
+                    {
+                        // convert our index i into a number between 0 and 1
+                        // aka percentage along the line segment / arc we are at
+                        float t = (float)i / (hitArcSegments - 1);
+                        // calculate the angle for this particular point
+                        // angle is where enemy is and we want the highlight centered around this angle
+                        // angle - hitarcsize/2 gives us the start of the line highlight
+                        // then we move along the arc until arcsize complete
+                        float arcAngle = angle - ( hitArcSize / 2f ) + ( t * hitArcSize );
+                        // now that we know the angle of one point along the arc
+                        // let's put it into x, y coords
+                        float x = Mathf.Cos(arcAngle) * radius;
+                        float y = Mathf.Sin(arcAngle) * radius;
+                        // and draw the line
+                        hitline.SetPosition(i, transform.position + new Vector3(x,y,0));
+                    }
+                }
             }
 
-    
             collisionPresent = true;
             Rigidbody2D rb = obj.attachedRigidbody;
 
@@ -157,23 +201,29 @@ public class PlayerController : MonoBehaviour
             {
                 // create a vector pointing from me to the other object
                 Vector2 direction =
-                    (obj.transform.position - transform.position).normalized;
+                    (obj.transform.position - transform.position).normalized ;
 
                 rb.AddForce(
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
-
-                // RepulseDamage(obj.gameObject);
             }
         }
 
+        // disable unused highlight renderers
+        for (int i = hitIndex; i < shieldHitLines.Length; i++)
+        {
+            shieldHitLines[i].enabled = false;
+        }
         if (collisionPresent && !shieldEnabled)
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
         }
+        if (collisionPresent && shieldEnabled)
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
+        }
     }
-
 
     void RepulseDamage(GameObject enemyObj)
     {    
@@ -303,8 +353,11 @@ public class PlayerController : MonoBehaviour
         Vector3 center = rb.transform.position;
 
         for (int i = 0; i < segments; i++)
-        {
-            float angle = i * 2f * Mathf.PI / segments;
+        {   
+            // 2pi / seg == how much angle between each point
+            // i tells us which point currently calculating
+            float distanceBetweenPoints = 2f * Mathf.PI / segments;
+            float angle = i * distanceBetweenPoints;
 
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
@@ -360,5 +413,6 @@ public class PlayerController : MonoBehaviour
             enemySpawner.SpawnEnemyAlongWall();
         }
     }
+
 
 }
