@@ -257,3 +257,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   hitPoints: 200
+  deathMaterial: {fileID: 2100000, guid: 63c2f7bd77ca94a5c8abba43804e00f3, type: 2}

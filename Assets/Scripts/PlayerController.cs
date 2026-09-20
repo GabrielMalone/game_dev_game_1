@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     private CinemachineImpulseSource impulseSource;
     public static bool playerTurning = false;
-
+    public int bestMineCombo = 0;
     public int enemiesKilled = 0;
 
     
@@ -251,13 +251,11 @@ public class PlayerController : MonoBehaviour
         // another magic number, but to balance out shield strength attack
         float playerShieldAttackDamage = 
             (shielDdamage * 5) * rb.linearVelocity.magnitude / 100;
-        Debug.Log($"player shield attack damange: {playerShieldAttackDamage}");
         stats.hitPoints -= playerShieldAttackDamage;
 
         if (stats.hitPoints <= 1)
         {
             EnemySpawn.allEnemies.Remove(enemyObj);
-            Destroy(enemyObj);
             enemiesKilled ++ ;
             // maybe let's make shield the only weapon that causes permadeath 
             //enemySpawner.SpawnEnemyAlongWall();
@@ -430,7 +428,9 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < numEnemiesKilled ; i ++)
         {
             enemySpawner.SpawnEnemyAlongWall();
-            Debug.Log("spawning recently killed enemy!");
+        }
+        if (numEnemiesKilled > bestMineCombo){
+            bestMineCombo = numEnemiesKilled;
         }
     }
 
