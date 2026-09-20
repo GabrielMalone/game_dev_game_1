@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
     public static bool playerTurning = false;
 
+    public int enemiesKilled = 0;
+
     
     void Start()
     {
@@ -256,6 +258,7 @@ public class PlayerController : MonoBehaviour
         {
             EnemySpawn.allEnemies.Remove(enemyObj);
             Destroy(enemyObj);
+            enemiesKilled ++ ;
             // maybe let's make shield the only weapon that causes permadeath 
             //enemySpawner.SpawnEnemyAlongWall();
         }

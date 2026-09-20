@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 474
     height: 654
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -325,8 +325,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.MainToolbarWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 407
-    y: -1382
+    x: 0
+    y: 0
     width: 2153
     height: 36
   m_SerializedDataModeController:
@@ -588,13 +588,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
-    m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 407
-    y: -692
+    x: 0
+    y: 678
     width: 1228
     height: 599
   m_SerializedDataModeController:
@@ -695,13 +695,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 2593428753322112591, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 8634526014445323508, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 407
-    y: -1346
+    x: 0
+    y: 24
     width: 1228
     height: 628
   m_SerializedDataModeController:
@@ -1383,13 +1383,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Hierarchy
-    m_Image: {fileID: 7966133145522015247, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1636
-    y: -1346
+    x: 1
+    y: 24
     width: 472
     height: 628
   m_SerializedDataModeController:
@@ -1410,10 +1410,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_rawData: 568105584918844576
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_rawData: 568105584918844576
+        m_rawData: 0
       m_ExpandedIDs:
       - m_rawData: 568105589213756002
       - m_rawData: 568105584918844460
@@ -1461,13 +1460,13 @@ MonoBehaviour:
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
     m_Text: Project
-    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1636
-    y: -692
+    x: 1
+    y: 678
     width: 472
     height: 599
   m_SerializedDataModeController:
@@ -1522,6 +1521,10 @@ MonoBehaviour:
     - m_rawData: 568105584918844806
     - m_rawData: 568105584918844808
     - m_rawData: 568105584918844810
+    - m_rawData: 568105584918844868
+    - m_rawData: 568105584918844870
+    - m_rawData: 568105584918844872
+    - m_rawData: 568105584918844874
     - m_rawData: 568105584918844876
     - m_rawData: 568105584918844878
     - m_rawData: 568105584918844880
@@ -1542,10 +1545,6 @@ MonoBehaviour:
     - m_rawData: 568105584918844910
     - m_rawData: 568105584918844912
     - m_rawData: 568105584918844914
-    - m_rawData: 568105584918844916
-    - m_rawData: 568105584918844918
-    - m_rawData: 568105584918844920
-    - m_rawData: 568105584918845304
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1584,6 +1583,10 @@ MonoBehaviour:
     - m_rawData: 568105584918844806
     - m_rawData: 568105584918844808
     - m_rawData: 568105584918844810
+    - m_rawData: 568105584918844868
+    - m_rawData: 568105584918844870
+    - m_rawData: 568105584918844872
+    - m_rawData: 568105584918844874
     - m_rawData: 568105584918844876
     - m_rawData: 568105584918844878
     - m_rawData: 568105584918844880
@@ -1604,10 +1607,6 @@ MonoBehaviour:
     - m_rawData: 568105584918844910
     - m_rawData: 568105584918844912
     - m_rawData: 568105584918844914
-    - m_rawData: 568105584918844916
-    - m_rawData: 568105584918844918
-    - m_rawData: 568105584918844920
-    - m_rawData: 568105584918845304
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1687,13 +1686,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 2110
-    y: -1346
+    x: 1704
+    y: 24
     width: 449
     height: 1253
   m_SerializedDataModeController:
