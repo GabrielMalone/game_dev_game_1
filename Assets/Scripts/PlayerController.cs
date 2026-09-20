@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Health Stuff")]
     public static float playerHealth = 10000f;
     public static float maxPlayerHealth = 10000f;
-    public float mineHealthBonus = 20f;
+    public float mineHealthBonus = 100f;
     public float fuelConsumption = 1f;
 
     [Header("Movement Stuff")]
@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     [Header("Defensive Stuff")]
     public BulletTime bulletTime;
     public AudioAnalyzer analyzer;
-    
     private float ogEnemySpeed;
     private float ogEnemyBeatMult;
 
@@ -32,15 +31,14 @@ public class PlayerController : MonoBehaviour
     private float ogRepulseRadius;
     public float repulseForce = 10f;
     public float shieldRadius = 20f;
-    public int shielDdamage = 10;
+    public float shielDdamage = 10;
     private bool shieldEnabled = true;
 
     [Header("Shield Hit Effects")]
     public LineRenderer[] shieldHitLines;
     public int hitArcSegments = 10;
     public float hitArcSize = 0.3f;
-
-private List<float> shieldHitAngles = new List<float>();
+    private List<float> shieldHitAngles = new List<float>();
 
     [Header("Shield Effects")]
     public LineRenderer circle;
@@ -56,13 +54,10 @@ private List<float> shieldHitAngles = new List<float>();
     public Transform mineSpawnPoint;
 
     Rigidbody2D rb;
-
     private CinemachineImpulseSource impulseSource;
-
     public static bool playerTurning = false;
 
     
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -86,15 +81,13 @@ private List<float> shieldHitAngles = new List<float>();
         GamepadInput();
         KeyboardInputs();
         layMine();
+   
     }
 
     void Update()
     {
-        ShieldToggle();
-        if (shieldEnabled)
-            RenderShield();
-        else 
-            circle.enabled = false;
+        RenderShield();
+        drawShieldImpact();
         if (AudioAnalyzer.beatDetected)
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
@@ -134,10 +127,51 @@ private List<float> shieldHitAngles = new List<float>();
         }
     }
 
-  
     void Repulse()
     {
+        bool collisionPresent = false;
 
+        Collider2D[] objectsInRange =
+            Physics2D.OverlapCircleAll(transform.position, repulseRadius);
+
+        foreach (Collider2D obj in objectsInRange)
+        {
+            if (obj == null) continue;
+            // ignore self
+            if (obj.gameObject == gameObject)
+                continue;
+
+            collisionPresent = true;
+       
+            RepulseDamage(obj.gameObject);
+
+            Rigidbody2D rb = obj.attachedRigidbody;
+
+            if (rb != null)
+            {
+                // create a vector pointing from me to the other object
+                Vector2 direction =
+                    (obj.transform.position - transform.position).normalized ;
+
+                rb.AddForce(
+                    direction * repulseForce,
+                    ForceMode2D.Impulse
+                );
+            }
+        }
+
+        if (collisionPresent && !shieldEnabled)
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
+        }
+        if (collisionPresent && shieldEnabled)
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
+        }
+    }
+  
+    void drawShieldImpact()
+    {
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
 
@@ -156,10 +190,6 @@ private List<float> shieldHitAngles = new List<float>();
             // let's find out where enemies hit the shield so we can add some shield hit fx
             if (enemy != null)
             {
-                if (playerHealth > 0 && enemy != null)
-                {
-                    playerHealth -= enemy.enemyPower;
-                }
                 if (shieldEnabled && hitIndex < shieldHitLines.Length)
                 {
                     Vector2 direction = obj.transform.position - transform.position;
@@ -190,23 +220,10 @@ private List<float> shieldHitAngles = new List<float>();
                         float y = Mathf.Sin(arcAngle) * radius;
                         // and draw the line
                         hitline.SetPosition(i, transform.position + new Vector3(x,y,0));
+                        // so it's above the current shield;
+                        hitline.sortingOrder = 10;
                     }
                 }
-            }
-
-            collisionPresent = true;
-            Rigidbody2D rb = obj.attachedRigidbody;
-
-            if (rb != null)
-            {
-                // create a vector pointing from me to the other object
-                Vector2 direction =
-                    (obj.transform.position - transform.position).normalized ;
-
-                rb.AddForce(
-                    direction * repulseForce,
-                    ForceMode2D.Impulse
-                );
             }
         }
 
@@ -215,28 +232,32 @@ private List<float> shieldHitAngles = new List<float>();
         {
             shieldHitLines[i].enabled = false;
         }
-        if (collisionPresent && !shieldEnabled)
-        {
-            CameraShakeManager.instance.CameraShake(impulseSource);
-        }
-        if (collisionPresent && shieldEnabled)
-        {
-            CameraShakeManager.instance.CameraShake(impulseSource);
-        }
     }
 
     void RepulseDamage(GameObject enemyObj)
     {    
+        if (enemyObj == gameObject) return;
+        if (enemyObj == null) return;
+
         EnemyStats stats = enemyObj.GetComponent<EnemyStats>();
-        // if not an enemy
+
         if (stats == null)
             return;
-        stats.hitPoints -= shielDdamage;
-        if (stats.hitPoints <= 0)
+        // didivde by something to balance out health decay of player
+        playerHealth -= stats.hitPoints / 10;
+        // if not an enemy
+        // another magic number, but to balance out shield strength attack
+        float playerShieldAttackDamage = 
+            (shielDdamage * 5) * rb.linearVelocity.magnitude / 100;
+        Debug.Log($"player shield attack damange: {playerShieldAttackDamage}");
+        stats.hitPoints -= playerShieldAttackDamage;
+
+        if (stats.hitPoints <= 1)
         {
             EnemySpawn.allEnemies.Remove(enemyObj);
             Destroy(enemyObj);
-            enemySpawner.SpawnEnemyAlongWall();
+            // maybe let's make shield the only weapon that causes permadeath 
+            //enemySpawner.SpawnEnemyAlongWall();
         }
     }
 
@@ -389,7 +410,6 @@ private List<float> shieldHitAngles = new List<float>();
     {
         float t = MineScript.timeBeforeExplosion;
         yield return new WaitForSeconds(t);
-        Debug.Log("time before explosion: " + t);
         int numEnemiesKilled = 0;
         foreach (GameObject enemy in MineScript.allEnemiesTaggedByMine)
         {
@@ -398,19 +418,16 @@ private List<float> shieldHitAngles = new List<float>();
             EnemySpawn.allEnemies.Remove(enemy);
             // I tink this needs to update the public static enemy list
             // I think then we can respawn
-            Debug.Log("Destroying enemies!");
-
         }
         MineScript.allEnemiesTaggedByMine.Clear();
         Destroy(activeMineWeapon);
-
         playerHealth += mineHealthBonus * numEnemiesKilled;
         playerHealth = Mathf.Clamp(playerHealth, 0f, maxPlayerHealth);
-
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < numEnemiesKilled ; i ++)
         {
-            yield return new WaitForSeconds(1);
             enemySpawner.SpawnEnemyAlongWall();
+            Debug.Log("spawning recently killed enemy!");
         }
     }
 

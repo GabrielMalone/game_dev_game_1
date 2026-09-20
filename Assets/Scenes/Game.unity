@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9229d9f507c24b8fa4e87c08e3e7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  mineHealthBonus: 20
+  mineHealthBonus: 100
   fuelConsumption: 3
   thrustForce: 2600
   torque: 20
