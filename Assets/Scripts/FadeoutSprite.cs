@@ -17,7 +17,7 @@ public class FadeOutSprite : MonoBehaviour
         // now time passed = what fraction of fade should 
         // since alpha reprented by 0 --> 1 if just sub deltatime
         // alpha would go to zero in 1 second
-        color.a -= Time.deltaTime/ 5;
+        color.a -= Time.deltaTime/ 2;
         spriteRenderer.color = color;
         if (color.a <= 0f)
         {
