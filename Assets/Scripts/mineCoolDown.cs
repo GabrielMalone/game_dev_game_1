@@ -8,6 +8,10 @@ public class MineCoolDown : MonoBehaviour
     public float radius = 3f;
     public int maxCoolDownTime = 50;
     public int cooldownTime = 0;
+    public Color cooldownColor = Color.blue;
+    public Color readyColor = Color.pink;
+    public float hdrIntensity = 3f;
+
     Rigidbody2D rb;
     PlayerController pc; 
 
@@ -45,6 +49,20 @@ public class MineCoolDown : MonoBehaviour
         coolDownIndicator.loop = false;
 
         coolDownIndicator.positionCount = cooldownTime;
+
+        if (cooldownTime >= maxCoolDownTime)
+        {
+            coolDownIndicator.material.SetColor(
+                "_Color",
+                readyColor * hdrIntensity
+            );
+            Debug.Log("BRIGHTER!!!!");
+        } else {
+            coolDownIndicator.material.SetColor(
+                "_Color",
+                cooldownColor * hdrIntensity / 2
+            );            
+        }
 
         Vector3 center = transform.position;
 

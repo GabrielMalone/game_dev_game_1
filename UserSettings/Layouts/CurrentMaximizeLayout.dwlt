@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1671
+  controlID: 7665
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 1550
+  controlID: 7666
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -893,8 +893,8 @@ MonoBehaviour:
     y: 405
     width: 839
     height: 387
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -924,7 +924,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 1640
+  controlID: 7690
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -945,8 +945,8 @@ MonoBehaviour:
     y: 0
     width: 323.5
     height: 405
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 9}
   m_Panes:
   - {fileID: 9}
@@ -1140,7 +1140,6 @@ MonoBehaviour:
     - m_rawData: 568105584918845514
     - m_rawData: 568105584918845516
     - m_rawData: 568105584918845518
-    - m_rawData: 568105584918845520
     - m_rawData: 568105584918845522
     - m_rawData: 568105584918845524
     - m_rawData: 568105584918845526
@@ -1152,7 +1151,6 @@ MonoBehaviour:
     - m_rawData: 568105584918845538
     - m_rawData: 568105584918845540
     - m_rawData: 568105584918845542
-    - m_rawData: 568105584918845544
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1180,7 +1178,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 69.003296}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
     - m_rawData: 568105584918844804
     m_LastClickedID:
@@ -1201,7 +1199,6 @@ MonoBehaviour:
     - m_rawData: 568105584918845514
     - m_rawData: 568105584918845516
     - m_rawData: 568105584918845518
-    - m_rawData: 568105584918845520
     - m_rawData: 568105584918845522
     - m_rawData: 568105584918845524
     - m_rawData: 568105584918845526
@@ -1213,7 +1210,6 @@ MonoBehaviour:
     - m_rawData: 568105584918845538
     - m_rawData: 568105584918845540
     - m_rawData: 568105584918845542
-    - m_rawData: 568105584918845544
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1296,8 +1292,8 @@ MonoBehaviour:
     y: 0
     width: 307.5
     height: 792
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

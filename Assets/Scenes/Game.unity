@@ -590,9 +590,10 @@ MonoBehaviour:
   enemySpawner: {fileID: 157911905}
   mineWeaponPrefab: {fileID: 1118876797839461099, guid: e003f673d004d4b8ba4adca552cb83c2, type: 3}
   mineSpawnPoint: {fileID: 86226626}
-  mineDropped: 0
+  mineDropped: 1
   bestMineCombo: 0
   enemiesKilled: 0
+  mc: {fileID: 0}
 --- !u!50 &86226624
 Rigidbody2D:
   serializedVersion: 5
@@ -922,6 +923,10 @@ MonoBehaviour:
   coolDownIndicator: {fileID: 297011075}
   radius: 3
   maxCoolDownTime: 100
+  cooldownTime: 0
+  cooldownColor: {r: 0, g: 0.9430567, b: 1, a: 1}
+  readyColor: {r: 1, g: 0, b: 0.8835708, a: 1}
+  hdrIntensity: 500
 --- !u!1 &157911903
 GameObject:
   m_ObjectHideFlags: 0
