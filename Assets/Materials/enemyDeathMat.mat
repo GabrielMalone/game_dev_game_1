@@ -59,7 +59,7 @@ Material:
     - _LaserThickness: 1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 26.963522, g: 0, b: 0.56467897, a: 1}
+    - _Color: {r: 0, g: 0.054673385, b: 0.14509805, a: 1}
     - _LaserSpeed: {r: -0.25, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
