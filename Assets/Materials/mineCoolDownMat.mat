@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: tileMapMat
+  m_Name: mineCoolDownMat
   m_Shader: {fileID: -6465566751694194690, guid: 26480d566476749c7a3786195ed46561, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -54,12 +54,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LaserEdgeSmoothness: 1.1
-    - _LaserScale: 1000
-    - _LaserThickness: 1
+    - _LaserEdgeSmoothness: 4
+    - _LaserScale: 4
+    - _LaserThickness: 0.2
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 5.992158, g: 5.963893, b: 5.981059, a: 0}
-    - _LaserSpeed: {r: 1000, g: 0, b: 0, a: 0}
+    - _Color: {r: 38.075047, g: 0, b: 23.05691, a: 1}
+    - _LaserSpeed: {r: 10, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

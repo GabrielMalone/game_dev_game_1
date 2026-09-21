@@ -14,7 +14,6 @@ public class MineScript : MonoBehaviour
     [Header("Enemies Tagged By Mine")]
     public static List<GameObject> allEnemiesTaggedByMine = new List<GameObject>();
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
