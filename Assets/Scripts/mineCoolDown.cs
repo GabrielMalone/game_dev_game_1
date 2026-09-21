@@ -56,7 +56,7 @@ public class MineCoolDown : MonoBehaviour
                 "_Color",
                 readyColor * hdrIntensity
             );
-            Debug.Log("BRIGHTER!!!!");
+
         } else {
             coolDownIndicator.material.SetColor(
                 "_Color",

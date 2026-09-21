@@ -9,6 +9,7 @@ public class BulletTime : MonoBehaviour
     public float slowdownFactor = 0.5f;
     public float targetPitch = 1f;
     public AudioAnalyzer analyzer;
+    public float energyDrain = 10f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,8 +25,7 @@ public class BulletTime : MonoBehaviour
             music.pitch,
             targetPitch,
             slowdownFactor * Time.unscaledDeltaTime
-        );
-    
+        );    
     }
 
     public void SlowMo()
@@ -33,6 +33,7 @@ public class BulletTime : MonoBehaviour
         targetPitch = slowdownFactor;
         analyzer.beatSpeedMultiplier *= 0.5f;
         analyzer.maxSpeed *= 0.5f;
+        PlayerController.playerHealth -= energyDrain ;
     }
 
 

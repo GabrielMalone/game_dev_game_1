@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
                     direction * repulseForce,
                     ForceMode2D.Impulse
                 );
+                // let's make it so that runnin into enemies slows down your ability to drop a new mine
             }
         }
 
@@ -207,7 +208,10 @@ public class PlayerController : MonoBehaviour
                     hitline.enabled = true;
                     hitline.useWorldSpace = true;
                     hitline.positionCount = hitArcSegments;
-
+                    
+                    if (mc.cooldownTime > 0)
+                        mc.cooldownTime -- ;
+                    
                     // okay let's loop through the arc segments 
                     for (int i=0 ; i < hitArcSegments ; i ++)
                     {
