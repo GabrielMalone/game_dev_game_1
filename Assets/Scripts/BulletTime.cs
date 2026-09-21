@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 
 public class BulletTime : MonoBehaviour
@@ -10,12 +11,14 @@ public class BulletTime : MonoBehaviour
     public float targetPitch = 1f;
     public AudioAnalyzer analyzer;
     public float energyDrain = 10f;
+    public int regenBoost = 3;
+    MineCoolDown mc;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        mc = GetComponentInParent<MineCoolDown>();
     }
 
     // Update is called once per frame
@@ -33,7 +36,8 @@ public class BulletTime : MonoBehaviour
         targetPitch = slowdownFactor;
         analyzer.beatSpeedMultiplier *= 0.5f;
         analyzer.maxSpeed *= 0.5f;
-        PlayerController.playerHealth -= energyDrain ;
+        mc.regenSpeed = regenBoost;
+        PlayerController.playerHealth -= energyDrain;
     }
 
 

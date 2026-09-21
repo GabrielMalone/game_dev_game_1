@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public MineCoolDown mc;
 
+    private bool bulletTimeEnabled = false;
+
     
     void Start()
     {
@@ -209,8 +211,11 @@ public class PlayerController : MonoBehaviour
                     hitline.useWorldSpace = true;
                     hitline.positionCount = hitArcSegments;
                     
-                    if (mc.cooldownTime > 0)
-                        mc.cooldownTime -- ;
+                    // if (mc.cooldownTime > 0 && !bulletTimeEnabled)
+                    //     mc.cooldownTime -= mc.regenSpeed ;
+                    // if (mc.cooldownTime < 0){
+                    //     mc.cooldownTime = 0;
+                    // }
                     
                     // okay let's loop through the arc segments 
                     for (int i=0 ; i < hitArcSegments ; i ++)
@@ -324,10 +329,13 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed)
         {
             bulletTime.SlowMo();
+            bulletTimeEnabled = true;
         } else {
             bulletTime.targetPitch = 1f;
             analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
             analyzer.maxSpeed = ogEnemySpeed;
+            mc.regenSpeed = mc.ogSpeed;
+            bulletTimeEnabled = false;
         }   
     }
 

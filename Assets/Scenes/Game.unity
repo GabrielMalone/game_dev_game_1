@@ -847,6 +847,8 @@ MonoBehaviour:
   slowdownFactor: 0.05
   targetPitch: 1
   analyzer: {fileID: 0}
+  energyDrain: 50
+  regenBoost: 3
 --- !u!114 &86226630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,6 +929,8 @@ MonoBehaviour:
   cooldownColor: {r: 0, g: 0.9430567, b: 1, a: 1}
   readyColor: {r: 1, g: 0, b: 0.8835708, a: 1}
   hdrIntensity: 500
+  regenSpeed: 1
+  ogSpeed: 0
 --- !u!1 &157911903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1852,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 050b74ded6a1749d6ad1b1b013c8c3c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38c89d9316b6f446790282b1c0bd0439, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2758,6 +2762,8 @@ MonoBehaviour:
   slowdownFactor: 0.5
   targetPitch: 1
   analyzer: {fileID: 1638619942}
+  energyDrain: 10
+  regenBoost: 3
 --- !u!4 &772717549
 Transform:
   m_ObjectHideFlags: 0

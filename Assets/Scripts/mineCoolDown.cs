@@ -11,6 +11,8 @@ public class MineCoolDown : MonoBehaviour
     public Color cooldownColor = Color.blue;
     public Color readyColor = Color.pink;
     public float hdrIntensity = 3f;
+    public int regenSpeed = 1;
+    public int ogSpeed;
 
     Rigidbody2D rb;
     PlayerController pc; 
@@ -21,6 +23,7 @@ public class MineCoolDown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pc = GetComponent<PlayerController>();
         StartCoroutine(startCoolDown());
+        ogSpeed = regenSpeed;
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class MineCoolDown : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            cooldownTime ++;
+            cooldownTime += regenSpeed;
             if (cooldownTime >= maxCoolDownTime){
                 cooldownTime = maxCoolDownTime;
                 pc.mineDropped = false;
