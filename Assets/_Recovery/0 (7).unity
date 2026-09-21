@@ -590,7 +590,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 157911905}
   mineWeaponPrefab: {fileID: 1118876797839461099, guid: e003f673d004d4b8ba4adca552cb83c2, type: 3}
   mineSpawnPoint: {fileID: 86226626}
-  mineDropped: 0
+  mineDropped: 1
   bestMineCombo: 0
   enemiesKilled: 0
 --- !u!50 &86226624

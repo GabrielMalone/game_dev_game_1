@@ -1,33 +1,41 @@
 using UnityEngine;
 using System.Collections;
 
-public class mineCoolDown : MonoBehaviour
+public class MineCoolDown : MonoBehaviour
 {
     [Header("Mine CoolDown Settings")]
     public LineRenderer coolDownIndicator;
     public float radius = 3f;
     public int maxCoolDownTime = 50;
-    int cooldownTime = 0;
+    public int cooldownTime = 0;
+    Rigidbody2D rb;
+    PlayerController pc; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        pc = GetComponent<PlayerController>();
+        StartCoroutine(startCoolDown());
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(startCoolDown());
         drawCoolDownLine();
     }
 
     IEnumerator startCoolDown()
     {
-        cooldownTime ++;
-        if (cooldownTime > maxCoolDownTime){
-            cooldownTime = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            cooldownTime ++;
+            if (cooldownTime >= maxCoolDownTime){
+                cooldownTime = maxCoolDownTime;
+                pc.mineDropped = false;
+            }
         }
-        yield return new WaitForSeconds(0.3f);
     }
 
     void drawCoolDownLine()

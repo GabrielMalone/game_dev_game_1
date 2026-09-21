@@ -52,12 +52,15 @@ public class PlayerController : MonoBehaviour
     public GameObject mineWeaponPrefab; 
     private GameObject activeMineWeapon;
     public Transform mineSpawnPoint;
+    public bool mineDropped = true;
 
     Rigidbody2D rb;
     private CinemachineImpulseSource impulseSource;
     public static bool playerTurning = false;
     public int bestMineCombo = 0;
     public int enemiesKilled = 0;
+
+    public MineCoolDown mc;
 
     
     void Start()
@@ -66,6 +69,7 @@ public class PlayerController : MonoBehaviour
         ogEnemySpeed = analyzer.maxSpeed;
         ogEnemyBeatMult = analyzer.beatSpeedMultiplier;
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        mc = GetComponent<MineCoolDown>();
         ogRepulseRadius = repulseRadius;
         shieldParticles.Stop();
         // just start w/ shield on
@@ -83,7 +87,6 @@ public class PlayerController : MonoBehaviour
         GamepadInput();
         KeyboardInputs();
         layMine();
-   
     }
 
     void Update()
@@ -393,17 +396,20 @@ public class PlayerController : MonoBehaviour
 
     void layMine()
     {   
+        if (mineDropped) 
+            return;
         if (Keyboard.current.leftShiftKey.isPressed ||
             (Gamepad.current != null && 
             Gamepad.current.buttonSouth.wasPressedThisFrame)) 
         {
+            mineDropped = true;
+            mc.cooldownTime = 0;
 
             if (activeMineWeapon == null)
             {
                 activeMineWeapon = Instantiate(mineWeaponPrefab, mineSpawnPoint.position, Quaternion.identity);
                 StartCoroutine(ExplodeMine());
             }
-
         }
     }
 
@@ -424,6 +430,7 @@ public class PlayerController : MonoBehaviour
         Destroy(activeMineWeapon);
         playerHealth += mineHealthBonus * numEnemiesKilled;
         playerHealth = Mathf.Clamp(playerHealth, 0f, maxPlayerHealth);
+
         yield return new WaitForSeconds(1);
         for (int i = 0; i < numEnemiesKilled ; i ++)
         {
