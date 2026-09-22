@@ -47,9 +47,17 @@ public class BulletTime : MonoBehaviour
 
     public void SlowMo(float slowFactor)
     {
+        slowFactor = 1f - slowFactor;
+        Debug.Log($"slowFactor: {slowFactor}");
         targetPitch = slowFactor;
         analyzer.beatSpeedMultiplier *= (slowFactor * slowFactor);
-        analyzer.maxSpeed *= (slowFactor * slowFactor);      
+        analyzer.maxSpeed *= (slowFactor * slowFactor); 
+        mc.regenSpeed = regenBoost;
+        PlayerController.playerHealth -= energyDrain;
+        if (PlayerController.playerHealth < 0)
+        {
+            PlayerController.playerHealth = 0;
+        }     
     }
 
 }

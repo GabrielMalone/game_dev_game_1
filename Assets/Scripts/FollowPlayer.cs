@@ -5,16 +5,13 @@ public class EnemyFollow : MonoBehaviour
 {
     private GameObject[] targets;
     private NavMeshAgent agent;
-
     private GameObject movementTarget;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
         targets = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -85,7 +82,6 @@ public class EnemyFollow : MonoBehaviour
                 closest = target;
             }
         }
-
         return closest;
     }
 }

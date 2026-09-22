@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ramming Kill Streak Settings")]
     public int streakKills = 0;
     public float streakWindow = 5f;
+    public bool killStreakAvtive = false;
     private float streakStartTime;
     private float lastKillTime;
 
@@ -93,9 +94,9 @@ public class PlayerController : MonoBehaviour
         SpeedCheck();
         playerTurning = false;
         Repulse();
-        GamepadInput();
         KeyboardInputs();
         layMine();
+        GamepadPhysicsInput();
     }
 
     void Update()
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
         }
+        GamepadInput();
     }
 
     void EnemyKilled()
@@ -115,6 +117,7 @@ public class PlayerController : MonoBehaviour
         if (streakKills > 0 && Time.time - lastKillTime > streakWindow)
         {
             streakKills = 0;
+            killStreakAvtive = false;
         }
         streakKills ++ ;
 
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
             playerHealth += maxPlayerHealth * boost;
             playerHealth = Mathf.Min(playerHealth, maxPlayerHealth);
             Debug.Log($"KILL STREAK BOOST! {streakKills}, health boost: {boost}");
+            killStreakAvtive = true;
             if (streakKills == 10){
                 streakKills = 0;
             }
@@ -375,43 +379,40 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    void GamepadInput()
+    void GamepadPhysicsInput()
     {
-        if (Gamepad.current != null)
+    if (Gamepad.current != null)
         {
             Vector2 stick = Gamepad.current.leftStick.ReadValue();
             float movement = stick.magnitude;
-
             // Forward/backward thrust
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
-
-            float leftTrigger = Gamepad.current.leftTrigger.ReadValue();
-
-            if (Gamepad.current.leftTrigger.isPressed)
-            {
-                bulletTime.SlowMo(1f - leftTrigger);
-            }
-
             if (Gamepad.current.rightTrigger.isPressed)
             {
                 shieldParticles.Play();
             } else {
                 shieldParticles.Stop();
             } 
-            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
-            {
-                layMine();
-            }
-
-
             // Acceleration
             rb.AddForce(transform.up * rightTrigger * thrustForce);
-            // Rotation
-            // if (movement > 0.1f)
-            //     playerTurning = true;
-            // else    
-            //     playerTurning = false;
             rb.AddTorque(-stick.x * torque);
+        }       
+    }
+
+    void GamepadInput()
+    {
+        if (Gamepad.current != null)
+        {
+            float leftTrigger = Gamepad.current.leftTrigger.ReadValue();
+            if (Gamepad.current.leftTrigger.isPressed)
+            {
+                bulletTime.SlowMo(leftTrigger);
+            }
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                Debug.Log("Laying mine!");
+                layMine();
+            }
         } 
 
     }

@@ -4,19 +4,20 @@ public class EnergyBarScript : MonoBehaviour
 {
     private Vector3 originalScale;
     private Rigidbody2D rb;
+    private PlayerController pc;
 
     [Header("Energy Bar Indicator Settings")]
     public LineRenderer energyIndicatorLine;
     public float radius = 5f;
-    // public Color cooldownColor = Color.blue;
-    // public Color readyColor = Color.pink;
-    // public float hdrIntensity = 3f;
+    public Color normalColor = Color.green;
+    public Color energyBoostColor = Color.blue;
+    public float hdrIntensity = 3f;
 
     void Start()
     {
         originalScale = transform.localScale;
         rb = GetComponentInParent<Rigidbody2D>();
-        Debug.Log(rb);
+        pc = GetComponentInParent<PlayerController>();
     }
 
     void Update()
@@ -44,6 +45,20 @@ public class EnergyBarScript : MonoBehaviour
 
         int maxHealth = (int)PlayerController.maxPlayerHealth;
         int playHealthInt = (int)PlayerController.playerHealth;
+
+        if (!pc.killStreakAvtive)
+        {
+            energyIndicatorLine.material.SetColor(
+                "_Color",
+                energyBoostColor * hdrIntensity
+            );
+
+        } else {
+            energyIndicatorLine.material.SetColor(
+                "_Color",
+                normalColor * hdrIntensity / 2
+            );
+        }
 
 
         Vector3 center = rb.transform.position;
