@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4812605846659250084}
   m_Layer: 9
   m_Name: MineWeapon
-  m_TagString: Player
+  m_TagString: EnemyDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

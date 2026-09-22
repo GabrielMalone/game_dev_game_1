@@ -12,13 +12,15 @@ public class BulletTime : MonoBehaviour
     public AudioAnalyzer analyzer;
     public float energyDrain = 10f;
     public int regenBoost = 3;
-    MineCoolDown mc;
+    public GameObject[] enemyDrops;
 
+    public bool slowDownEnabled = false;
+    MineCoolDown mc;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mc = GetComponentInParent<MineCoolDown>();
+        mc = GetComponentInParent<MineCoolDown>();  
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class BulletTime : MonoBehaviour
 
     public void SlowMo()
     {
+        slowDownEnabled = true;
         targetPitch = slowdownFactor;
         analyzer.beatSpeedMultiplier *= 0.5f;
         analyzer.maxSpeed *= 0.5f;
@@ -42,13 +45,14 @@ public class BulletTime : MonoBehaviour
         {
             PlayerController.playerHealth = 0;
         }
+        slowDownDrops();
     }
 
 
     public void SlowMo(float slowFactor)
     {
+        slowDownEnabled = true;
         slowFactor = 1f - slowFactor;
-        Debug.Log($"slowFactor: {slowFactor}");
         targetPitch = slowFactor;
         analyzer.beatSpeedMultiplier *= (slowFactor * slowFactor);
         analyzer.maxSpeed *= (slowFactor * slowFactor); 
@@ -58,6 +62,28 @@ public class BulletTime : MonoBehaviour
         {
             PlayerController.playerHealth = 0;
         }     
+        slowDownDrops();
+    }
+
+    void slowDownDrops()
+    {
+        enemyDrops = GameObject.FindGameObjectsWithTag("EnemyDrop");
+        foreach (GameObject drop in enemyDrops)
+        {
+            Rigidbody2D rb = drop.GetComponent<Rigidbody2D>();
+            // If it's falling down, cap or reduce its fall speed
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+                return;
+                // that worked!?
+            }
+            if (rb.linearVelocity.y < 0) 
+            {
+                // Dampen the downward velocity by a percentage each frame
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+            } 
+        }
     }
 
 }

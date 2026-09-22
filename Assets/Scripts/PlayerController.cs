@@ -119,9 +119,8 @@ public class PlayerController : MonoBehaviour
             streakKills = 0;
             killStreakAvtive = false;
         }
-        streakKills ++ ;
 
-        Debug.Log($"Streak kills: {streakKills}");
+        streakKills ++ ;
 
         if (streakKills >= 2)
         {   

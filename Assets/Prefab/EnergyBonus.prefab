@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 1562056667850597033}
   m_Layer: 0
   m_Name: EnergyBonus
-  m_TagString: Untagged
+  m_TagString: EnemyDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
