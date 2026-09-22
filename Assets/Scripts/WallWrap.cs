@@ -23,6 +23,8 @@ public class WallWrap : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+        PlayerController.playerHealth -= (PlayerController.playerHealth * 0.1f);
+
         trail = player.GetComponent<TrailRenderer>();
 
         Vector3 position = other.transform.position;

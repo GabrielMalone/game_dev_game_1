@@ -110,7 +110,8 @@ public class PlayerController : MonoBehaviour
 
     void EnemyKilled()
     {   
-
+        enemiesKilled ++ ;
+        
         if (streakKills > 0 && Time.time - lastKillTime > streakWindow)
         {
             streakKills = 0;
@@ -301,10 +302,7 @@ public class PlayerController : MonoBehaviour
         if (stats.hitPoints <= 1)
         {
             EnemySpawn.allEnemies.Remove(enemyObj);
-            enemiesKilled ++ ;
             EnemyKilled();
-            // maybe let's make shield the only weapon that causes permadeath 
-            //enemySpawner.SpawnEnemyAlongWall();
         }
     }
 
