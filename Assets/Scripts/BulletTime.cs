@@ -38,6 +38,10 @@ public class BulletTime : MonoBehaviour
         analyzer.maxSpeed *= 0.5f;
         mc.regenSpeed = regenBoost;
         PlayerController.playerHealth -= energyDrain;
+        if (PlayerController.playerHealth < 0)
+        {
+            PlayerController.playerHealth = 0;
+        }
     }
 
 

@@ -65,6 +65,10 @@ public class BaseShield : MonoBehaviour
                 
                 if (PlayerController.playerHealth>0 && enemy != null){
                     PlayerController.playerHealth -= enemy.enemyPower;
+                    if (PlayerController.playerHealth < 0)
+                    {
+                        PlayerController.playerHealth = 0;
+                    }
                 }
             
             }

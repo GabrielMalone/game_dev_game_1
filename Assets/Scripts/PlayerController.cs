@@ -293,6 +293,8 @@ public class PlayerController : MonoBehaviour
             return;
         // didivde by something to balance out health decay of player
         playerHealth -= stats.hitPoints / 10;
+        if (playerHealth < 0)
+            playerHealth = 0;
         // if not an enemy
         // another magic number, but to balance out shield strength attack
         float playerShieldAttackDamage = 
@@ -334,6 +336,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * thrustForce);
             shieldParticles.Play();
             playerHealth -= fuelConsumption;
+            if (playerHealth < 0)
+                playerHealth = 0;
         } else
         {
             shieldParticles.Stop();

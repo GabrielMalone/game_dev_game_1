@@ -24,6 +24,10 @@ public class WallWrap : MonoBehaviour
             return;
 
         PlayerController.playerHealth -= (PlayerController.playerHealth * 0.1f);
+        if (PlayerController.playerHealth < 0)
+        {
+            PlayerController.playerHealth = 0;
+        }
 
         trail = player.GetComponent<TrailRenderer>();
 
