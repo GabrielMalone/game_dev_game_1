@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log($"Streak kills: {streakKills}");
 
-        if (streakKills > 5)
+        if (streakKills >= 2)
         {   
             float boost =  (Mathf.Min(streakKills, 10) / 100f) / 5;
             playerHealth += maxPlayerHealth * boost;
