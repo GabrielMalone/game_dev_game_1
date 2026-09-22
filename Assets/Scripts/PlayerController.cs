@@ -338,14 +338,15 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.wKey.isPressed)
         {
             rb.AddForce(transform.up * thrustForce);
-            shieldParticles.Play();
+            //shieldParticles.Play();
             playerHealth -= fuelConsumption;
             if (playerHealth < 0)
                 playerHealth = 0;
-        } else
-        {
-            shieldParticles.Stop();
-        }
+        } 
+        // else
+        // {
+        //     shieldParticles.Stop();
+        // }
 
         // LEFT
         if (Keyboard.current.aKey.isPressed)
@@ -387,12 +388,12 @@ public class PlayerController : MonoBehaviour
             float movement = stick.magnitude;
             // Forward/backward thrust
             float rightTrigger = Gamepad.current.rightTrigger.ReadValue();
-            if (Gamepad.current.rightTrigger.isPressed)
-            {
-                shieldParticles.Play();
-            } else {
-                shieldParticles.Stop();
-            } 
+            // if (Gamepad.current.rightTrigger.isPressed)
+            // {
+            //     shieldParticles.Play();
+            // } else {
+            //     shieldParticles.Stop();
+            // } 
             // Acceleration
             rb.AddForce(transform.up * rightTrigger * thrustForce);
             rb.AddTorque(-stick.x * torque);

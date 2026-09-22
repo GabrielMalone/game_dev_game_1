@@ -560,9 +560,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   mineHealthBonus: 100
   fuelConsumption: 3
-  thrustForce: 4000
+  thrustForce: 2000
   torque: 10
-  maxPlayerSpeed: 300
+  maxPlayerSpeed: 200
   sidewaysDrag: 0.5
   bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
@@ -2020,8 +2020,8 @@ Transform:
   m_GameObject: {fileID: 577019854}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -137.1133, y: -63.8611, z: 0}
-  m_LocalScale: {x: 0.061401565, y: -147.96591, z: 1}
+  m_LocalPosition: {x: -137.1832, y: -63.8611, z: 0}
+  m_LocalScale: {x: 0.20112696, y: -147.96591, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1773340365}
@@ -2970,8 +2970,8 @@ Transform:
   m_GameObject: {fileID: 973241371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.83042, y: -7.10504, z: 0}
-  m_LocalScale: {x: 353.88828, y: 198.56464, z: 1}
+  m_LocalPosition: {x: 15.9131, y: -1.437, z: 0}
+  m_LocalScale: {x: 1447.8859, y: 875.3405, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1534416551}
@@ -5386,8 +5386,8 @@ Transform:
   m_GameObject: {fileID: 1809945528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 134.5968, y: -63.8783, z: 0}
-  m_LocalScale: {x: 0.040017515, y: -147.92928, z: 1}
+  m_LocalPosition: {x: 134.606, y: -63.8783, z: 0}
+  m_LocalScale: {x: 0.05837755, y: -147.92928, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1773340365}
@@ -10820,8 +10820,8 @@ Transform:
   m_GameObject: {fileID: 2019874558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.3009, y: -137.7746, z: 0}
-  m_LocalScale: {x: 0.09678198, y: -271.7857, z: 1}
+  m_LocalPosition: {x: -1.3009, y: -137.9437, z: 0}
+  m_LocalScale: {x: 0.43496722, y: -271.7857, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1773340365}

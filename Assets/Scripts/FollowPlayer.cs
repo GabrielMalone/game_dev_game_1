@@ -54,7 +54,7 @@ public class EnemyFollow : MonoBehaviour
         // Otherwise chase the closest player normally
         GameObject closestTarget = GetClosestTarget();
 
-        if (closestTarget != null)
+        if (closestTarget != null && agent != null)
         {
             agent.SetDestination(closestTarget.transform.position);
         }
