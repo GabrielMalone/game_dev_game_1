@@ -591,6 +591,8 @@ MonoBehaviour:
   mineWeaponPrefab: {fileID: 1118876797839461099, guid: e003f673d004d4b8ba4adca552cb83c2, type: 3}
   mineSpawnPoint: {fileID: 86226626}
   mineDropped: 1
+  streakKills: 0
+  streakWindow: 0.3
   bestMineCombo: 0
   enemiesKilled: 0
   mc: {fileID: 0}
@@ -2007,7 +2009,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -6.3432717, y: 0.035105526}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2017,7 +2019,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 13.686543, y: 1.0702107}
   m_EdgeRadius: 0
 --- !u!50 &577019857
 Rigidbody2D:
@@ -5143,7 +5145,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 19.935595, y: -0.0070794225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5153,7 +5155,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 40.87119, y: 1.1332327}
   m_EdgeRadius: 0
 --- !u!50 &1809945532
 Rigidbody2D:
@@ -10332,7 +10334,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 10.529978, y: -0.013477445}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10342,7 +10344,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.060055, y: 1.0269548}
   m_EdgeRadius: 0
 --- !u!50 &1939790222
 Rigidbody2D:
@@ -10517,7 +10519,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -6.893563, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10527,7 +10529,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 14.787126, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &2019874561
 Rigidbody2D:

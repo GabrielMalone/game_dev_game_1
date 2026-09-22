@@ -54,6 +54,12 @@ public class PlayerController : MonoBehaviour
     public Transform mineSpawnPoint;
     public bool mineDropped = true;
 
+    [Header("Ramming Kill Streak Settings")]
+    public int streakKills = 0;
+    public float streakWindow = 5f;
+    private float streakStartTime;
+    private float lastKillTime;
+
     Rigidbody2D rb;
     private CinemachineImpulseSource impulseSource;
     public static bool playerTurning = false;
@@ -63,6 +69,7 @@ public class PlayerController : MonoBehaviour
     public MineCoolDown mc;
 
     private bool bulletTimeEnabled = false;
+
 
     
     void Start()
@@ -99,6 +106,32 @@ public class PlayerController : MonoBehaviour
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
         }
+    }
+
+    void EnemyKilled()
+    {   
+
+        if (streakKills > 0 && Time.time - lastKillTime > streakWindow)
+        {
+            streakKills = 0;
+        }
+        streakKills ++ ;
+
+        Debug.Log($"Streak kills: {streakKills}");
+
+        if (streakKills > 5)
+        {   
+            float boost =  (Mathf.Min(streakKills, 10) / 100f) / 5;
+            playerHealth += maxPlayerHealth * boost;
+            playerHealth = Mathf.Min(playerHealth, maxPlayerHealth);
+            Debug.Log($"KILL STREAK BOOST! {streakKills}, health boost: {boost}");
+            if (streakKills == 10){
+                streakKills = 0;
+            }
+        }
+
+        lastKillTime = Time.time;
+       
     }
 
     // this should help me get rid of the sluggish movment after too many turns or running into walls/obstacles
@@ -269,6 +302,7 @@ public class PlayerController : MonoBehaviour
         {
             EnemySpawn.allEnemies.Remove(enemyObj);
             enemiesKilled ++ ;
+            EnemyKilled();
             // maybe let's make shield the only weapon that causes permadeath 
             //enemySpawner.SpawnEnemyAlongWall();
         }
