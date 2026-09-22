@@ -929,7 +929,7 @@ MonoBehaviour:
   maxCoolDownTime: 100
   cooldownTime: 0
   cooldownColor: {r: 0, g: 0.9430567, b: 1, a: 1}
-  readyColor: {r: 1, g: 0, b: 0.8835708, a: 1}
+  readyColor: {r: 0, g: 1, b: 0.87161, a: 1}
   hdrIntensity: 500
   regenSpeed: 1
   ogSpeed: 0
