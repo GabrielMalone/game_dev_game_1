@@ -72,12 +72,12 @@ public class BulletTime : MonoBehaviour
         {
             Rigidbody2D rb = drop.GetComponent<Rigidbody2D>();
             // If it's falling down, cap or reduce its fall speed
-            if (rb.linearVelocity.y > 0)
+            if (rb.linearVelocity.y > 0 && rb.gravityScale > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
                 return;
                 // that worked!?
-            }
+            } 
             if (rb.linearVelocity.y < 0) 
             {
                 // Dampen the downward velocity by a percentage each frame

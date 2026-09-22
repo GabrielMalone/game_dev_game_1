@@ -3,13 +3,10 @@ using UnityEngine;
 public class EnemyDropScript : MonoBehaviour
 {
     
-    
     [SerializeField] private GameObject energyBonus;
+    [SerializeField] private GameObject energyPenalty;
     private EnemyStats es;
     private bool energyDropped = false;
-
-
-    // Instantiate(myPrefab, Vector3.zero, Quaternion.identity);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +24,16 @@ public class EnemyDropScript : MonoBehaviour
     {
         if (es.hitPoints <= 20 && !energyDropped)
         {
-            Instantiate(energyBonus, transform.position, Quaternion.identity);
+
+            if (Random.value < 0.5f)
+            {
+                GameObject dropItemGood = Instantiate(energyBonus, transform.position, Quaternion.identity);
+            } 
+            else
+            {
+                 GameObject dropItemBad = Instantiate(energyPenalty, transform.position, Quaternion.identity);
+            } 
+ 
             energyDropped = true;
         }
     }

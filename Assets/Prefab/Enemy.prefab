@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDropScript
   energyBonus: {fileID: 8207687405932394651, guid: 9bb16d9651ab949739cdb7f4194e3d0b, type: 3}
+  energyPenalty: {fileID: 5935397166468027056, guid: 17b9592b1b7944f28b4e4976ea4fc90b, type: 3}
 --- !u!1 &7233630745859838066
 GameObject:
   m_ObjectHideFlags: 0
