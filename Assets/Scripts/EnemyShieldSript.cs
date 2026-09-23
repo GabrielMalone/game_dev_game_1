@@ -5,8 +5,8 @@ public class EnemyShieldSript : MonoBehaviour
 {
 
     public LineRenderer shieldLine;
-    public int shieldSegments = 100;
-    public float shieldRadius = 2f;
+    public int shieldSegments = 10;
+    public float shieldRadius = 1f;
     Rigidbody2D rb;
     EnemyStats enemyStats;
     SpriteRenderer parentRenderer;
@@ -54,10 +54,10 @@ public class EnemyShieldSript : MonoBehaviour
                 center + new Vector3(x, y, 0)
             );
 
-            shieldLine.material.SetColor(
-                "_Color",
-                curColor
-            );
+            // shieldLine.material.SetColor(
+            //     "_Color",
+            //     curColor
+            // );
         }
     }
     

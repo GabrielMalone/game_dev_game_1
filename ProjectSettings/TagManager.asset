@@ -9,6 +9,7 @@ TagManager:
   - EnergyBar
   - EnemyDrop
   - PlayerCollector
+  - EnemyWall
   layers:
   - Default
   - TransparentFX

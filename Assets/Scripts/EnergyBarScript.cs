@@ -46,19 +46,19 @@ public class EnergyBarScript : MonoBehaviour
         int maxHealth = (int)PlayerController.maxPlayerHealth;
         int playHealthInt = (int)PlayerController.playerHealth;
 
-        if (!pc.killStreakAvtive)
-        {
-            energyIndicatorLine.material.SetColor(
-                "_Color",
-                energyBoostColor * hdrIntensity
-            );
+        // if (!pc.killStreakAvtive)
+        // {
+        //     energyIndicatorLine.material.SetColor(
+        //         "_Color",
+        //         energyBoostColor * hdrIntensity
+        //     );
 
-        } else {
-            energyIndicatorLine.material.SetColor(
-                "_Color",
-                normalColor * hdrIntensity / 2
-            );
-        }
+        // } else {
+        //     energyIndicatorLine.material.SetColor(
+        //         "_Color",
+        //         normalColor * hdrIntensity / 2
+        //     );
+        // }
 
 
         Vector3 center = rb.transform.position;

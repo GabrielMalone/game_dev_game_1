@@ -86,7 +86,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.25
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -434,7 +434,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &-3946253538460848284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,5 +462,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShieldSript
   shieldLine: {fileID: 3525196607337187374}
-  shieldSegments: 100
-  shieldRadius: 2
+  shieldSegments: 10
+  shieldRadius: 1
