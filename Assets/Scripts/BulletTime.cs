@@ -10,7 +10,7 @@ public class BulletTime : MonoBehaviour
     public float slowdownFactor = 0.5f;
     public float targetPitch = 1f;
     public AudioAnalyzer analyzer;
-    private float energyDrain = 50f;
+    public float energyDrain = 50f;
     public int regenBoost = 3;
     public GameObject[] enemyDrops;
     public bool slowDownEnabled = false;

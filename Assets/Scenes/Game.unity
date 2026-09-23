@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 70220914}
   m_Layer: 9
   m_Name: ShieldLine (7)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -560,11 +560,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   mineHealthBonus: 100
   fuelConsumption: 3
-  thrustForce: 2000
-  torque: 30
+  thrustForce: 1000
+  torque: 40
   maxPlayerSpeed: 200
   sidewaysDrag: 0.5
-  bulletTime: {fileID: 772717548}
   analyzer: {fileID: 1638619942}
   shieldParticles: {fileID: 1928362450}
   repulseRadius: 15
@@ -692,7 +691,6 @@ Transform:
   - {fileID: 1445952435}
   - {fileID: 1928362448}
   - {fileID: 1580112925}
-  - {fileID: 772717549}
   - {fileID: 384207490}
   - {fileID: 297011074}
   - {fileID: 913004217}
@@ -851,9 +849,9 @@ MonoBehaviour:
   music: {fileID: 494808398}
   slowdownFactor: 0.05
   targetPitch: 1
-  analyzer: {fileID: 0}
-  energyDrain: 50
-  regenBoost: 3
+  analyzer: {fileID: 1638619942}
+  energyDrain: 150
+  regenBoost: 5
   enemyDrops: []
   slowDownEnabled: 0
 --- !u!114 &86226630
@@ -1391,7 +1389,7 @@ GameObject:
   - component: {fileID: 354985081}
   m_Layer: 9
   m_Name: ShieldLine (10)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1609,7 +1607,7 @@ GameObject:
   - component: {fileID: 417274730}
   m_Layer: 9
   m_Name: ShieldLine
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2190,7 +2188,7 @@ GameObject:
   - component: {fileID: 631069553}
   m_Layer: 9
   m_Name: ShieldLine (4)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2377,7 +2375,7 @@ GameObject:
   - component: {fileID: 638045661}
   m_Layer: 9
   m_Name: ShieldLine (8)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2609,7 +2607,7 @@ GameObject:
   - component: {fileID: 762435346}
   m_Layer: 9
   m_Name: ShieldLine (2)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2784,58 +2782,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 1
   m_ApplyActiveColorSpace: 0
---- !u!1 &772717547
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 772717549}
-  - component: {fileID: 772717548}
-  m_Layer: 9
-  m_Name: BulletTimeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &772717548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772717547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f60e104e9a74424bd0aab6e85d624e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletTime
-  music: {fileID: 494808398}
-  slowdownFactor: 0.5
-  targetPitch: 1
-  analyzer: {fileID: 1638619942}
-  energyDrain: 10
-  regenBoost: 3
-  enemyDrops: []
-  slowDownEnabled: 0
---- !u!4 &772717549
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772717547}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 86226626}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913004215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +3047,7 @@ GameObject:
   - component: {fileID: 1030496270}
   m_Layer: 9
   m_Name: ShieldLine (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3745,7 +3691,7 @@ GameObject:
   - component: {fileID: 1341440174}
   m_Layer: 9
   m_Name: ShieldLine (9)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4166,7 +4112,7 @@ GameObject:
   - component: {fileID: 1425308576}
   m_Layer: 9
   m_Name: ShieldLine (6)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4532,7 +4478,7 @@ GameObject:
   - component: {fileID: 1521385298}
   m_Layer: 9
   m_Name: ShieldLine (3)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4856,7 +4802,7 @@ GameObject:
   - component: {fileID: 1580112926}
   m_Layer: 9
   m_Name: Triangle
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5589,7 +5535,7 @@ GameObject:
   - component: {fileID: 1900146420}
   m_Layer: 9
   m_Name: ShieldLine (1)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5777,7 +5723,7 @@ GameObject:
   - component: {fileID: 1928362449}
   m_Layer: 9
   m_Name: ThrustParticles
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
