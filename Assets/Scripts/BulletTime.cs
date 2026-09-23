@@ -10,7 +10,7 @@ public class BulletTime : MonoBehaviour
     public float slowdownFactor = 0.5f;
     public float targetPitch = 1f;
     public AudioAnalyzer analyzer;
-    public float energyDrain = 10f;
+    private float energyDrain = 50f;
     public int regenBoost = 3;
     public GameObject[] enemyDrops;
 
@@ -71,6 +71,7 @@ public class BulletTime : MonoBehaviour
         foreach (GameObject drop in enemyDrops)
         {
             Rigidbody2D rb = drop.GetComponent<Rigidbody2D>();
+            if (rb == null) continue;
             // If it's falling down, cap or reduce its fall speed
             if (rb.linearVelocity.y > 0 && rb.gravityScale > 0)
             {

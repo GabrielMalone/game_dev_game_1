@@ -8,7 +8,7 @@ public class EnergyBonusScript : MonoBehaviour
     public float colorFXduration = 2f;
     private float colorStartTime;
     private float startTime;
-    private float delayedAvailability = 1f;
+    public float delayedAvailability = 1f;
 
     private GameObject player;
 

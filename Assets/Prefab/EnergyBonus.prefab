@@ -235,7 +235,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 30
+  m_GravityScale: 15
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42df8dbe3a264490abf1a482134ae748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyBonusScript
-  energyBonus: 1000
+  energyBonus: 3000
   survivalTime: 10
   colorFXduration: 2
+  delayedAvailability: 0.2
