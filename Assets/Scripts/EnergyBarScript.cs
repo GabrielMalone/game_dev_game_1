@@ -9,8 +9,8 @@ public class EnergyBarScript : MonoBehaviour
     [Header("Energy Bar Indicator Settings")]
     public LineRenderer energyIndicatorLine;
     public float radius = 5f;
-    public Color normalColor = Color.green;
-    public Color energyBoostColor = Color.blue;
+    public Color normalColor = Color.blue;
+    public Color energyBoostColor = Color.green;
     public float hdrIntensity = 3f;
 
     void Start()

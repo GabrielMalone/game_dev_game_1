@@ -29,11 +29,7 @@ public class EnemyDropScript : MonoBehaviour
             {
                 GameObject dropItemGood = Instantiate(energyBonus, transform.position, Quaternion.identity);
             } 
-            else
-            {
-                 GameObject dropItemBad = Instantiate(energyPenalty, transform.position, Quaternion.identity);
-            } 
- 
+  
             energyDropped = true;
         }
     }

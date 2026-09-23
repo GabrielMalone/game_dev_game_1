@@ -125,9 +125,8 @@ public class PlayerController : MonoBehaviour
         if (streakKills >= 2)
         {   
             float boost =  (Mathf.Min(streakKills, 10) / 100f) / 5;
-            playerHealth += maxPlayerHealth * boost;
-            playerHealth = Mathf.Min(playerHealth, maxPlayerHealth);
-            Debug.Log($"KILL STREAK BOOST! {streakKills}, health boost: {boost}");
+            // playerHealth += maxPlayerHealth * boost;
+            // playerHealth = Mathf.Min(playerHealth, maxPlayerHealth);
             killStreakAvtive = true;
             if (streakKills == 10){
                 streakKills = 0;
@@ -183,6 +182,8 @@ public class PlayerController : MonoBehaviour
             if (obj == null) continue;
             // ignore self
             if (obj.gameObject == gameObject)
+                continue;
+            if (obj.CompareTag("EnemyDrop"))
                 continue;
 
             collisionPresent = true;
