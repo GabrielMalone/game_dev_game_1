@@ -28,6 +28,7 @@ public class EnemyDropScript : MonoBehaviour
             if (Random.value < 0.5f)
             {
                 GameObject dropItemGood = Instantiate(energyBonus, transform.position, Quaternion.identity);
+                
             } 
   
             energyDropped = true;

@@ -50,7 +50,7 @@ public class BulletTime : MonoBehaviour
         {
             PlayerController.playerHealth = 0;
         }
-        slowDownDrops();
+        //slowDownDrops();
     }
 
 
@@ -67,7 +67,7 @@ public class BulletTime : MonoBehaviour
         {
             PlayerController.playerHealth = 0;
         }     
-        slowDownDrops();
+        //slowDownDrops();
     }
 
     void slowDownDrops()
