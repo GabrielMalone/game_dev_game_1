@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnergyBonusScript : MonoBehaviour
 {
     [Header("Energy Bonus Settings")]
-    public float energyBonus = 500f;
+    public float energyBonus = 20f;
     public float survivalTime = 10f;
     public float colorFXduration = 2f;
     private float colorStartTime;
@@ -34,6 +34,10 @@ public class EnergyBonusScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController.playerHealth += energyBonus;
+            if (PlayerController.playerHealth > PlayerController.maxPlayerHealth)
+            {
+                PlayerController.playerHealth = PlayerController.maxPlayerHealth;
+            }
             Debug.Log("healing you up pal");
             Destroy(gameObject);
         }

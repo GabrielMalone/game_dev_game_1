@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float sidewaysDrag = 0.5f;
 
     [Header("Defensive Stuff")]
-    public BulletTime bulletTime;
+    private BulletTime bulletTime;
     public AudioAnalyzer analyzer;
     private float ogEnemySpeed;
     private float ogEnemyBeatMult;
@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         shieldEnabled = true;
         repulseRadius = shieldRadius;
         playerHealth = maxPlayerHealth;
+        bulletTime = gameObject.GetComponent<BulletTime>();
     }
 
     void FixedUpdate()
@@ -370,13 +371,11 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed)
         {
             bulletTime.SlowMo();
-            bulletTimeEnabled = true;
         } else {
             bulletTime.targetPitch = 1f;
             analyzer.beatSpeedMultiplier = ogEnemyBeatMult;
             analyzer.maxSpeed = ogEnemySpeed;
             mc.regenSpeed = mc.ogSpeed;
-            bulletTimeEnabled = false;
         }   
     }
 

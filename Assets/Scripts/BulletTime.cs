@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.InputSystem;
 
 public class BulletTime : MonoBehaviour
 {
@@ -13,9 +13,9 @@ public class BulletTime : MonoBehaviour
     private float energyDrain = 50f;
     public int regenBoost = 3;
     public GameObject[] enemyDrops;
-
     public bool slowDownEnabled = false;
     MineCoolDown mc;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,8 +29,13 @@ public class BulletTime : MonoBehaviour
         music.pitch = Mathf.MoveTowards(
             music.pitch,
             targetPitch,
-            slowdownFactor * Time.unscaledDeltaTime
-        );    
+            (slowdownFactor * 5) * Time.unscaledDeltaTime
+        );
+
+        if (!Keyboard.current.spaceKey.isPressed)
+        {
+            slowDownEnabled = false;
+        }
     }
 
     public void SlowMo()
