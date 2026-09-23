@@ -21,7 +21,6 @@ public class DropPullScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("slow mo? " + bulletTime.slowDownEnabled);
         // If we already have a movement target, stay on it
         if (target != null)
         { 
@@ -29,7 +28,6 @@ public class DropPullScript : MonoBehaviour
             {
                 agent.enabled = true;    
                 rb.gravityScale = 0;
-                Debug.Log("going to destination player");
                 agent.SetDestination(target.transform.position);
                 
             } 

@@ -4,7 +4,7 @@ public class EnergyBonusScript : MonoBehaviour
 {
     [Header("Energy Bonus Settings")]
     public float energyBonus = 20f;
-    public float survivalTime = 10f;
+    public float survivalTime = 3f;
     public float colorFXduration = 2f;
     private float colorStartTime;
     private float startTime;

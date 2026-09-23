@@ -24,13 +24,11 @@ public class EnemyDropScript : MonoBehaviour
     {
         if (es.hitPoints <= 20 && !energyDropped)
         {
-
             if (Random.value < 0.5f)
             {
                 GameObject dropItemGood = Instantiate(energyBonus, transform.position, Quaternion.identity);
-                
+                        // destroy after a little bit    
             } 
-  
             energyDropped = true;
         }
     }

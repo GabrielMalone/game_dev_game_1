@@ -37,6 +37,8 @@ public class EnemyShieldSript : MonoBehaviour
         Vector3 center = rb.transform.position;
         Color curColor = parentRenderer.material.color;
 
+        Vector3 parentScale = rb.transform.localScale;
+
         for (int i = 0; i < cnt; i++)
         {   
             // 2pi / seg == how much angle between each point
@@ -44,8 +46,8 @@ public class EnemyShieldSript : MonoBehaviour
             float distanceBetweenPoints = 2f * Mathf.PI / shieldSegments;
             float angle = i * distanceBetweenPoints;
 
-            float x = Mathf.Cos(angle) * shieldRadius;
-            float y = Mathf.Sin(angle) * shieldRadius;
+            float x = Mathf.Cos(angle) * shieldRadius * parentScale.x;
+            float y = Mathf.Sin(angle) * shieldRadius * parentScale.y;
 
             shieldLine.SetPosition(
                 i,
