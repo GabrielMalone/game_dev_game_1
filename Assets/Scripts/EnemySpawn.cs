@@ -50,7 +50,34 @@ public class EnemySpawn : MonoBehaviour
         if (AudioAnalyzer.beatDetected)
         {
             SpawnEnemyAlongWall();
+            clearCrowd();
         }
+    }
+
+    public GameObject FindTheMostCrowdedEnemy()
+    {
+        int maxCrowdSize = 0;
+        GameObject mostCrowdedEnemy = null;
+        foreach (GameObject enemy in allEnemies)
+        {
+            EnemyBehavior eb = enemy.GetComponent<EnemyBehavior>();
+            int crowdSize = eb.getNumEnemiesInRange();
+            if (crowdSize > maxCrowdSize)
+            {
+                maxCrowdSize = crowdSize;
+                mostCrowdedEnemy = enemy;
+            }
+        }
+        return mostCrowdedEnemy;
+    }
+
+    public void clearCrowd()
+    {
+        GameObject crowdedEnemy = FindTheMostCrowdedEnemy();
+        if (crowdedEnemy == null)
+            return;
+        EnemyBehavior eb = crowdedEnemy.GetComponent<EnemyBehavior>();
+        eb.RepulseCrowd();
     }
 
     public void SpawnEnemyAlongWall()

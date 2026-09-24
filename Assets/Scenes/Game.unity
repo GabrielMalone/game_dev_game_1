@@ -1033,7 +1033,7 @@ MonoBehaviour:
   Wall_top: {fileID: 1939790221}
   Wall_bottom: {fileID: 2019874560}
   enemyPrefab: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-  enemiesToSpawn: 2000
+  enemiesToSpawn: 1000
   spawnOffset: 0
   enemyThrustParticlesPrefab: {fileID: 2509413495094595464, guid: df46030c1b9e0419391e17e29ba262ac, type: 3}
   bass: 0
@@ -2096,7 +2096,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!212 &560020716
 SpriteRenderer:
@@ -3494,7 +3494,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!212 &1101491970
 SpriteRenderer:
@@ -3882,7 +3882,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!212 &1227934281
 SpriteRenderer:
@@ -5326,7 +5326,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!212 &1541920784
 SpriteRenderer:

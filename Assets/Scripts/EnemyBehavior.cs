@@ -83,8 +83,13 @@ public class EnemyBehavior : MonoBehaviour
     public float mineLineRadius = 1f;
     public LayerMask enemyLayer;
 
-
-
+    [Header("Enemy Crowd Control")]
+    public int crowded = 10;
+    public float repulseForce = 200f;
+    private Collider2D[] crowdBuffer = new Collider2D[1000];
+    public float crowdCheckInterval = 0.01f;
+    float nextCrowdCheck;
+    private float crowdRadius = 10f;
 
     Rigidbody2D rb;
 
@@ -93,7 +98,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         initEnememy();
         thrustParticles = GetComponentInChildren<ParticleSystem>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();        
+        impulseSource = GetComponent<CinemachineImpulseSource>(); 
+        nextCrowdCheck = Time.time + Random.Range(0f, crowdCheckInterval);       
     }
 
     // Update is called once per frame
@@ -104,7 +110,6 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer.color = analyzer.currentColor;
         pulseOnBeat();
         glowOnTreble();
-
     }
 
     void FixedUpdate()
@@ -112,8 +117,6 @@ public class EnemyBehavior : MonoBehaviour
         if (selectedByMine)
             getEnemiesInRange();
     }
-
-
 
     void initEnememy()
     {
@@ -179,6 +182,68 @@ public class EnemyBehavior : MonoBehaviour
 
         enemyBloomMaterial.SetColor("_Color", hdrColor);
         enemyBloomMaterial.SetFloat("_BloomIntensity", currentGlow);
+    }
+
+
+    public int getNumEnemiesInRange()
+    {
+        return Physics2D.OverlapCircleNonAlloc(
+            transform.position,
+            crowdRadius,
+            crowdBuffer,
+            enemyLayer
+        );
+    }
+
+
+    public void RepulseCrowd()
+    {
+
+        crowdRadius = Random.Range(5f, 25f);
+
+        int count = Physics2D.OverlapCircleNonAlloc(
+            transform.position,
+            crowdRadius,
+            crowdBuffer,
+            enemyLayer
+        );
+
+        if (count <= crowded)
+            return;
+
+        int numRepulsed = 0;
+
+        for (int i = 0; i < count; i++)
+        {
+            Collider2D obj = crowdBuffer[i];
+
+            if (obj == null)
+                continue;
+
+            // don't push yourself
+            if (obj.gameObject == gameObject)
+                continue;
+
+            Rigidbody2D otherRB = obj.attachedRigidbody;
+
+            if (otherRB == null)
+                continue;
+
+            Vector2 direction =
+                ((Vector2)obj.transform.position - rb.position).normalized;
+
+            otherRB.AddForce(
+                direction * repulseForce,
+                ForceMode2D.Impulse
+            );
+
+            Debug.Log("IT'S TOO CROWDED IN HERE!@!");
+
+            numRepulsed++;
+
+            // if (numRepulsed >= 10)
+            //     break;
+        }
     }
 
     public void getEnemiesInRange()
