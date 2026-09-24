@@ -4,7 +4,7 @@ public class EnemyStats : MonoBehaviour
 {
 
     [Header("Health")]
-    public float hitPoints = 200f;
+    public float hitPoints = 20000f;
     public Material deathMaterial;
 
 

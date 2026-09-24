@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066d92e4ad8bc4f0399614e957ed2cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  hitPoints: 200
+  hitPoints: 2000
   deathMaterial: {fileID: 2100000, guid: 63c2f7bd77ca94a5c8abba43804e00f3, type: 2}
 --- !u!114 &6278364781378992670
 MonoBehaviour:
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7233630745859838066}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be5c466ad364d4fbea6a284070ed13e5, type: 3}
   m_Name: 

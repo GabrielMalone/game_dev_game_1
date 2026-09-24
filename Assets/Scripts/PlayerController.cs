@@ -207,14 +207,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (collisionPresent && !shieldEnabled)
-        {
-            CameraShakeManager.instance.CameraShake(impulseSource);
-        }
-        if (collisionPresent && shieldEnabled)
-        {
-            CameraShakeManager.instance.CameraShake(impulseSource);
-        }
+        // if (collisionPresent && !shieldEnabled)
+        // {
+        //     CameraShakeManager.instance.CameraShake(impulseSource);
+        // }
+        // if (collisionPresent && shieldEnabled)
+        // {
+        //     CameraShakeManager.instance.CameraShake(impulseSource);
+        // }
     }
   
     void drawShieldImpact()
@@ -297,7 +297,7 @@ public class PlayerController : MonoBehaviour
         if (stats == null)
             return;
         // didivde by something to balance out health decay of player
-        playerHealth -= stats.hitPoints / 10;
+        playerHealth -= 100;
         if (playerHealth < 0)
             playerHealth = 0;
         // if not an enemy

@@ -23,7 +23,7 @@ public class EnemyShieldSript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RenderShield();   
+        // RenderShield();   
     }
 
     void RenderShield()
