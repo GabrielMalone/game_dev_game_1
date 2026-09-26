@@ -33,6 +33,8 @@ public class AudioAnalyzer : MonoBehaviour
 
     [Header("Beat Detection")]
     public static bool beatDetected;
+    public static bool trebleDetected;
+    
     public float beatThreshold = 0.02f;
     public float beatCooldown = 0.15f;
     private float beatPulse = 1f;
@@ -49,7 +51,7 @@ public class AudioAnalyzer : MonoBehaviour
     private float previousTreble;
     private float lastTrebleTime;
     public float trebleIncrease;
-    public bool trebleDetected;
+
     public float trebleThreshold = 0.0001f;
     public float targetSpeed;
 

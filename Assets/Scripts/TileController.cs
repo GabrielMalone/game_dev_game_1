@@ -10,7 +10,7 @@ public class TileController : MonoBehaviour
 
     void Start()
     {
-        
+        fillTileMap();
     }
 
     void fillTileMap()
@@ -23,10 +23,10 @@ public class TileController : MonoBehaviour
         int minY = bounds.yMin;
         int maxY = bounds.yMax;
 
-        Debug.Log("minX: " + minX);
-        Debug.Log("maxX: " + maxX);
-        Debug.Log("minY: " + minY);
-        Debug.Log("maxY: " + maxY);
+        // Debug.Log("minX: " + minX);
+        // Debug.Log("maxX: " + maxX);
+        // Debug.Log("minY: " + minY);
+        // Debug.Log("maxY: " + maxY);
 
 
         for (int x = bounds.xMin; x < bounds.xMax; x++)
@@ -39,6 +39,8 @@ public class TileController : MonoBehaviour
                 {
                     tilemap.SetTileFlags(position, TileFlags.None);
                     tilemap.SetColor(position, Color.red);
+                    Debug.Log("filled in a red tile");
+                    
                 }
             }
         }

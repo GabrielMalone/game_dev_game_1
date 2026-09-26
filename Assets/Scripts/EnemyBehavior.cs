@@ -165,7 +165,7 @@ public class EnemyBehavior : MonoBehaviour
 
         Color currentColor = spriteRenderer.color;
         // Treble hit gives us a fresh burst
-        if (analyzer.trebleDetected)
+        if (AudioAnalyzer.trebleDetected)
         {
             currentGlow = maxGlow;
         }
