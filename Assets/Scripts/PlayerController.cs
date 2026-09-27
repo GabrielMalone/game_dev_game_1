@@ -7,6 +7,7 @@ using Unity.Cinemachine;
 public class PlayerController : MonoBehaviour
 {
 
+
     [Header("Health Stuff")]
     public static float playerHealth = 10000f;
     public static float maxPlayerHealth = 10000f;
@@ -20,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public float sidewaysDrag = 0.5f;
 
     [Header("Defensive Stuff")]
-    private BulletTime bulletTime;
     public AudioAnalyzer analyzer;
+    public GameObject chaffe;
     private float ogEnemySpeed;
     private float ogEnemyBeatMult;
+    private BulletTime bulletTime;
 
     [Header("Shield")]
     public ParticleSystem shieldParticles;
@@ -66,11 +68,7 @@ public class PlayerController : MonoBehaviour
     public static bool playerTurning = false;
     public int bestMineCombo = 0;
     public int enemiesKilled = 0;
-
     public MineCoolDown mc;
-
-    private bool bulletTimeEnabled = false;
-
 
     
     void Start()
@@ -173,8 +171,6 @@ public class PlayerController : MonoBehaviour
 
     void Repulse()
     {
-        bool collisionPresent = false;
-
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
 
@@ -186,8 +182,6 @@ public class PlayerController : MonoBehaviour
                 continue;
             if (obj.CompareTag("EnemyDrop"))
                 continue;
-
-            collisionPresent = true;
        
             RepulseDamage(obj.gameObject);
 
@@ -206,23 +200,12 @@ public class PlayerController : MonoBehaviour
                 // let's make it so that runnin into enemies slows down your ability to drop a new mine
             }
         }
-
-        // if (collisionPresent && !shieldEnabled)
-        // {
-        //     CameraShakeManager.instance.CameraShake(impulseSource);
-        // }
-        // if (collisionPresent && shieldEnabled)
-        // {
-        //     CameraShakeManager.instance.CameraShake(impulseSource);
-        // }
     }
   
     void drawShieldImpact()
     {
         Collider2D[] objectsInRange =
             Physics2D.OverlapCircleAll(transform.position, repulseRadius);
-
-        bool collisionPresent = false;
 
         int hitIndex = 0;
         
@@ -368,6 +351,17 @@ public class PlayerController : MonoBehaviour
             //playerTurning = true;
         } 
 
+        // RIGHT
+        if (Keyboard.current.mKey.isPressed)
+        {
+            Debug.Log("firing chaffe");
+            GameObject pc = Instantiate(
+                chaffe,
+                transform.position,
+                Quaternion.identity
+            );
+        } 
+
         if (Keyboard.current.spaceKey.isPressed)
         {
             bulletTime.SlowMo();
@@ -377,6 +371,14 @@ public class PlayerController : MonoBehaviour
             analyzer.maxSpeed = ogEnemySpeed;
             mc.regenSpeed = mc.ogSpeed;
         }   
+    }
+
+
+    IEnumerator hideFromEnemy()
+    {
+        gameObject.tag = "Untagged";
+        yield return new WaitForSeconds(2f);
+        gameObject.tag = "Player";
     }
 
     void GamepadPhysicsInput()

@@ -17,71 +17,24 @@ public class EnemyFollow : MonoBehaviour
 
     void Update()
     {
-        targets = GameObject.FindGameObjectsWithTag("Player");
-        // If we already have a movement target, stay on it
-        if (movementTarget != null)
-        {
-            Rigidbody2D rb = movementTarget.GetComponent<Rigidbody2D>();
-
-            if (rb != null && rb.linearVelocity.magnitude > 0.5f)
-            {
-                agent.SetDestination(movementTarget.transform.position);
-                return;
-            }
-
-            // It stopped moving, so release it
-            movementTarget = null;
-        }
-
-        // Look for a new moving target
-        foreach (GameObject target in targets)
-        {
-            if (target == null)
-                continue;
-
-            Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
-
-            if (targetRb != null &&
-                targetRb.linearVelocity.magnitude > 0.5f &&
-                Random.value < 0.0005f)
-            {
-                movementTarget = target;
-                agent.SetDestination(movementTarget.transform.position);
-                return;
-            }
-        }
-
-        // Otherwise chase the closest player normally
-        GameObject closestTarget = GetClosestTarget();
-
-        if (closestTarget != null && agent != null)
-        {
-            agent.SetDestination(closestTarget.transform.position);
-        }
+        findTarget();
     }
 
-    GameObject GetClosestTarget()
+
+    void findTarget()
     {
-        GameObject closest = null;
-        float closestDistance = Mathf.Infinity;
+        targets = GameObject.FindGameObjectsWithTag("Player");
+        if (targets.Length == 0)
+            return;
+        GameObject target = targets[Random.Range(0, targets.Length)];
+        Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
 
-        foreach (GameObject target in targets)
+        if (targetRb != null)
         {
-
-            if (target == null)
-                continue;
-
-            float distance = Vector2.Distance(
-                transform.position,
-                target.transform.position
-            );
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closest = target;
-            }
+            movementTarget = target;
+            agent.SetDestination(movementTarget.transform.position);
         }
-        return closest;
     }
+
+
 }
