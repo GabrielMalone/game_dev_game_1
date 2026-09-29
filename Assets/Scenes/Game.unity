@@ -565,6 +565,7 @@ MonoBehaviour:
   maxPlayerSpeed: 300
   sidewaysDrag: 0.5
   analyzer: {fileID: 1638619942}
+  chaffe: {fileID: 2620938665220606343, guid: 2b510ef42a35849959b779cfe4b32f18, type: 3}
   shieldParticles: {fileID: 1928362450}
   repulseRadius: 15
   repulseForce: 1200
