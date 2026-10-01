@@ -13,8 +13,8 @@ public class EnemyFireWeapon : MonoBehaviour
 
     void Update()
     {
-        FireWeapon();
-        ExplodeMissile();
+        // FireWeapon();
+        // ExplodeMissile();
     }
 
     void FireWeapon()
