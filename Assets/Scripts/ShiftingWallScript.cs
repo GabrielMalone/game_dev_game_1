@@ -21,7 +21,7 @@ public class ShiftingWallScript : MonoBehaviour
     private bool wallBeat = false;
 
     private float ogScrollSpeed;
-    
+
     public LineRenderer topWallLine;
     public LineRenderer bottomWallLine;
 
@@ -61,9 +61,10 @@ public class ShiftingWallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScrollWall();
         RemoveOldPoints();
+        ScrollWall();
         AddNewPointIfNeeded();
+        SlowWallWithBulletTime();
         DrawWall();
 
         if (AudioAnalyzer.beatDetected && !wallBeat)
@@ -77,15 +78,21 @@ public class ShiftingWallScript : MonoBehaviour
             wallBeat = false;
         }
 
+
+
+    }
+
+    void SlowWallWithBulletTime()
+    {
         if (Keyboard.current.spaceKey.isPressed)
         {
             scrollSpeed = Mathf.Lerp(
-                scrollSpeed, 
+                scrollSpeed,
                 0,
                 2f * Time.deltaTime
             );
         }
-        else if (! Keyboard.current.spaceKey.isPressed && scrollSpeed != ogScrollSpeed)
+        else if (!Keyboard.current.spaceKey.isPressed && scrollSpeed != ogScrollSpeed)
         {
             scrollSpeed = Mathf.Lerp(
                 scrollSpeed,
@@ -93,7 +100,6 @@ public class ShiftingWallScript : MonoBehaviour
                 2f * Time.deltaTime
             );
         }
-
     }
 
     void AddWallPoint(float x)
@@ -129,11 +135,15 @@ public class ShiftingWallScript : MonoBehaviour
         bottomWallLine.SetPositions(bottomWallPoints.ToArray());
 
         // Update physical walls
+        // 2d colliders use vector2s while the lineRenderer uses vector3
         Vector2[] topColliderPoints = new Vector2[topWallPoints.Count];
         Vector2[] bottomColliderPoints = new Vector2[bottomWallPoints.Count];
 
         for (int i = 0; i < topWallPoints.Count; i++)
         {
+            // get the world position points and translate them to 
+            // the local position of where the piont is 
+            // with respect to the gameObject managing these wallcolliders
             topColliderPoints[i] =
                 topWallCollider.transform.InverseTransformPoint(topWallPoints[i]);
 
@@ -152,8 +162,8 @@ public class ShiftingWallScript : MonoBehaviour
             Vector3 topPoint = topWallPoints[i];
             Vector3 bottomPoint = bottomWallPoints[i];
 
-            topPoint.x -= scrollSpeed * Time.deltaTime * (1/audioAnalyzer.volume);
-            bottomPoint.x -= scrollSpeed * Time.deltaTime * (1/audioAnalyzer.volume);
+            topPoint.x -= scrollSpeed * Time.deltaTime * (1 / audioAnalyzer.volume);
+            bottomPoint.x -= scrollSpeed * Time.deltaTime * (1 / audioAnalyzer.volume);
 
             topWallPoints[i] = topPoint;
             bottomWallPoints[i] = bottomPoint;
